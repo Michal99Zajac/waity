@@ -1,1 +1,1 @@
-# waity
+# waity app
