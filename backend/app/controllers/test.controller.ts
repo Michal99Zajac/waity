@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-
-export class TestController {
+import { CommonController } from './common/common-controler.controller'
+export class TestController extends CommonController {
   public getTests(req: Request, res: Response) {
     res.status(200).json({
       test: "you get tests"
