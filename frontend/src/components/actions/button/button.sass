@@ -1,2 +1,40 @@
-button
-  background-color: red
+@import '../../../assets/styles/colors'
+@import '../../../assets/styles/fonts'
+  
+.wi-button
+  color: $primary-white
+  font-size: 1.3em
+  font-family: $standard-font
+  padding: 0.6em
+  border-radius: 30px
+  border: none
+  width: 100%
+  min-width: max-content
+
+  &:focus
+    background: $primary-yellow
+    outline: none
+
+  &:disabled
+    background: $disable-button
+
+    &:hover
+      background: $disable-button
+
+.wi-primary
+  background-color: $primary-black
+  
+  &:hover
+    background: $primary-black-hover
+
+  &:focus:hover
+    background: $primary-yellow
+
+.wi-second
+  background-color: $primary-blue
+  
+  &:hover
+    background: $primary-blue-hover
+
+  &:focus:hover
+    background: $primary-yellow

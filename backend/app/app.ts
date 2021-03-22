@@ -3,11 +3,11 @@ import express from 'express'
 export class App {
   public app: express.Application
 
-  constructor(routes: any[], middlewares: any[]) {
+  constructor(routers: any[], middlewares: any[]) {
     this.app = express()
 
     this.initMiddlewares(middlewares);
-    this.initRoutes(routes);
+    this.initRoutes(routers);
   }
 
   public listen(port: number, message: string) {
@@ -22,9 +22,9 @@ export class App {
     })
   }
 
-  private initRoutes(routes: any[]) {
-    routes.forEach((route) => {
-      this.app.use('/api', route.routes())
+  private initRoutes(routers: any[]) {
+    routers.forEach((router) => {
+      this.app.use('/api', router.routes())
     })
   }
 }
