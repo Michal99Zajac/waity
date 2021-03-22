@@ -1,22 +1,21 @@
-import express, { Router, Request, Response } from 'express'
+import { CommonRouter } from './common/common-router.routers'
 import { TestController } from '../controllers/test.controller'
 
-export class TestRoutes {
-  testController: TestController
-  _routes: Router
+export class TestRouter extends CommonRouter {
+  controller: TestController
 
   constructor() {
-    this._routes = express.Router()
-    this.testController = new TestController()
+    super()
+    this.controller = new TestController()
   }
 
-  public routes(): Router {
-    this._routes.get('/tests', this.testController.getTests)
+  public routes() {
+    this.router.get('/tests', this.controller.getTests)
 
-    this._routes.get('/tests/:id', this.testController.getTest)
+    this.router.get('/tests/:id', this.controller.getTest)
 
-    this._routes.post('/tests', this.testController.addTest)
+    this.router.post('/tests', this.controller.addTest)
 
-    return this._routes
+    return this.router
   }
 }
