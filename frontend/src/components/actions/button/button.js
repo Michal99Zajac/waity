@@ -1,16 +1,16 @@
-import React from 'react';
-import './button.sass'
+import React from 'react'
+import styles from './button.module.sass'
 
 export function Button(props) {
-    const className = props.className === 'wi-primary' ? 'wi-primary' : 'wi-second'
+  const className = props.className === 'primary' ? styles.primary : styles.second
 
-    return (
-        <button
-        onClick={props.onClick} 
-        className={`wi-button ${className}`}
-        disabled={props.disabled}
-        >
-            {props.children}
-        </button>
-    )
+  return (
+    <button
+      onClick={props.onClick} 
+      className={className}
+      disabled={props.disabled}
+    >
+      {props.children}
+    </button>
+  )
 }
