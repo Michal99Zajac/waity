@@ -1,0 +1,15 @@
+{
+  "name": "root",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Michal99Zajac/waity.git",
+  "author": "Michal99Zajac <michal.99.zajac@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "src/*"
+  ],
+  "dependencies": {
+    "typescript": "^4.2.4"
+  }
+}
