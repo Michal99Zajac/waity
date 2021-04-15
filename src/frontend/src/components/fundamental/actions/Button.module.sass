@@ -1,0 +1,57 @@
+@import '../../../assets/styles/colors'
+@import '../../../assets/styles/fonts'
+
+  
+.button
+  width: 100%
+  font-size: 1.6rem
+  border-radius: 3rem
+  border: none
+  background: $primary-black
+  color: $font-white
+  font-family: $standard-font
+  padding: 0.4rem
+
+  &:hover
+    background: $primary-black-hover
+
+  &:focus
+    outline: none
+    background: $primary-blue
+
+  &:disabled
+    background: $primary-grey
+
+    &:hover
+      background: $primary-grey
+
+.small
+  width: auto
+  padding: 0.4rem 1.6rem
+
+.blue
+  background: $primary-blue
+
+  &:hover
+    background: $primary-blue-hover
+
+  &:focus
+    background: $primary-yellow
+
+.yellow
+  background: $primary-yellow
+
+  &:hover
+    background: $primary-yellow-hover
+
+  &:focus
+    background: $primary-blue
+
+.black
+  background: $primary-black
+
+  &:hover
+    background: $primary-black-hover
+
+  &:focus
+    background: $primary-blue
