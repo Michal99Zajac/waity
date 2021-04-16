@@ -14,7 +14,7 @@ type StaticSvgTypes = {
  * - alt (string) - alternate text for an image, if the image cannot be displayed.
  * @returns JSX StaticSvg Component
  */
-export function StaticSvg(props: StaticSvgTypes) {
+export function StaticSvg(props: StaticSvgTypes): JSX.Element {
   return (
     <img src={props.src} alt={props.alt}></img>
   )

@@ -3,25 +3,22 @@
   
   
 .warning
-  position: absolute
-  right: 2rem
-  top: 50%
-  bottom: 50%
   display: flex
   justify-content: center
   align-items: center
 
   p
+    background-color: $primary-white
     font-family: $standard-font
     display: none
     position: absolute
     width: max-content
-    max-width: 50vw
+    max-width: 20rem
     height: auto
     border: 0.2rem solid $primary-warning
     border-radius: 1.5rem
     padding: 0.4rem 0.8rem
-    right: 1.6rem
+    right: 2rem
     animation-name: show
     animation-direction: 1s
     margin: 0
@@ -31,6 +28,10 @@
     display: block
     opacity: 100%
     animation: show 1s
+
+  svg
+    position: absolute
+    right: 0.1rem
     
 @keyframes show
   0%

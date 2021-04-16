@@ -1,0 +1,60 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+
+  
+.textinput
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  justify-content: center
+
+  div
+    width: 100%
+    height: auto
+    position: relative
+
+    div
+      position: absolute
+      height: 2px
+      width: 2px
+      top: calc( 50% - 1px )
+      right: 0.4rem
+
+  input[type="text"]
+    width: 100%
+    max-width: -webkit-fill-available
+    border-radius: 3rem
+    border: none
+    box-shadow: $standard-shadow
+    text-indent: 1.4rem
+    font-size: 1.6rem
+    padding: 0.4rem 1.8rem 0.4rem 0.4rem
+    font-family: $standard-font
+    color: $font-grey-std
+
+    &::placeholder
+      color: $font-grey
+
+    &:focus
+      outline: none
+      color: $font-black
+
+  label
+    width: auto
+    height: auto
+    padding: 0.2rem 1rem
+    box-shadow: $standard-shadow
+    font-family: $standard-font
+    color: $font-black
+    background-color: $primary-yellow
+    margin-bottom: 0.3rem
+    border-radius: 1rem
+
+  .firm
+    background-color: $primary-blue
+    color: $font-white
+
+.disabled label
+  background-color: $primary-grey
+  
