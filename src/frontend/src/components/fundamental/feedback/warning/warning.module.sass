@@ -1,0 +1,39 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+  
+  
+.warning
+  position: absolute
+  right: 2rem
+  top: 50%
+  bottom: 50%
+  display: flex
+  justify-content: center
+  align-items: center
+
+  p
+    font-family: $standard-font
+    display: none
+    position: absolute
+    width: max-content
+    max-width: 50vw
+    height: auto
+    border: 0.2rem solid $primary-warning
+    border-radius: 1.5rem
+    padding: 0.4rem 0.8rem
+    right: 1.6rem
+    animation-name: show
+    animation-direction: 1s
+    margin: 0
+    font-size: 0.9rem
+
+  svg:hover + p
+    display: block
+    opacity: 100%
+    animation: show 1s
+    
+@keyframes show
+  0%
+    opacity: 0
+  100%
+    opacity: 100%
