@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Button.module.sass'
+import styles from './button.module.sass'
 
 
 type ButtonTypes = {
@@ -10,7 +10,6 @@ type ButtonTypes = {
   color?: 'blue' | 'yellow' | 'black' | undefined
   disabled?: boolean
 }
-
 
 /**
  * Button Component - Plain buttons used for less important or 
@@ -26,12 +25,13 @@ type ButtonTypes = {
  * @returns JSX Button Component
  */
 export function Button(props: ButtonTypes): JSX.Element {
-  let className = props.small ? styles.small : ''
-  className = props.color ? `${className} ${styles[props.color]}` : className
+  let className = styles.button
+  className = props.small ? `${styles.small} ${className}` : className
+  className = props.color ? `${styles[props.color]} ${className}` : className
 
   return (
     <button
-      className={props.small ? `${styles.button} ${className}` : styles.button }
+      className={className}
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}
