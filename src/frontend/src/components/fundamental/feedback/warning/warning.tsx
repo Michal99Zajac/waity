@@ -14,12 +14,12 @@ type WarningTypes = {
  * - msg (string | string[]) - msg or msgs for display
  * @returns JSX Warning Component
  */
-export function Warning(props: WarningTypes) {
+export function Warning(props: WarningTypes): JSX.Element {
   return (
     <div className={styles.warning}>
       <Svg />
       <p>
-        { Array.isArray(props.msg) && props.msg.length != 1 ? props.msg.map((message) => {
+        { Array.isArray(props.msg) && props.msg.length !== 1 ? props.msg.map((message) => {
           return (
             <>
               • {message}<br/>
