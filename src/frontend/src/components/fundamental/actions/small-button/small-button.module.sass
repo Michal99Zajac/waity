@@ -1,0 +1,39 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+
+  
+.smallButton
+  width: 40px
+  height: 40px
+  box-shadow: $standard-shadow
+  margin: 0
+  padding: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  border: none
+  border-radius: 50%
+  background-color: $primary-white
+
+  path
+    fill: $primary-grey
+
+  &:disabled
+    background-color: $primary-grey-hover
+
+  &:enabled:hover
+    path
+      fill: $primary-blue
+
+.grey
+  background-color: $primary-grey
+
+  path
+    fill: $primary-white
+
+.white
+  background-color: $primary-white
+
+  path
+    fill: $primary-grey

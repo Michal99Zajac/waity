@@ -7,7 +7,7 @@ import { Button } from './button'
 
 const stories = storiesOf('actions', module)
 stories.addDecorator(withKnobs)
-stories.add('Button', () => {
+stories.add('button', () => {
   const typeOptions = {
     button: 'button',
     submit: 'submit',
