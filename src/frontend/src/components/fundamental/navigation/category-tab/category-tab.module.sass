@@ -1,0 +1,43 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+
+  
+.CategoryTab
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  width: max-content
+
+  label
+    color: $font-black
+    font-family: $standard-font
+    font-size: 1rem
+
+  a
+    img
+      box-sizing: border-box
+      width: 6rem
+      height: 3.5rem
+      border-radius: 3rem
+
+  &:hover
+    img
+      filter: brightness(1.2)
+
+    & + label
+      color: $font-focus-std
+
+.active
+  img
+    border: 0.2rem solid $primary-blue
+
+@media only screen and (max-width: 400px)
+  .CategoryTab
+    a
+      img
+        box-sizing: border-box
+        width: 3.5rem
+        height: 3.5rem
+        border-radius: 3rem
