@@ -1,0 +1,144 @@
+// file for style Calendar
+
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+
+
+.static-calendar
+  border: none !important
+  box-shadow: 0 0 5px 0 $primary-grey
+  border-radius: 1rem
+  padding: 0.4rem
+
+  .react-calendar__navigation
+    margin-bottom: 0.6rem
+    height: 2.5rem
+
+    button
+      border-radius: 3rem
+      margin: 0 0.2rem
+      background-color: $primary-grey
+      color: $font-white
+      font-family: $standard-font
+      font-size: 1.6rem
+      padding: 0
+      min-width: 40px
+
+      span
+        font-family: $standard-font
+        color: $font-blue
+        font-size: 0.8rem
+
+    button:nth-child(1)
+      display: none
+
+    button:nth-child(5)
+      display: none
+
+    button:nth-child(3)
+      order: -1
+      display: flex
+      align-items: center
+      justify-content: left
+      padding-left: 0.6rem
+      background: transparent
+      cursor: default !important
+
+      &:focus
+        background: transparent
+
+      &:enabled:hover
+        background: transparent
+
+        span
+          color: $font-black
+      
+      span
+        color: $font-black
+        font-size: 1.2rem
+
+  .react-calendar__month-view__weekdays__weekday
+    border-radius: 3rem
+    margin: 0.2rem 0.2rem
+
+    abbr
+      font-family: $standard-font
+      text-decoration: none
+
+  .react-calendar__tile
+    border-radius: 3rem
+
+  .react-calendar__tile--active
+    background-color: $primary-yellow
+
+    &:enabled:focus
+      background-color: $primary-yellow
+
+    &:enabled:hover
+      background-color: $primary-yellow
+
+    abbr
+      color: $font-white
+
+  .react-calendar__tile--now
+    color: $font-white
+    background-color: $primary-blue
+
+    &:enabled:hover
+      background-color: $primary-blue
+
+    abbr
+      color: $font-white
+
+  .react-calendar__tile--hasActive
+    color: $font-white
+    background-color: $primary-yellow
+
+    &:enabled:hover
+      background-color: $primary-yellow
+
+    abbr
+      color: $font-white
+
+  .react-calendar__month-view
+    button
+      flex-basis: 10.55% !important
+      margin: 0.1rem 1.8678%
+
+  .react-calendar__month-view__days__day--weekend
+    color: $primary-blue
+
+  .react-calendar__month-view__days__day--neighboringMonth
+    color: $primary-grey
+
+  .react-calendar__navigation
+    button:nth-child(1)
+      display: none
+
+    button:nth-child(5)
+      display: none
+
+    button:nth-child(3)
+      order: -1
+      display: flex
+      align-items: center
+      justify-content: left
+      padding-left: 0.6rem
+      background: transparent
+      cursor: default !important
+
+      &:enabled:hover
+        background: transparent
+
+        span
+          color: $font-black
+      
+      span
+        color: $font-black
+        font-size: 1.2rem
+
+  .react-calendar__viewContainer
+    button
+      flex-basis: 10.55% !important
+      margin: 0.1rem 1.8678%

@@ -9396,6 +9396,7 @@ __metadata:
     axios: ^0.21.1
     node-sass: ^5.0.0
     react: ^17.0.2
+    react-calendar: ^3.4.0
     react-date-picker: ^8.1.1
     react-dom: ^17.0.2
     react-scripts: 4.0.3
@@ -16144,6 +16145,21 @@ fsevents@^1.2.7:
     react: ^16.3.0 || ^17.0.0-0
     react-dom: ^16.3.0 || ^17.0.0-0
   checksum: f5e4687f1eb04a82ef87449ca47620c87d73ac09c63a2d128a7785ea611389a1140ec517f39703fae8fc0d5dea23628289dbe82b2cf63e5dc92c021712677f97
+  languageName: node
+  linkType: hard
+
+"react-calendar@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "react-calendar@npm:3.4.0"
+  dependencies:
+    "@wojtekmaj/date-utils": ^1.0.2
+    get-user-locale: ^1.2.0
+    merge-class-names: ^1.1.1
+    prop-types: ^15.6.0
+  peerDependencies:
+    react: ^16.3.0 || ^17.0.0-0
+    react-dom: ^16.3.0 || ^17.0.0-0
+  checksum: 36ea2dd18c4f1273cf6cdf6036db023b831de2976b15ec442d918b31db6f4ff52cc4d07b65704ae2b6f4dc932644d76bc75c9c198f208d34517bf49b3cf49bff
   languageName: node
   linkType: hard
 
