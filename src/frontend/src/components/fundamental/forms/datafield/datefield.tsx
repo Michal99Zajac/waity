@@ -15,6 +15,20 @@ type DatefieldTypes = {
   disabled?: boolean
 }
 
+/**
+ * Datefield Component - A date field is an input field that 
+ * clients can type or choose date
+ * 
+ * @param {object} props Object with props like
+ * - disabled (bool) - indicates whether the input is disabled
+ * - label (string) - label of input
+ * - value (Date) - value of input
+ * - onChange (any) - function for change the input value
+ * - warning (string | string[]) - messages to information client about error
+ * - valid (bool) - indicates if input is valid
+ * - firm (bool) - indicates if input is for firm side
+ * @returns JSX Textfield Component
+ */
 export function Datefield(props: DatefieldTypes): JSX.Element {
   return (
     <div className={`${styles.datefield} ${props.valid ? 'datepicker-valid' : ''} ${props.disabled ? styles.disabled : ''}`}>
