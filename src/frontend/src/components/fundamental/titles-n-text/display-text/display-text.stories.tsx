@@ -12,7 +12,7 @@ stories.add('display-text', () => {
   return (
     <div style={{
       width: '100%',
-      height: '100%',
+      height: '100vh',
       backgroundColor: '#6153cc'
     }}>
       <DisplayText text={text} />
