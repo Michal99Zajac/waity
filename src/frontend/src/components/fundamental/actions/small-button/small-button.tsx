@@ -5,7 +5,7 @@ import styles from './small-button.module.sass'
 type SmallButtonTypes = {
   svg: JSX.Element,
   onClick: React.MouseEventHandler<HTMLButtonElement>,
-  disabled: boolean,
+  disabled?: boolean,
   color?: 'white' | 'grey' | undefined
 }
 

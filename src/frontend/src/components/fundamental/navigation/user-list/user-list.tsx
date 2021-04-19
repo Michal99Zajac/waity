@@ -40,7 +40,7 @@ export function UserList(props: UserListTypes): JSX.Element {
       <button onClick={props.onLogout} className={styles.innerButton}>logout</button>
       { isOpen && props.links &&
         <ul className={styles.list}>
-          { props.links.map(link => <li>{link}</li>) }
+          { props.links.map((link, index) => { return <li key={index}>{link}</li> }) }
         </ul>
       }
     </div>
