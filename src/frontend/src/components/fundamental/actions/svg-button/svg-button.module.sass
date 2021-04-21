@@ -1,0 +1,38 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+
+
+.svgButton
+  width: auto
+  height: 100%
+  padding: 0.3rem
+  background-color: transparent
+  border: none
+  box-sizing: border-box
+  border-radius: 3rem
+  transition: all 0.3s
+
+  &:disabled
+    svg path
+      fill: $disable-button
+
+  &:enabled:hover
+    svg path
+      fill: $primary-blue
+
+  svg
+    height: 100%
+    width: auto
+
+    path
+      fill: $primary-grey
+
+.blue:enabled:hover svg path
+  fill: $primary-blue
+
+.yellow:enabled:hover svg path
+  fill: $primary-yellow
+
+.white:enabled:hover svg path
+  fill: $primary-white
