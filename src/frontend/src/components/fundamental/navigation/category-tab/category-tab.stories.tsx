@@ -20,7 +20,7 @@ stories.add('category-tab', () => {
   const alt = text('alt', 'image')
   const baseurl = text('baseurl', '#')
   const category = text('category', 'hungary')
-  const src = select('src', srcOptions, 'hungary')
+  const src = select('src', srcOptions, srcOptions['hungary'])
 
 
   return (
