@@ -21,10 +21,11 @@ type SectionLabelTypes = {
  */
 export function SectionLabel(props: SectionLabelTypes): JSX.Element {
   return (
-    <p className={`${styles.selectionLabel}
-                  ${props.firm ? styles.firm : ''}
-                  ${props.size ? styles[props.size] : styles.m}
-                  ${props.offer ? styles.offer : ''}
+    <p className={`
+      ${styles.selectionLabel}
+      ${props.firm ? styles.firm : ''}
+      ${props.size ? styles[props.size] : styles.m}
+      ${props.offer ? styles.offer : ''}
     `}>
       {props.label}
     </p>
