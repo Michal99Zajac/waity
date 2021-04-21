@@ -11,7 +11,7 @@ type SmallButtonTypes = {
 
 /**
  * SmallButton Component - Plain buttons used for less important or 
- * less commonly used actions and have only svg as content
+ * less commonly used actions and they are smaller then regular buttons
  * 
  * @param {object} props Object with props like
  * - disabled (bool) - indicates whether the button is disabled
