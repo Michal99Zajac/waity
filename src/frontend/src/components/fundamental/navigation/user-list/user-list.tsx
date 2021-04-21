@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, NavLink } from 'react-router-dom'
 import styles from './user-list.module.sass'
 import { ReactComponent as Arrow} from '../../../../assets/svg/basic/arrow-up.svg'
 
