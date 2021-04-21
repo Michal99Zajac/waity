@@ -23,23 +23,20 @@ type UserListTypes = {
  */
 export function UserList(props: UserListTypes): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
-
-  const rollList = () => {
-    isOpen ? setIsOpen(false) : setIsOpen(true)
-  }
+  const listSize = props.links.length < 10 ? `${props.links.length * 2 + 2}rem` : '70vh'
 
   return (
     <div className={styles.userList}>
       <button
         className={styles.outerButton}
-        onClick={rollList}
+        onClick={() => setIsOpen(!isOpen)}
       >
         <Arrow className={ isOpen ? styles.arrowClose : styles.arrowOpen } />
         <span>{props.name + ' ' + props.surname}</span>
       </button>
       <button onClick={props.onLogout} className={styles.innerButton}>logout</button>
-      { isOpen && props.links &&
-        <ul className={styles.list}>
+      { props.links &&
+        <ul style={isOpen ? {height: listSize} : {}} className={`${styles.list} ${isOpen ? styles.listOpen : ''}`}>
           { props.links.map((link, index) => { return <li key={index}>{link}</li> }) }
         </ul>
       }
