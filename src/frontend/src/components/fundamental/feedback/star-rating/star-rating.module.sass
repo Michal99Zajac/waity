@@ -1,0 +1,47 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+
+
+.starRating
+  height: auto
+  width: min-content
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  justify-content: center
+
+.rating
+  display: flex
+  width: 100%
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 0.2rem
+  border-bottom: 0.2rem solid $primary-white
+
+  p
+    color: $font-white
+    font-size: 1.2rem
+    font-family: $standard-font
+    margin: 0
+    
+    &:first-child
+      margin-right: 0.2rem
+
+.stars
+  height: 2rem
+  box-sizing: border-box
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+
+  .star
+    width: 1.6rem
+    height: auto
+    margin-right: 0.2rem
+
+    &:last-child
+      margin-right: 0
+
+    path
+      fill: $gold-star
