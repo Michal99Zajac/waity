@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch, useRouteMatch } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { storiesOf } from '@storybook/react'
 import { select, text, withKnobs } from '@storybook/addon-knobs'
 import { CategoryTab } from './category-tab'

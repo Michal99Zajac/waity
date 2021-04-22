@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { array, text, withKnobs } from '@storybook/addon-knobs'
+import { array, withKnobs } from '@storybook/addon-knobs'
 import { Warning } from './warning'
 
 

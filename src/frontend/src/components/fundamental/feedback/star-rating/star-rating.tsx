@@ -10,12 +10,29 @@ type StarRatingTypes = {
   label: string
 }
 
+/**
+ * StarRating Component - rating information with star visualization 
+ * 
+ * @param {object} props Object with props like
+ * - scale (number) - amount of all stars
+ * - rating (number) - rating to visualization
+ * - label (string) - label to display
+ * @returns JSX StarRating Component
+ */
 export function StarRating(props: StarRatingTypes): JSX.Element {
-  const addRating = (scale: number) => {
+
+  /**
+   * get stars svg whit empty and fill content
+   * 
+   * @param scale number of all stars
+   * @param rating number of star to fill color
+   * @returns JSX.Element[] array of star svgs
+   */
+  const addRating = (scale: number, rating: number) => {
     let result = []
 
     for (let i = 0; i < scale; i++) {
-      if (i < Math.round(props.rating)) {
+      if (i < Math.round(rating)) {
         result.push(<StarFillSvg className={styles.star} />)
       } else {
         result.push(<StarEmptySvg className={styles.star} />)
@@ -32,7 +49,7 @@ export function StarRating(props: StarRatingTypes): JSX.Element {
         <p>{props.rating}</p>
       </div>
       <div className={styles.stars}>
-        {addRating(props.scale).map(element => element)}
+        {addRating(props.scale, props.rating).map(element => element)}
       </div>
     </div>
   )
