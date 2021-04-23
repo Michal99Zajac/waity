@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, withKnobs } from '@storybook/addon-knobs'
+import { object, text, withKnobs } from '@storybook/addon-knobs'
 import { Spots } from './spots'
 
 
@@ -18,10 +18,10 @@ stories.add('spots', () => {
     }
   ]
 
-  const selected = boolean('selected', false)
+  const className = text('className', 'selected')
   const spots = object('spots', spotsObj)
 
   return (
-    <Spots spots={spots} selected={selected} />
+    <Spots spots={spots} className={className} />
   )
 })

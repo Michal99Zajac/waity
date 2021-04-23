@@ -8,9 +8,7 @@
   flex-wrap: wrap
   width: 100%
   height: auto
-
-.selected .spot
-  background-color: $primary-blue
+  justify-content: flex-end
 
 .spot
   height: 2.5rem
@@ -18,3 +16,7 @@
   background-color: $primary-grey
   margin-right: 0.4rem
   margin-bottom: 0.4rem
+
+@media only screen and (max-width: 400px)
+  .spots
+    justify-content: flex-start

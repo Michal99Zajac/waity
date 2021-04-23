@@ -1,0 +1,86 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+
+
+input[type="radio"]
+  display: none
+
+  &:checked + div
+    .selected
+      background-color: $primary-blue
+
+    .spots p
+      background-color: $primary-blue
+
+.reservationTab
+  width: 100%
+  height: auto
+  display: flex
+
+.container
+  width: 100%
+  height: auto
+  display: flex
+  flex-wrap: nowrap
+  align-items: flex-start
+  justify-content: space-between
+  padding: 1rem
+  background-color: $background-grey
+  border-radius: 0.5rem
+  box-shadow: $standard-shadow
+
+  & > *
+    margin-right: 1rem
+
+    &:last-child
+      margin-right: 0
+
+.labels
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  padding-bottom: 0.6rem
+  box-sizing: border-box
+
+.spots
+  flex-grow: 1
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-between
+  height: 100%
+
+  p
+    background-color: $primary-grey
+
+.facilities
+  width: 100%
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  margin-bottom: 2rem
+
+  & > *
+    margin-left: 0.5rem
+
+@media only screen and (max-width: 400px)
+  .container
+    flex-wrap: wrap
+
+  .labels
+    justify-content: flex-start
+
+  .facilities
+    margin: 0.5rem 0
+    justify-content: flex-start
+
+    & > *
+      margin-left: 0
+      margin-right: 0.5rem
+
+  .spots
+    justify-content: flex-start
+
+  .container > *
+    margin-right: 0
