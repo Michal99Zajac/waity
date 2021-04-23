@@ -22,7 +22,11 @@ export function Navlink(props: NavlinkTypes): JSX.Element {
   return (
     <RouterNavlink
       activeClassName={styles.active}
-      className={`${styles.navlink} ${props.alternative ? styles.alternative : ''}`}
+      className={`
+        ${styles.navlink}
+        ${props.alternative ? styles.alternative : ''}
+        ${!isNaN(+props.label) ? styles.circle : ''}
+      `}
       to={props.to}
     >
       {props.label}

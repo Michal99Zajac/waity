@@ -3,7 +3,8 @@ import styles from './info-label.module.sass'
 
 
 type InfoLabelTypes = {
-  label: string
+  label: string,
+  status?: 'available' | 'booked' | 'partial' | 'inform' | 'none'
 }
 
 /**
@@ -11,10 +12,15 @@ type InfoLabelTypes = {
  * 
  * @param {object} props Object with props like
  * - label (string) - text of info label
+ * - status (string) - determines the color of the information
  * @returns JSX InfoLabel Component
  */
 export function InfoLabel(props: InfoLabelTypes): JSX.Element {
   return (
-    <p className={styles.infoLabel}>{props.label}</p>
+    <p
+      className={`${styles.infoLabel} ${props.status ? styles[props.status] : styles.none}`}
+    >
+      {props.label}
+    </p>
   )
 }
