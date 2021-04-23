@@ -3,7 +3,10 @@ import styles from './heading.module.sass'
 
 
 type HeadingTypes = {
-  label: string
+  label: string,
+  size?: 's' | 'm' | 'l' | 'xl' | 'xll',
+  special?: boolean,
+  color?: 'yellow' | 'black' | 'blue' | 'white' | 'grey'
 }
 
 /**
@@ -11,10 +14,20 @@ type HeadingTypes = {
  * 
  * @param {object} props Object with props like
  * - label (string) - text of header
+ * - size (string) - size of heading
+ * - special (bool) - determines special font
+ * - color (string) - determines color of heading
  * @returns JSX Heading Component
  */
 export function Heading(props: HeadingTypes): JSX.Element {
   return (
-    <h1 className={styles.heading}>{props.label}</h1>
+    <h1 className={`
+      ${styles.heading}
+      ${props.size ? styles[props.size] : styles.m}
+      ${props.special ? styles.special : ''}
+      ${props.color ? styles[props.color] : styles.blue}
+    `}>
+      {props.label}
+    </h1>
   )
 }
