@@ -8,7 +8,7 @@ type Spot = {
 }
 
 type SpotsTypes = {
-  selected?: boolean,
+  className?: string,
   spots: Spot[]
 }
 
@@ -16,7 +16,7 @@ type SpotsTypes = {
  * Spots Component - container for spots visualization
  * 
  * @param {object} props Object with props like
- * - selected (bool) - indicates if component is selected
+ * - className (string) - indicates if component is selected
  * - spots (array) - data array about quantity of spots and quantity of places
  * @returns JSX Spots Component
  */
@@ -33,14 +33,20 @@ export function Spots(props: SpotsTypes): JSX.Element {
     const spots: JSX.Element[] = []
 
     for (let i = 0; i < quantity; i++) {
-      spots.push(<div style={{width: `${places * 2.5}rem`}} className={styles.spot}></div>)
+      spots.push(
+        <div
+          key={i * places}
+          style={{width: `${places * 2.5}rem`}}
+          className={`${styles.spot} ${props.className ? props.className : ''}`}
+        ></div>
+      )
     }
 
     return spots
   }
 
   return (
-    <div className={`${styles.spots} ${props.selected ? styles.selected : ''}`}>
+    <div className={styles.spots}>
       { props.spots.map(spot => (
         getSpots(spot.quantity, spot.places).map(s => s)
       ))}

@@ -6,7 +6,7 @@ type TableTypes = {
   width: number,
   height: number,
   id: number,
-  selected?: boolean
+  className?: string
 }
 
 /**
@@ -16,7 +16,7 @@ type TableTypes = {
  * - width (number) - number of seats on width side of table
  * - height (number) - number of seats on height side of table
  * - id (number) - id of table
- * - selected (bool) - indicated if table is selected
+ * - className (string) - indicated if table is selected
  * @returns JSX Table Component
  */
 export function Table(props: TableTypes): JSX.Element {
@@ -24,9 +24,10 @@ export function Table(props: TableTypes): JSX.Element {
     <div
     style={{
       height: `${props.height * 2.5}rem`,
-      width: `${props.width * 2.5}rem`
+      width: `${props.width * 2.5}rem`,
+      minWidth: `${props.width * 2.5}rem`
     }}
-    className={`${styles.table} ${props.selected ? styles.selected : ''}`}
+    className={`${styles.table} ${props.className ? props.className : ''}`}
     >
       <p>{props.id}</p>
     </div>
