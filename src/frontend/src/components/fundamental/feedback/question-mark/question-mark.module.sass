@@ -1,0 +1,76 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+  
+
+.questionMark
+  position: relative
+
+.mark
+  background-color: $background-grey
+  display: flex
+  align-items: center
+  justify-content: center
+  font-family: 'Balsamiq Sans'
+  color: $font-black
+  border-radius: 3rem
+  box-shadow: $standard-shadow
+
+  &:hover + .answear
+    visibility: visible
+    opacity: 1
+
+.answear
+  width: 200px
+  height: auto
+  position: absolute
+  bottom: 2rem
+  right: 2rem
+  margin: 0
+  box-sizing: border-box
+  box-shadow: $standard-shadow
+  border-radius: 1rem
+  padding: 1rem
+  font-family: $standard-font
+  color: $font-black
+  visibility: hidden
+  transition: all 1s
+  opacity: 0
+  font-size: 1rem
+
+  &:hover
+    visibility: visible
+    opacity: 1
+
+.small
+  .mark
+    width: 1.7rem
+    height: 1.7rem
+    font-size: 0.8rem
+
+  .answear
+    bottom: 1.8rem
+    right: 1.8rem
+    font-size: 0.9rem
+
+.medium
+  .mark
+    width: 2rem
+    height: 2rem
+    font-size: 1rem
+
+  .answear
+    bottom: 2rem
+    right: 2rem
+    font-size: 1rem
+
+.large
+  .mark
+    width: 2.2rem
+    height: 2.2rem
+    font-size: 1.1rem
+
+  .answear
+    bottom: 2.1rem
+    right: 2.1rem
+    font-size: 1.1rem
