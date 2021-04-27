@@ -1,0 +1,46 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/fonts'
+@import '../../assets/styles/shadow'
+
+
+.stars
+  display: flex
+  height: 2rem
+  margin-top: 0.2rem
+  border-top: 0.2rem solid $primary-white
+  padding: 0.2rem 0 
+  box-sizing: border-box
+  width: max-content
+
+  input
+    display: none
+
+  .star
+    margin: 0 0.2rem
+
+    &:first-child
+      margin: 0 0.2rem 0 0
+
+    &:last-child
+      margin: 0 0 0 0.2rem
+
+.starPicker
+  width: min-content
+
+  & > span
+    display: flex
+    align-items: center
+    justify-content: space-between
+    width: 100%
+
+.star
+  width: 1.6rem
+
+@media only screen and (max-width: 400px)
+  .stars
+    width: 100%
+    display: flex
+    justify-content: space-between
+
+  .starPicker
+    width: 100%
