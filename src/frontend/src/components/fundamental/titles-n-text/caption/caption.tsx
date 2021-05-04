@@ -3,7 +3,9 @@ import styles from './caption.module.sass'
 
 
 type CaptionTypes = {
-  content: string
+  content: string,
+  size?: 's' | 'm' | 'l',
+  className?: string
 }
 
 /**
@@ -11,10 +13,18 @@ type CaptionTypes = {
  * 
  * @param {object} props Object with props like
  * - content (string) - content of caption
+ * - size (string) - size of Caption
+ * - className (string) - additional class for Caption component
  * @returns JSX Caption Component
  */
 export function Caption(props: CaptionTypes): JSX.Element {
   return (
-    <p className={styles.caption}>{props.content}</p>
+    <p className={`
+      ${styles.caption}
+      ${props.size ? styles[props.size] : styles.m}
+      ${props.className ? props.className : ''}
+    `}>
+      {props.content}
+    </p>
   )
 }
