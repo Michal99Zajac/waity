@@ -1,0 +1,127 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+
+  
+.timeline
+  width: 100%
+  height: 120px
+  box-sizing: border-box
+  padding: 0
+  margin-top: 1rem
+  border-top: 2px solid $primary-grey
+  display: flex
+  flex-direction: row
+
+.block
+  padding: 0.5rem 0.5rem 0 0.5rem
+  position: relative
+  min-width: fit-content
+
+  &:first-child
+    padding-left: 0
+
+    .dotStart
+      left: 0
+
+    .start
+      left: -14px
+
+  &:last-child
+    padding-right: 0
+
+    .dotStop
+      right: 0
+
+    .stop
+      right: -11px
+
+.dotStart, .dotStop
+  position: absolute
+  width: 5px
+  height: 5px
+  border-radius: 3rem
+  background-color: $primary-grey
+  top: -3px
+
+.dotStart
+  left: 0.5rem
+
+.dotStop
+  right: 0.5rem
+
+.start, .stop
+  display: flex
+  flex-direction: column
+  position: absolute
+  top: -2rem
+  font-family: $standard-font
+  font-size: 0.8rem
+  color: $font-grey
+  transform: rotate(-90deg)
+
+.start
+  left: -6px
+
+.stop
+  right: -8px
+
+@media only screen and (max-width: 400px)
+  .timeline
+    height: 500px
+    margin-top: 1rem
+    border-top: none
+    border-left: 2px solid $primary-grey
+    flex-direction: column
+    margin: 0
+
+  .block
+    padding: 0.5rem 0 0.5rem 0.5rem
+    min-height: 60px
+
+    &:first-child
+      padding-top: 0
+      padding-left: 0.5rem
+
+      .dotStart
+        left: -4px
+        top: 0
+
+      .start
+        left: -40px
+        top: -6px
+
+    &:last-child
+      padding-bottom: 0
+
+      .dotStop
+        right: unset
+        bottom: 0
+
+      .stop
+        left: -32px
+        bottom: -7px
+        right: unset
+
+  .dotStart, .dotStop
+    left: -4px
+    top: unset
+
+  .dotStart
+    top: 0.5rem
+
+  .dotStop
+    bottom: 0.5rem
+
+  .start, .stop
+    top: unset
+    right: unset
+    left: -40px
+    bottom: unset
+    transform: rotate(0deg)
+
+  .start
+    top: 2px
+
+  .stop
+    bottom: 1px
