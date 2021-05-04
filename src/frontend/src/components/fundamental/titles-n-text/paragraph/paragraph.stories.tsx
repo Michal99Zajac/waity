@@ -26,8 +26,9 @@ stories.add('paragraph', () => {
   const size: any = select('size', sizeOptions, sizeOptions['none'])
   const color: any = select('color', colorOptions, colorOptions['none'])
   const bold = boolean('bold', false)
+  const className = text('className', '')
 
   return (
-    <Paragraph bold={bold} color={color} size={size}>{children}</Paragraph>
+    <Paragraph className={className} bold={bold} color={color} size={size}>{children}</Paragraph>
   )
 })

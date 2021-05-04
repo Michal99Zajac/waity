@@ -6,7 +6,8 @@ import styles from './navlink.module.sass'
 type NavlinkTypes = {
   to: string,
   label: string,
-  alternative?: boolean
+  alternative?: boolean,
+  className?: string
 }
 
 /**
@@ -16,6 +17,7 @@ type NavlinkTypes = {
  * - to (string) - path to location
  * - label (string) - text inside a navlink
  * - alterntive (bool) - indicates if navlink have alternative style
+ * - className (string) - additional class for component
  * @returns JSX Navlink Component
  */
 export function Navlink(props: NavlinkTypes): JSX.Element {
@@ -26,6 +28,7 @@ export function Navlink(props: NavlinkTypes): JSX.Element {
         ${styles.navlink}
         ${props.alternative ? styles.alternative : ''}
         ${!isNaN(+props.label) ? styles.circle : ''}
+        ${props.className ? props.className : ''}
       `}
       to={props.to}
     >

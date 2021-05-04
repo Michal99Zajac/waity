@@ -8,7 +8,8 @@ type ButtonTypes = {
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   small?: boolean
   color?: 'blue' | 'yellow' | 'black' | undefined
-  disabled?: boolean
+  disabled?: boolean,
+  className?: string
 }
 
 /**
@@ -22,6 +23,7 @@ type ButtonTypes = {
  * - onClick (func) - function to use for button
  * - small (bool) - indicates size of button
  * - color (string) - color type of button
+ * - className (string) - additional class for component
  * @returns JSX Button Component
  */
 export function Button(props: ButtonTypes): JSX.Element {
@@ -31,7 +33,7 @@ export function Button(props: ButtonTypes): JSX.Element {
 
   return (
     <button
-      className={className}
+      className={`${className} ${props.className ? props.className : ''}`}
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}

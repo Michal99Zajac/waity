@@ -7,7 +7,8 @@ import styles from './star.module.sass'
 type StarTypes = {
   value: number,
   rate: number,
-  setRate: Function
+  setRate: Function,
+  className?: string
 }
 
 /**
@@ -17,6 +18,7 @@ type StarTypes = {
  * - value (number) - value of component
  * - rate (number) - rate of whole higher component
  * - setRate (func) - function for set rate to value of component
+ * - className (string) - additional class for component
  * @returns JSX Star Component
  */
 export function Star(props: StarTypes): JSX.Element {
@@ -25,8 +27,8 @@ export function Star(props: StarTypes): JSX.Element {
   return (
     <>
       { props.value <= props.rate ?
-        <StarFill onClick={() => props.setRate(value)} className={styles.star} /> :
-        <StarEmpty onClick={() => props.setRate(value)} className={styles.star} />
+        <StarFill onClick={() => props.setRate(value)} className={`${styles.star} ${props.className ? props.className : ''}`} /> :
+        <StarEmpty onClick={() => props.setRate(value)} className={`${styles.star} ${props.className ? props.className : ''}`} />
       }
     </>
   )

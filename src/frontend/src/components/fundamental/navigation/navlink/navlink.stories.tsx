@@ -11,10 +11,11 @@ stories.add('navlink', () => {
   const to = text('to', '#')
   const label = text('label', 'navlink')
   const alternative = boolean('alternative', false)
+  const className = text('className', '')
 
   return (
     <Router>
-      <Navlink alternative={alternative} label={label} to={to} />
+      <Navlink className={className} alternative={alternative} label={label} to={to} />
     </Router>
   )
 })

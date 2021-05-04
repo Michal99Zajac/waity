@@ -10,8 +10,9 @@ stories.add('star-rating', () => {
   const rating = number('rating', 3)
   const scale = number('scale', 5)
   const label = text('label', 'Rating')
+  const className = text('className', '')
 
   return (
-    <StarRating label={label} rating={rating} scale={scale} />
+    <StarRating className={className} label={label} rating={rating} scale={scale} />
   )
 })

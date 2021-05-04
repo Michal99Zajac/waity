@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs } from '@storybook/addon-knobs'
+import { text, withKnobs } from '@storybook/addon-knobs'
 import { Calendar } from './calendar'
 
 
@@ -9,8 +9,9 @@ stories.addDecorator(withKnobs)
 stories.add('calendar', () => {
   const [date, setDate] = useState(new Date())
   const minDate = new Date()
+  const className = text('className', '')
 
   return (
-    <Calendar value={date} onChange={setDate} minDate={minDate} />
+    <Calendar className={className} value={date} onChange={setDate} minDate={minDate} />
   )
 })

@@ -11,7 +11,8 @@ type TextfieldTypes = {
   warning?: string | string[]
   valid?: boolean,
   firm?: boolean,
-  disabled?: boolean
+  disabled?: boolean,
+  className?: string
 }
 
 /**
@@ -26,11 +27,16 @@ type TextfieldTypes = {
  * - warning (string) - messages to information client about error
  * - valid (bool) - indicates if input is valid
  * - firm (bool) - indicates if input is for firm side
+ * - className (string) - additional class for component
  * @returns JSX Textfield Component
  */
 export function Textfield(props: TextfieldTypes): JSX.Element {
   return (
-    <div className={`${styles.textinput} ${props.disabled ? styles.disabled : ''}`}>
+    <div className={`
+      ${styles.textinput}
+      ${props.disabled ? styles.disabled : ''}
+      ${props.className ? props.className : ''}
+    `}>
       { props.label && <label className={props.firm ? styles.firm : undefined}>{props.label}</label> }
       <div>
         <input disabled={props.disabled} type='text' placeholder={props.placeholder} value={props.value} onChange={props.onChange} />

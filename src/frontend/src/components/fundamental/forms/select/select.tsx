@@ -15,7 +15,8 @@ type SelectTypes = {
   category: string,
   state: string,
   setState: React.Dispatch<React.SetStateAction<any>>,
-  options: OptionsTypes[]
+  options: OptionsTypes[],
+  className?: string
 }
 
 /**
@@ -29,6 +30,7 @@ type SelectTypes = {
  * - state (string) - state to set
  * - setState (func) - function to change state
  * - options (object) - options with value and id
+ * - className (string) - additional class for component
  * @returns JSX Select Component
  */
 export function Select(props: SelectTypes): JSX.Element {
@@ -42,7 +44,11 @@ export function Select(props: SelectTypes): JSX.Element {
   }
 
   return (
-    <div className={`${styles.select} ${isOpen ? styles.selectOpen : ''}`}>
+    <div className={`
+      ${styles.select}
+      ${isOpen ? styles.selectOpen : ''}
+      ${props.className ? props.className : ''}
+    `}>
       { props.label && <label className={`${styles.label} ${props.firm ? styles.firm : ''}`}>{props.label}</label> }
       <button onClick={() => setIsOpen(!isOpen)}>
         <span>{props.state || props.placeholder}</span>

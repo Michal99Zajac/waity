@@ -14,7 +14,8 @@ type ReservationTabTypes = {
   status: 'available' | 'booked' | 'partial',
   facilities: string[],
   table: {width: number, height: number},
-  spots: {quantity: number, places: number}[]
+  spots: {quantity: number, places: number}[],
+  className?: string
 }
 
 /**
@@ -30,11 +31,15 @@ type ReservationTabTypes = {
  * - facilities (array[string]) - facilities for table
  * - table (object) - table dimensions
  * - spots (array[object]) - array of spots quantity at the table and places on spot
+ * - className (string) - additional class for component
  * @returns JSX ReservationTab Component
  */
 export function ReservationTab(props: ReservationTabTypes): JSX.Element {
   return (
-    <label className={styles.reservationTab} htmlFor={props.id}>
+    <label
+      className={`${styles.reservationTab} ${props.className ? props.className : ''}`}
+      htmlFor={props.id}
+    >
       <input
         onChange={(e) => props.setState(e.target.value)}
         id={props.id}

@@ -7,7 +7,8 @@ type CategoryTabTypes = {
   baseurl: string,
   category: string,
   src: string,
-  alt: string
+  alt: string,
+  className?: string
 }
 
 /**
@@ -18,11 +19,12 @@ type CategoryTabTypes = {
  * - category (string) - additional path and label for link
  * - src (string) - path to image
  * - alt (string) - alternate text for an image, if the image cannot be displayed.
+ * - className (string) - additional class for component
  * @returns JSX CategoryTab Component
  */
 export function CategoryTab(props: CategoryTabTypes): JSX.Element {
   return (
-    <div className={styles.CategoryTab}>
+    <div className={`${styles.CategoryTab} ${props.className ? props.className : ''}`}>
       <NavLink activeClassName={styles.active} to={`${props.baseurl}/${props.category}`}>
         <img src={props.src} alt={props.alt} />
       </NavLink>

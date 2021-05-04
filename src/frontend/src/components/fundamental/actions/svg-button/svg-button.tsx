@@ -6,7 +6,8 @@ type SvgButtonTypes = {
   onClick: React.MouseEventHandler<HTMLButtonElement>
   svg: JSX.Element,
   disabled: boolean,
-  color: 'yellow' | 'blue' | 'white'
+  color: 'yellow' | 'blue' | 'white',
+  className?: string
 }
 
 /**
@@ -18,13 +19,18 @@ type SvgButtonTypes = {
  * - svg (JSX.Element) - content of a button
  * - onClick (func) - function to use for button
  * - color (string) - color type of button
+ * - className (string) - additional class for component
  * @returns JSX SvgButton Component
  */
 export function SvgButton(props: SvgButtonTypes): JSX.Element {
   return (
     <button
       disabled={props.disabled}
-      className={`${styles.svgButton} ${props.color ? styles[props.color] : styles.blue}`}
+      className={`
+        ${styles.svgButton}
+        ${props.color ? styles[props.color] : styles.blue}
+        ${props.className ? props.className : ''}
+      `}
       onClick={props.onClick}
     >
       {props.svg}

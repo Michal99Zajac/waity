@@ -6,7 +6,8 @@ type SectionLabelTypes = {
   label: string,
   firm?: boolean,
   offer?: boolean,
-  size?: 's' | 'm' | 'l' | 'xl'
+  size?: 's' | 'm' | 'l' | 'xl',
+  className?: string
 }
 
 /**
@@ -17,6 +18,7 @@ type SectionLabelTypes = {
  * - firm (bool) - indicates if label is for firm side
  * - offer (bool) - indicates if label is for offer card
  * - size (string) - indicates the size of the label
+ * - className (string) - additional class for component
  * @returns JSX SectionLabel Component
  */
 export function SectionLabel(props: SectionLabelTypes): JSX.Element {
@@ -26,6 +28,7 @@ export function SectionLabel(props: SectionLabelTypes): JSX.Element {
       ${props.firm ? styles.firm : ''}
       ${props.size ? styles[props.size] : styles.m}
       ${props.offer ? styles.offer : ''}
+      ${props.className ? props.className : ''}
     `}>
       {props.label}
     </p>

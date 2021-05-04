@@ -14,6 +14,7 @@ type DatefieldTypes = {
   label?: string,
   firm?: boolean,
   disabled?: boolean,
+  className?: string
 }
 
 /**
@@ -29,11 +30,17 @@ type DatefieldTypes = {
  * - warning (string | string[]) - messages to information client about error
  * - valid (bool) - indicates if input is valid
  * - firm (bool) - indicates if input is for firm side
+ * - className (string) - additional class for component
  * @returns JSX Datefield Component
  */
 export function Datefield(props: DatefieldTypes): JSX.Element {
   return (
-    <div className={`${styles.datefield} ${props.valid ? 'datepicker-valid' : ''} ${props.disabled ? styles.disabled : ''}`}>
+    <div className={`
+      ${styles.datefield}
+      ${props.valid ? 'datepicker-valid' : ''}
+      ${props.disabled ? styles.disabled : ''}
+      ${props.className ? props.className : ''}
+    `}>
       { props.label && <label className={props.firm ? styles.firm : undefined}>{props.label}</label> }
       <div className={styles.divInput}>
         <DatePicker className='static-datefield' format='d/M/y' minDate={props.minDate} disabled={props.disabled} value={props.value} onChange={props.onChange} />

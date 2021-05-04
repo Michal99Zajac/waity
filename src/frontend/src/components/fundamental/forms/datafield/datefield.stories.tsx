@@ -13,10 +13,21 @@ stories.add('datafield', () => {
   const label = text('label', '* date')
   const firm = boolean('firm', false)
   const minDate = new Date()
+  const className = text('className', '')
   
   const [date, setDate] = useState(new Date())
 
   return (
-    <Datefield minDate={minDate} firm={firm} label={label} disabled={disabled} valid={valid} warning={warning} value={date} onChange={setDate} />
+    <Datefield
+      className={className}
+      minDate={minDate}
+      firm={firm}
+      label={label}
+      disabled={disabled}
+      valid={valid}
+      warning={warning}
+      value={date}
+      onChange={setDate}
+    />
   )
 })

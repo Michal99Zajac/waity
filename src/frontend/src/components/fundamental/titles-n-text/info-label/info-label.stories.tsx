@@ -27,8 +27,9 @@ stories.add('info-label', () => {
   const label = text('label', 'London')
   const status: any = select('status', statusOptions, statusOptions.none)
   const size: any = select('size', sizeOptions, sizeOptions.none)
+  const className = text('className', '')
 
   return (
-    <InfoLabel size={size} status={status} label={label} />
+    <InfoLabel className={className} size={size} status={status} label={label} />
   )
 })

@@ -4,7 +4,8 @@ import { ReactComponent as Svg } from '../../../../assets/svg/basic/important.sv
 
 
 type WarningTypes = {
-  msg: string | string[]
+  msg: string | string[],
+  className?: string
 }
 
 /**
@@ -12,11 +13,12 @@ type WarningTypes = {
  * 
  * @param {object} props Object with props like
  * - msg (string | string[]) - msg or msgs for display
+ * - className (string) - additional class for component
  * @returns JSX Warning Component
  */
 export function Warning(props: WarningTypes): JSX.Element {
   return (
-    <div className={styles.warning}>
+    <div className={`${styles.warning} ${props.className ? props.className : ''}`}>
       <Svg />
       <p>
         { Array.isArray(props.msg) && props.msg.length !== 1 ? props.msg.map((message) => {

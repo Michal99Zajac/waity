@@ -13,7 +13,8 @@ type ScheduleTypes = {
 type ReservationTableTypes = {
   id: number,
   spots: number,
-  schedules: ScheduleTypes[]
+  schedules: ScheduleTypes[],
+  className?: string
 }
 
 /**
@@ -23,6 +24,7 @@ type ReservationTableTypes = {
  * - id (number) - id of table
  * - spots (number) - number of spots at the table
  * - schedules (array[ScheduleTypes]) - schedue of reservations of table
+ * - className (string) - additional class for component
  * @returns JSX ReservationTable Component
  */
 export function ReservationTable(props: ReservationTableTypes): JSX.Element {
@@ -43,7 +45,7 @@ export function ReservationTable(props: ReservationTableTypes): JSX.Element {
   }
 
   return (
-    <div className={styles.reservation}>
+    <div className={`${styles.reservation} ${props.className ? props.className : ''}`}>
       <span className={styles.spanContainer}>
         <Paragraph size='xl' color='black'>Table</Paragraph>
         <span className={styles.spanId}>{props.id}</span>

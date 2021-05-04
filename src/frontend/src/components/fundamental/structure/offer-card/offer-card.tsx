@@ -17,7 +17,8 @@ type OfferCardTypes = {
   caption: string,
   location: string,
   price: string,
-  rating: number
+  rating: number,
+  className?: string
 }
 
 /**
@@ -32,11 +33,12 @@ type OfferCardTypes = {
  * - location (string) - text with placeolder svg
  * - price (string) - text with cash svg
  * - rating (number) - rating number
+ * - className (string) - additional class for component
  * @returns JSX OfferCard Component
  */
 export function OfferCard(props: OfferCardTypes): JSX.Element {
   return (
-    <Link className={styles.offerCard} to={props.to}>
+    <Link className={`${styles.offerCard} ${props.className ? props.className : ''}`} to={props.to}>
       <div className={styles.offerContainer}>
         <StarRating scale={5} rating={props.rating} label='reviews' />
         <img src={props.src} alt={props.alt}></img>

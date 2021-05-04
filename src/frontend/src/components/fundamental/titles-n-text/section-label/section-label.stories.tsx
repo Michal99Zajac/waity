@@ -18,6 +18,7 @@ stories.add('section-label', () => {
   const firm = boolean('firm', false)
   const size: any = select('size', sizeOptions, sizeOptions['m'])
   const offer = boolean('offer', false)
+  const className = text('className', '')
 
   return (
     <div style={{
@@ -25,7 +26,7 @@ stories.add('section-label', () => {
       height: '100vh',
       backgroundColor: '#ebebeb'
     }}>
-      <SectionLabel offer={offer} size={size} firm={firm} label={label} />
+      <SectionLabel className={className} offer={offer} size={size} firm={firm} label={label} />
     </div>
   )
 })
