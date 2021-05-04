@@ -21,7 +21,7 @@ stories.add('category-tab', () => {
   const baseurl = text('baseurl', '#')
   const category = text('category', 'hungary')
   const src = select('src', srcOptions, srcOptions['hungary'])
-
+  const className = text('className', '')
 
   return (
     <Router basename='/'>
@@ -30,6 +30,7 @@ stories.add('category-tab', () => {
         alt={alt}
         baseurl={baseurl}
         category={category}
+        className={className}
       />
     </Router>
   )

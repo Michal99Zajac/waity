@@ -16,10 +16,20 @@ stories.add('passwordfield', () => {
   const valid = boolean('valid', false)
   const disabled = boolean('disabled', false)
   const to = text('to', '#')
+  const className = text('className', '')
 
   return (
     <Router>
-      <Passwordfield to={to} value={value} placeholder={placeholder} onChange={onChange} warning={warning} valid={valid} disabled={disabled} />
+      <Passwordfield
+        className={className}
+        to={to}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChange}
+        warning={warning}
+        valid={valid}
+        disabled={disabled}
+      />
     </Router>
   )
 })

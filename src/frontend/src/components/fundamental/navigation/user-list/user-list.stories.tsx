@@ -12,6 +12,7 @@ stories.add('user-list', () => {
   const name = text('name', 'Jhon')
   const surname = text('surname', 'Snow')
   const onLogout = action('logout action')
+  const className = text('className', '')
 
   const links = [
     <NavLink to='#'>main</NavLink>,
@@ -22,7 +23,7 @@ stories.add('user-list', () => {
 
   return (
     <Router>
-      <UserList links={links} onLogout={onLogout} name={name} surname={surname} />
+      <UserList className={className} links={links} onLogout={onLogout} name={name} surname={surname} />
     </Router>
   )
 })

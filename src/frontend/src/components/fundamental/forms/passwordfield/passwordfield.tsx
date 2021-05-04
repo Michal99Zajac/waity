@@ -11,7 +11,8 @@ type PasswordfieldTypes = {
   warning?: string | string[]
   valid?: boolean,
   disabled?: boolean,
-  to?: string
+  to?: string,
+  className?: string
 }
 
 /**
@@ -25,11 +26,12 @@ type PasswordfieldTypes = {
  * - warning (string) - messages to information client about error
  * - valid (bool) - indicates if input is valid
  * - to (string) - relative link path
+ * - className (string) - additional class for component
  * @returns JSX Passwordfield Component
  */
 export function Passwordfield(props: PasswordfieldTypes): JSX.Element {
   return (
-    <div className={styles.passwordinput}>
+    <div className={`${styles.passwordinput} ${props.className ? props.className : ''}`}>
       <div>
         <input disabled={props.disabled} type='password' placeholder={props.placeholder} value={props.value} onChange={props.onChange} />
         { props.valid && props.warning && <div><Warning msg={props.warning} /></div> }

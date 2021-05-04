@@ -28,8 +28,9 @@ stories.add('heading', () => {
   const size: any = select('size', sizeOptions, sizeOptions.none)
   const special = boolean('special', false)
   const color: any = select('color', colorOptions, colorOptions.none)
+  const className = text('className', '')
 
   return (
-    <Heading color={color} special={special} size={size} label={label} />
+    <Heading className={className} color={color} special={special} size={size} label={label} />
   )
 })

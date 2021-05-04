@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { select, withKnobs } from '@storybook/addon-knobs'
+import { select, text, withKnobs } from '@storybook/addon-knobs'
 import { Bar } from './bar'
 
 
@@ -25,8 +25,9 @@ stories.add('bar', () => {
 
   const color: any = select('color', colorOptions, colorOptions.none)
   const margin: any = select('margin', marginOptions, marginOptions.none)
+  const className = text('className', '')
 
   return (
-    <Bar margin={margin} color={color} />
+    <Bar className={className} margin={margin} color={color} />
   )
 })

@@ -3,7 +3,8 @@ import styles from './display-text.module.sass'
 
 
 type DisplayTextTypes = {
-  text: string
+  text: string,
+  className?: string
 }
 
 /**
@@ -12,10 +13,13 @@ type DisplayTextTypes = {
  * 
  * @param {object} props Object with props like
  * - text (string) - text of bolded header
+ * - className (string) - additional class for component
  * @returns JSX DisplayText Component
  */
 export function DisplayText(props: DisplayTextTypes): JSX.Element {
   return (
-    <h1 className={styles.displayText}>{props.text}</h1>
+    <h1 className={`${styles.displayText} ${props.className ? props.className : ''}`}>
+      {props.text}
+    </h1>
   )
 }

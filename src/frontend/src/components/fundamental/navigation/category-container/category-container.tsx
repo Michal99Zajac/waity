@@ -5,7 +5,8 @@ import { ReactComponent as ArrowUp} from '../../../../assets/svg/basic/arrow-up.
 
 
 type CategoryContainerTypes = {
-  children: JSX.Element[]
+  children: JSX.Element[],
+  className?: string
 }
 
 /**
@@ -13,13 +14,14 @@ type CategoryContainerTypes = {
  * 
  * @param {object} props Object with props like
  * - children (CategoryTab[]) - list of CategoryTab components
+ * - className (string) - additional class for component
  * @returns JSX CategoryContainer Component
  */
 export function CategoryContainer(props: CategoryContainerTypes): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className={isOpen ? styles.open : styles.close}>
+    <div className={`${isOpen ? styles.open : styles.close} ${props.className ? props.className : ''}`}>
       <ul>
         {props.children}
       </ul>

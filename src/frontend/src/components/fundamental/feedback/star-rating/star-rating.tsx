@@ -7,7 +7,8 @@ import { ReactComponent as StarEmptySvg } from '../../../../assets/svg/basic/sta
 type StarRatingTypes = {
   scale: number,
   rating: number,
-  label: string
+  label: string,
+  className?: string
 }
 
 /**
@@ -17,6 +18,7 @@ type StarRatingTypes = {
  * - scale (number) - amount of all stars
  * - rating (number) - rating to visualization
  * - label (string) - label to display
+ * - className (string) - additional class for component
  * @returns JSX StarRating Component
  */
 export function StarRating(props: StarRatingTypes): JSX.Element {
@@ -43,7 +45,7 @@ export function StarRating(props: StarRatingTypes): JSX.Element {
   }
 
   return (
-    <div className={styles.starRating}>
+    <div className={`${styles.starRating} ${props.className ? props.className : ''}`}>
       <div className={styles.rating}>
         <p>{props.label}</p>
         <p>{props.rating}</p>

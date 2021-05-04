@@ -19,10 +19,11 @@ stories.add('link', () => {
   const to = text('to', '#')
   const label = text('label', 'label')
   const color: any = select('color', colorOptions, colorOptions['none'])
+  const className = text('className', '')
 
   return (
     <Router>
-      <Link color={color} label={label} to={to} />
+      <Link className={className} color={color} label={label} to={to} />
     </Router>
   )
 })

@@ -27,8 +27,9 @@ stories.add('button', () => {
   const onClick = action('onClick Button')
   const small = boolean('small', false)
   const disabled = boolean('disabled', false)
+  const className = text('className', '')
 
   return (
-    <Button disabled={disabled} color={color} small={small} type={type} onClick={onClick} desc={desc} />
+    <Button className={className} disabled={disabled} color={color} small={small} type={type} onClick={onClick} desc={desc} />
   )
 })

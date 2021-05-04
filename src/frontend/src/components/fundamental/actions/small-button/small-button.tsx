@@ -6,7 +6,8 @@ type SmallButtonTypes = {
   svg: JSX.Element,
   onClick: React.MouseEventHandler<HTMLButtonElement>,
   disabled?: boolean,
-  color?: 'white' | 'grey' | undefined
+  color?: 'white' | 'grey' | undefined,
+  className?: string
 }
 
 /**
@@ -18,6 +19,7 @@ type SmallButtonTypes = {
  * - svg (JSX.Element) - content of a button
  * - onClick (func) - function to use for button
  * - color (string) - color type of button
+ * - className (string) - additional class for component
  * @returns JSX Button Component
  */
 export function SmallButton(props: SmallButtonTypes): JSX.Element {
@@ -25,7 +27,11 @@ export function SmallButton(props: SmallButtonTypes): JSX.Element {
     <button
       disabled={props.disabled}
       onClick={props.onClick}
-      className={`${styles.smallButton} ${props.color ? styles[props.color] : ''}`}
+      className={`
+        ${styles.smallButton}
+        ${props.color ? styles[props.color] : ''}
+        ${props.className ? props.className : ''}
+      `}
     >
       {props.svg}
     </button>

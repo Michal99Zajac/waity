@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { number, object, withKnobs } from '@storybook/addon-knobs'
+import { number, object, text, withKnobs } from '@storybook/addon-knobs'
 import { ReservationTable } from './reservation-table'
 
 
@@ -28,8 +28,9 @@ stories.add('reservation-table', () => {
   const id = number('id', 1)
   const spots = number('spots', 8)
   const schedules = object('schedules', schedulesObj)
+  const className = text('className', '')
 
   return (
-    <ReservationTable schedules={schedules} id={id} spots={spots} />
+    <ReservationTable className={className} schedules={schedules} id={id} spots={spots} />
   )
 })

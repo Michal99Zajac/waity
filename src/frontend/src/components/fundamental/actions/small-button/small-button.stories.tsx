@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, select, withKnobs } from '@storybook/addon-knobs'
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { SmallButton } from './small-button'
 import { ReactComponent as Cross } from '../../../../assets/svg/basic/cross.svg'
@@ -18,8 +18,9 @@ stories.add('small-button', () => {
   const onClick = action('small button action')
   const disabled = boolean('disabled', false)
   const color: any = select('color', colorOptions, 'white')
+  const className = text('className', '')
 
   return (
-    <SmallButton color={color} disabled={disabled} onClick={onClick} svg={<Cross />} />
+    <SmallButton className={className} color={color} disabled={disabled} onClick={onClick} svg={<Cross />} />
   )
 })

@@ -33,6 +33,7 @@ stories.add('reservation-tab', () => {
   const value = text('value', 'uuid')
   const spots = object('spots', spotsArray)
   const table = object('table', {width: 3, height: 2})
+  const className = text('className', '')
 
   return (
     <ReservationTab
@@ -45,6 +46,7 @@ stories.add('reservation-tab', () => {
       state={state}
       setState={setState}
       value={value}
+      className={className}
     />
   )
 })

@@ -16,6 +16,7 @@ stories.add('question-mark', () => {
 
   const msg = text('msg', 'In this article Adrian Tennant focuses on short texts such as messages, notes, instructions and notices.')
   const size: any = select('size', sizeOptions, sizeOptions.medium)
+  const className = text('className', '')
 
   return (
     <div style={{
@@ -25,7 +26,7 @@ stories.add('question-mark', () => {
       alignItems: 'flex-end',
       justifyContent: 'flex-end'
     }}>
-      <QuestionMark size={size} msg={msg} />
+      <QuestionMark className={className} size={size} msg={msg} />
     </div>
   )
 })

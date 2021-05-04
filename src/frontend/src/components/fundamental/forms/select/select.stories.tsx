@@ -14,6 +14,7 @@ stories.add('select', () => {
   const category = text('category', 'items')
   const placeholder = text('placeholder', 'placeholder')
   const firm = boolean('firm', false)
+  const className = text('className', '')
 
   const options = [
     {
@@ -35,6 +36,7 @@ stories.add('select', () => {
       placeholder={placeholder}
       state={state}
       setState={setState}
+      className={className}
     />
   )
 })

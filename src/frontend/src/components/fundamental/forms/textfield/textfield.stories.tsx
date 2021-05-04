@@ -16,8 +16,19 @@ stories.add('textfield', () => {
   const valid = boolean('valid', false)
   const firm = boolean('firm', false)
   const disabled = boolean('disabled', false)
+  const className = text('className', '')
 
   return (
-    <Textfield disabled={disabled} firm={firm} value={value} valid={valid} placeholder={placeholder} onChange={onChange} warning={warning} label={label} />
+    <Textfield
+      className={className}
+      disabled={disabled}
+      firm={firm}
+      value={value}
+      valid={valid}
+      placeholder={placeholder}
+      onChange={onChange}
+      warning={warning}
+      label={label}
+    />
   )
 })

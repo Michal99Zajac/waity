@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { number, withKnobs } from '@storybook/addon-knobs'
+import { number, text, withKnobs } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { Star } from './star'
 
@@ -11,8 +11,9 @@ stories.add('star', () => {
   const rate = number('rate', 3)
   const value = number('value', 2)
   const setRate = action('setRate')
+  const className = text('className', '')
 
   return (
-    <Star setRate={setRate} value={value} rate={rate} />
+    <Star className={className} setRate={setRate} value={value} rate={rate} />
   )
 })

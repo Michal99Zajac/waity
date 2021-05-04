@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { array, withKnobs } from '@storybook/addon-knobs'
+import { array, text, withKnobs } from '@storybook/addon-knobs'
 import { Warning } from './warning'
 
 
@@ -8,6 +8,7 @@ const stories = storiesOf('feedback', module)
 stories.addDecorator(withKnobs)
 stories.add('warning', () => {
   const msg = array('msg', ['Error: Bad Password'])
+  const className = text('className', '')
 
   return (
     <div style={{
@@ -16,7 +17,7 @@ stories.add('warning', () => {
       width: '100vw',
       height: '100vh'
     }}>
-      <Warning msg={msg} />
+      <Warning className={className} msg={msg} />
     </div>
   )
 })

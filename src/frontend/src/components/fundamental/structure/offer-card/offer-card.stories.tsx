@@ -23,10 +23,21 @@ stories.add('offer-card', () => {
   const location = text('location', 'location')
   const price = text('price', 'price')
   const rating = number('rating', 3)
+  const className = text('className', '')
 
   return (
     <Router>
-      <OfferCard rating={rating} caption={caption} location={location} price={price} src={src} to={to} alt={alt} label={label} />
+      <OfferCard
+        className={className}
+        rating={rating}
+        caption={caption}
+        location={location}
+        price={price}
+        src={src}
+        to={to}
+        alt={alt}
+        label={label}
+      />
     </Router>
   )
 })

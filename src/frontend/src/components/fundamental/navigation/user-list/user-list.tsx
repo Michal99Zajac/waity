@@ -7,7 +7,8 @@ type UserListTypes = {
   name: string,
   surname: string,
   onLogout: React.MouseEventHandler<HTMLButtonElement>,
-  links: JSX.Element[]
+  links: JSX.Element[],
+  className?: string
 }
 
 /**
@@ -18,6 +19,7 @@ type UserListTypes = {
  * - surname (string) - surname of logged user
  * - onLogout (func) - function for log out a user
  * - links (NavLink[] | Link[]) - links for displaying
+ * - className (string) - additional class for component
  * @returns JSX UserList Component
  */
 export function UserList(props: UserListTypes): JSX.Element {
@@ -25,7 +27,7 @@ export function UserList(props: UserListTypes): JSX.Element {
   const listSize = props.links.length < 10 ? `${props.links.length * 2 + 2}rem` : '70vh'
 
   return (
-    <div className={styles.userList}>
+    <div className={`${styles.userList} ${props.className ? props.className : ''}`}>
       <button
         className={styles.outerButton}
         onClick={() => setIsOpen(!isOpen)}

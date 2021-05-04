@@ -20,10 +20,11 @@ stories.add('button-link', () => {
   const color: any = select('color', colorOptions, colorOptions.none)
   const to = text('to', '#')
   const content = text('content', 'link')
+  const className = text('className', '')
 
   return (
     <Router>
-      <ButtonLink content={content} to={to} color={color} />
+      <ButtonLink className={className} content={content} to={to} color={color} />
     </Router>
   )
 })

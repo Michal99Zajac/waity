@@ -8,6 +8,7 @@ const stories = storiesOf('titles-n-text', module)
 stories.addDecorator(withKnobs)
 stories.add('display-text', () => {
   const text = txt('text', 'Go! Sign in!')
+  const className = txt('className', '')
 
   return (
     <div style={{
@@ -15,7 +16,7 @@ stories.add('display-text', () => {
       height: '100vh',
       backgroundColor: '#6153cc'
     }}>
-      <DisplayText text={text} />
+      <DisplayText className={className} text={text} />
     </div>
   )
 })

@@ -9,8 +9,9 @@ const stories = storiesOf('images-n-icons', module)
 stories.addDecorator(withKnobs)
 stories.add('static-svg', () => {
   const alt = text('alt', 'svg')
+  const className = text('className', '')
 
   return (
-    <StaticSvg src={SvgImage} alt={alt}></StaticSvg>
+    <StaticSvg className={className} src={SvgImage} alt={alt}></StaticSvg>
   )
 })
