@@ -1,0 +1,93 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/fonts'
+@import '../../assets/styles/shadow'
+
+  
+.hourBar
+  display: grid
+  grid-template-columns: repeat(8, 1fr)
+  grid-template-rows: repeat(3, 50px)
+  grid-template-areas: ". Monday Tuesday Wednesday Thursday Friday Saturday Sunday" "start MondaytimeStart TuesdaytimeStart WednesdaytimeStart ThursdaytimeStart FridaytimeStart SaturdaytimeStart SundaytimeStart" "stop MondaytimeStop TuesdaytimeStop WednesdaytimeStop ThursdaytimeStop FridaytimeStop SaturdaytimeStop SundaytimeStop"
+  background-color: $primary-white
+  box-shadow: $standard-shadow
+  border-radius: 1rem
+  padding: 1rem
+
+.center
+  align-self: center
+  justify-self: center
+
+.Monday
+  grid-area: Monday
+
+.Tuesday
+  grid-area: Tuesday
+
+.Wednesday
+  grid-area: Wednesday
+
+.Thursday
+  grid-area: Thursday
+
+.Friday
+  grid-area: Friday
+
+.Saturday
+  grid-area: Saturday
+
+.Sunday
+  grid-area: Sunday
+
+.start
+  grid-area: start
+
+.stop
+  grid-area: stop
+
+.MondaytimeStart
+  grid-area: MondaytimeStart
+
+.TuesdaytimeStart
+  grid-area: TuesdaytimeStart
+
+.WednesdaytimeStart
+  grid-area: WednesdaytimeStart
+
+.ThursdaytimeStart
+  grid-area: ThursdaytimeStart
+
+.FridaytimeStart
+  grid-area: FridaytimeStart
+
+.SaturdaytimeStart
+  grid-area: SaturdaytimeStart
+
+.SundaytimeStart
+  grid-area: SundaytimeStart
+
+.MondaytimeStop
+  grid-area: MondaytimeStop
+
+.TuesdaytimeStop
+  grid-area: TuesdaytimeStop
+
+.WednesdaytimeStop
+  grid-area: WednesdaytimeStop
+
+.ThursdaytimeStop
+  grid-area: ThursdaytimeStop
+
+.FridaytimeStop
+  grid-area: FridaytimeStop
+
+.SaturdaytimeStop
+  grid-area: SaturdaytimeStop
+
+.SundaytimeStop
+  grid-area: SundaytimeStop
+
+@media screen and ( max-width: 400px )
+  .hourBar
+    grid-template-areas: ". start stop" "Monday MondaytimeStart MondaytimeStop" "Tuesday TuesdaytimeStart TuesdaytimeStop" "Wednesday WednesdaytimeStart WednesdaytimeStop" "Thursday ThursdaytimeStart ThursdaytimeStop" "Friday FridaytimeStart FridaytimeStop" "Saturday SaturdaytimeStart SaturdaytimeStop" "Sunday SundaytimeStart SundaytimeStop"
+    grid-template-columns: repeat(3, 1fr)
+    grid-template-rows: repeat(8, 50px)

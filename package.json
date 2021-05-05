@@ -11,7 +11,11 @@
   ],
   "dependencies": {
     "babel-loader": "8.1.0",
+    "moment": "^2.29.1",
     "typescript": "^4.2.4",
     "webpack": "4.44.2"
+  },
+  "devDependencies": {
+    "@types/moment": "^2.13.0"
   }
 }
