@@ -3749,6 +3749,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/moment@npm:^2.13.0":
+  version: 2.13.0
+  resolution: "@types/moment@npm:2.13.0"
+  dependencies:
+    moment: "*"
+  checksum: ecee6ec942d33e6cee4f12738593896894ec03f543c3bb0287f405b6e466fcdd543c9278e6588db02bab0ee67a65d58d812a7b7127486d96db33596a7f5491c8
+  languageName: node
+  linkType: hard
+
 "@types/node-fetch@npm:^2.5.7":
   version: 2.5.10
   resolution: "@types/node-fetch@npm:2.5.10"
@@ -13526,6 +13535,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"moment@npm:*, moment@npm:^2.29.1":
+  version: 2.29.1
+  resolution: "moment@npm:2.29.1"
+  checksum: 86729013febf7160de5b93da69273dd304d674b0224f9544b3abd09a87671ddd2cdd57598261ce57588910d63747ffd5590965e83c790d8bf327083c0e0a06e0
+  languageName: node
+  linkType: hard
+
 "move-concurrently@npm:^1.0.1":
   version: 1.0.1
   resolution: "move-concurrently@npm:1.0.1"
@@ -17492,7 +17508,9 @@ resolve@^2.0.0-next.3:
   version: 0.0.0-use.local
   resolution: "root@workspace:."
   dependencies:
+    "@types/moment": ^2.13.0
     babel-loader: 8.1.0
+    moment: ^2.29.1
     typescript: ^4.2.4
     webpack: 4.44.2
   languageName: unknown

@@ -23,6 +23,8 @@ type MenuCardTypes = {
  * - msg (string) - additional msg for menucard
  * - foodName (string) - name of food in menu
  * - className (string) - additional class for component
+ * - img (string) - path to the image
+ * - alt (string) - text if img wont display
  * @returns JSX MenuCard Component
  */
 export function MenuCard(props: MenuCardTypes): JSX.Element {
