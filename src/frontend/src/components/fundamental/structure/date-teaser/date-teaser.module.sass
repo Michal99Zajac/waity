@@ -1,0 +1,42 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+
+
+.dateTeaser
+  padding: 0.5rem
+  display: grid
+  grid-template-columns: repeat(7, auto)
+  grid-template-rows: repeat(3, auto)
+  width: 100%
+  column-gap: 0.4rem
+  grid-row-gap: 0.4rem
+  box-sizing: border-box
+  background-color: $primary-white
+  box-shadow: $standard-shadow
+  border-radius: 0.4rem
+  justify-items: start
+
+.month
+  grid-column-start: span 7
+
+.day
+  grid-area: 2
+
+.dayNumber
+  grid-area: 3
+  width: 1rem
+  height: 1rem
+  background-color: $primary-grey
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 0.4rem
+  border-radius: 3rem
+
+.day, .dayNumber
+  align-self: center
+  justify-self: center
+
+.current
+  background-color: $primary-blue

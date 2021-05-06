@@ -61,7 +61,7 @@ export function HourBar(props: HourBarTypes): JSX.Element {
   }
 
   return (
-    <div className={styles.hourBar}>
+    <div className={`${styles.hourBar} ${props.className ? props.className : ''}`}>
       <InfoLabel className={`${styles.Monday} ${styles.center}`} status='inform' label='Monday' />
       <InfoLabel className={`${styles.Tuesday} ${styles.center}`} status='inform' label='Tuesday' />
       <InfoLabel className={`${styles.Wednesday} ${styles.center}`} status='inform' label='Wednesday' />
