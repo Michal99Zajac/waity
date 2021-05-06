@@ -26,10 +26,16 @@ export function DateTeaser(props: DateTeaserTypes): JSX.Element {
 
     for (let i = 0; i < 7; i++) {
       dates.push(
-        <Paragraph size='s' className={styles.day} color='black'>{date.format('dd')}</Paragraph>,
         <Paragraph
           size='s'
-          className={`${styles.dayNumber} ${i == 3 ? styles.current : ''}`}
+          className={`${styles.day} ${i < 3 ? styles.left : ''} ${i > 3 ? styles.right : ''}`}
+          color='black'
+        >
+          {date.format('dd')}
+        </Paragraph>,
+        <Paragraph
+          size='s'
+          className={`${styles.dayNumber} ${i == 3 ? styles.current : ''} ${i < 3 ? styles.left : ''} ${i > 3 ? styles.right : ''}`}
           color='white'
         >
           {date.format('D')}
