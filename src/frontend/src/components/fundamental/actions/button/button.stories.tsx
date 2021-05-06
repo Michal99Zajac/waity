@@ -18,6 +18,16 @@ stories.add('button', () => {
     black: 'black',
     blue: 'blue',
     yellow: 'yellow',
+    white: 'white',
+    none: undefined
+  }
+
+  const sizeOptions = {
+    s: 's',
+    m: 'm',
+    l: 'l',
+    xl: 'xl',
+    xll: 'xll',
     none: undefined
   }
 
@@ -28,8 +38,9 @@ stories.add('button', () => {
   const small = boolean('small', false)
   const disabled = boolean('disabled', false)
   const className = text('className', '')
+  const size: any = select('size', sizeOptions, sizeOptions.none)
 
   return (
-    <Button className={className} disabled={disabled} color={color} small={small} type={type} onClick={onClick} desc={desc} />
+    <Button size={size} className={className} disabled={disabled} color={color} small={small} type={type} onClick={onClick} desc={desc} />
   )
 })

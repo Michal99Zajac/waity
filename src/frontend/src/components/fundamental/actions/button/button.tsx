@@ -9,7 +9,8 @@ type ButtonTypes = {
   small?: boolean
   color?: 'blue' | 'yellow' | 'black' | undefined
   disabled?: boolean,
-  className?: string
+  className?: string,
+  size?: 's' | 'm' | 'l' | 'xl' | 'xll'
 }
 
 /**
@@ -24,6 +25,7 @@ type ButtonTypes = {
  * - small (bool) - indicates size of button
  * - color (string) - color type of button
  * - className (string) - additional class for component
+ * - size (string) - size of entire size of button
  * @returns JSX Button Component
  */
 export function Button(props: ButtonTypes): JSX.Element {
@@ -33,7 +35,7 @@ export function Button(props: ButtonTypes): JSX.Element {
 
   return (
     <button
-      className={`${className} ${props.className ? props.className : ''}`}
+      className={`${className} ${props.className ? props.className : ''} ${props.size ? styles[props.size] : styles.l}`}
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}
