@@ -3,7 +3,7 @@ import styles from './paragraph.module.sass'
 
 
 type ParagraphTypes = {
-  children: string,
+  children: any,
   size?: 's' | 'm' | 'l' | 'xl' | 'xll',
   bold?: boolean,
   color?: 'black' | 'grey' | 'white',
@@ -14,7 +14,7 @@ type ParagraphTypes = {
  * Paragraph Component - regular text for general reading
  * 
  * @param {object} props Object with props like
- * - children (string) - content of paragraph
+ * - children (any) - content of paragraph
  * - size (string) - size of paragraph
  * - bold (bool) - indicates the size of paragraph
  * - color (string) - color of paragraph

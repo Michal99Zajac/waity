@@ -28,14 +28,14 @@ export function DateTeaser(props: DateTeaserTypes): JSX.Element {
       dates.push(
         <Paragraph
           size='s'
-          className={`${styles.day} ${i < 3 ? styles.left : ''} ${i > 3 ? styles.right : ''}`}
+          className={`${styles.day}`}
           color='black'
         >
           {date.format('dd')}
         </Paragraph>,
         <Paragraph
           size='s'
-          className={`${styles.dayNumber} ${i == 3 ? styles.current : ''} ${i < 3 ? styles.left : ''} ${i > 3 ? styles.right : ''}`}
+          className={`${styles.dayNumber} ${i == 3 ? styles.current : ''}`}
           color='white'
         >
           {date.format('D')}

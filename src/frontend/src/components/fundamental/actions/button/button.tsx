@@ -7,7 +7,7 @@ type ButtonTypes = {
   type?: 'submit' | 'button'
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   small?: boolean
-  color?: 'blue' | 'yellow' | 'black' | undefined
+  color?: 'blue' | 'yellow' | 'black' | 'white' | undefined
   disabled?: boolean,
   className?: string,
   size?: 's' | 'm' | 'l' | 'xl' | 'xll'
