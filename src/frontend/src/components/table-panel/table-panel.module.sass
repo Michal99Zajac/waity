@@ -1,0 +1,62 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/fonts'
+@import '../../assets/styles/shadow'
+
+
+.tablePanel
+  width: 100%
+  box-shadow: $standard-shadow
+  padding: 1rem
+  border-radius: 0.6rem
+  display: flex
+  justify-content: space-between
+  box-sizing: border-box
+
+.middle
+  width: 100%
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  margin: 0 0.5rem
+
+  & > div:first-child
+    justify-content: flex-start
+
+.facilities
+  margin-top: 0.2rem
+  display: flex
+  flex-wrap: wrap
+
+  & > *
+    margin-right: 0.3rem
+
+.buttons
+  display: flex
+  justify-content: flex-end
+  align-items: flex-start
+
+  button:first-child
+    margin-right: 0.5rem
+
+.delete
+  &:enabled:hover
+    background-color: $primary-warning
+    color: $font-white
+
+  &:focus
+    background-color: $primary-warning
+
+@media screen and ( max-width: 400px )
+  .tablePanel
+    flex-direction: column
+
+  .middle
+    flex-direction: column-reverse
+    margin: 0.5rem 0
+
+  .facilities
+    margin-top: 0
+    margin-bottom: 0.2rem
+
+  .buttons
+    justify-content: space-between
