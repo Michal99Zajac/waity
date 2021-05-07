@@ -8,7 +8,7 @@ type AddTileTypes = {
 }
 
 /**
- * AddTile Component - rpanel for inform about near or past reservations
+ * AddTile Component - tile for add food on server
  * 
  * @param {object} props Object with props like
  * - onClick (Function) - action after click
