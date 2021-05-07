@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { object, text, withKnobs } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
-import { ReservationPanel } from './reservation-panel'
+import { ReservationCard } from './reservation-card'
 
 
 const stories = storiesOf('structure', module)
@@ -59,6 +59,6 @@ stories.add('reservation-panel', () => {
   const table = object('table', tableObj)
 
   return (
-    <ReservationPanel table={table} orders={orders} spots={spots} className={className} />
+    <ReservationCard table={table} orders={orders} spots={spots} className={className} />
   )
 })
