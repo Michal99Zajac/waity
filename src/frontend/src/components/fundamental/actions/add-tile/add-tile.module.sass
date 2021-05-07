@@ -1,0 +1,41 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+
+
+.addTile
+  width: 19rem
+  height: 19rem
+  border-radius: 0.8rem
+  box-shadow: $standard-shadow
+  background-color: $primary-white
+  border: none
+  display: flex
+  align-items: center
+  justify-content: center
+
+  &:hover
+    cursor: pointer
+
+    span
+      border-color: $primary-blue
+      color: $primary-blue
+
+  span
+    width: 6rem
+    height: 6rem
+    border-radius: 0.6rem
+    border: 0.3rem solid $primary-grey
+    display: flex
+    align-items: center
+    justify-content: center
+    font-size: 2rem
+    font-family: $special-font
+    color: $primary-grey
+
+@media screen and ( max-width: 400px )
+  .addTile
+    height: 6rem
+
+    span
+      height: 2rem
