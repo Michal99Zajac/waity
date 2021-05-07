@@ -2,12 +2,12 @@ import React from 'react'
 import styles from './spots.module.sass'
 
 
-type Spot = {
+export type Spot = {
   quantity: number,
   places: number
 }
 
-type SpotsTypes = {
+export type SpotsTypes = {
   className?: string,
   spots: Spot[]
 }

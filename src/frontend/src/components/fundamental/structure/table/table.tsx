@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './table.module.sass'
 
 
-type TableTypes = {
+export type TableTypes = {
   width: number,
   height: number,
   id: number,
