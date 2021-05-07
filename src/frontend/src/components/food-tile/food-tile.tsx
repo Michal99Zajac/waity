@@ -50,7 +50,9 @@ export function FoodTile(props: FoodTileTypes): JSX.Element {
         <InfoLabel status='inform' label='price' />
         <InfoLabel status='none' label={props.price} />
       </div>
-      <Paragraph className={styles.desc} color='grey' size='s'>{props.desc}</Paragraph>
+      {props.desc ?
+        <Paragraph className={styles.desc} color='grey' size='s'>{props.desc}</Paragraph> : 
+        <Paragraph className={styles.desc} color='grey' size='s'>empty description</Paragraph>}
       <div className={styles.buttons}>
         <Button small type='button' onClick={deleteFood} size='m' desc='delete' color='white' />
         <Button small type='button' onClick={props.onClick} size='m' desc='edit' color='yellow' />
