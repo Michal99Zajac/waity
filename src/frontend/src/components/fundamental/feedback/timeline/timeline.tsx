@@ -4,21 +4,21 @@ import { StatusBlock } from '../../structure/status-block/status-block'
 import styles from './timeline.module.sass'
 
 
-type TimelineOrderBlockTypes = {
+export type TimelineOrderBlockTypes = {
   timeStart: Date,
   timeStop: Date,
   name: string,
   setId: Function,
   type: 'booked' | 'clean' | 'available' | 'timeout',
   label: string | 'available' | 'clean',
-  id: string
+  id: string // id of order
 }
 
-type TimelineStatusBlockTypes = {
+export type TimelineStatusBlockTypes = {
   timeStart: Date,
   timeStop: Date,
   status: 'available' | 'booked' | 'clean',
-  id: string
+  id: string // id of order
 }
 
 type TimelineTypes = {

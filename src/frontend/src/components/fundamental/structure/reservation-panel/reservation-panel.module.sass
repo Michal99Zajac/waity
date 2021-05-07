@@ -1,0 +1,34 @@
+@import '../../../../assets/styles/colors'
+@import '../../../../assets/styles/fonts'
+@import '../../../../assets/styles/shadow'
+
+  
+.reservationPanel
+  background-color: $primary-white
+  width: 100%
+  padding: 1rem
+  box-sizing: border-box
+  box-shadow: $standard-shadow
+  border-radius: 0.6rem
+
+.head
+  display: flex
+  align-items: flex-start
+  justify-content: flex-start
+  margin-bottom: 4rem
+
+  & > div:last-child
+    justify-content: flex-start
+    margin-left: 1rem
+
+@media screen and ( max-width: 400px )
+  .timeline
+    margin-left: 2rem
+
+  .head
+    flex-direction: column
+    margin-bottom: 1rem
+
+    & > div:last-child
+      margin-left: 0
+      margin-top: 1rem
