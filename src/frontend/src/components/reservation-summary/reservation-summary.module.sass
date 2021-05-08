@@ -1,0 +1,67 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/fonts'
+@import '../../assets/styles/shadow'
+
+  
+.reservationSummary
+  width: 100%
+  height: auto
+  box-sizing: border-box
+  padding: 1rem
+  background-color: $primary-white
+  box-shadow: $standard-shadow
+  border-radius: 0.6rem
+
+  svg
+    height: 1.2rem
+    width: auto
+    display: flex
+    justify-content: flex-start
+    position: absolute
+
+    path
+      fill: $primary-black
+
+.section
+  display: flex
+  align-items: center
+  margin-bottom: 0.5rem
+  position: relative
+
+.sectionFeed
+  align-items: flex-start
+  margin: 1rem 0
+
+.p
+  margin-left: 2.5rem
+
+.feedback
+  margin-left: 2.5rem
+  padding: 0.5rem
+  box-sizing: border-box
+  box-shadow: $standard-shadow
+  border-radius: 0.4rem
+
+.buttons
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+.delete
+  &:enabled:hover
+    background-color: $primary-warning
+    color: $font-white
+
+  &:focus
+    background-color: $primary-warning
+    color: $font-white
+
+.check
+  &:enabled:hover
+    background-color: $available
+
+  &:focus
+    background-color: $available
+
+.label
+  margin-bottom: 1rem
