@@ -1,5 +1,6 @@
-import express, { Request, Response } from 'express'
+import express, { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
+import passport from '../passport'
 
 
 class AuthController {
@@ -8,14 +9,28 @@ class AuthController {
    * 
    * @param req HTTP Request
    * @param res HTTP Response
+   * @param next Express NextFunction
    */
-  postLogin(req: Request, res: Response) {
-    const user: any = req.body
+  async postLogin(req: Request, res: Response, next: NextFunction) {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) { return next(err) }
 
-    res.json({
-      accessToken: jwt.sign({ sub: user.id }, process.env.JWT_SECRET || 'secret')
-    })
+      if (!user) {
+        return res.status(401).json({
+          message: info.message
+        })
+      }
+
+      console.log(user)
+
+      if (user.email) {
+        res.json({
+          accessToken: jwt.sign({ sub: user.email }, process.env.JWT_SECRET || 'secret')
+        })
+      }
+    })(req, res, next)
   }
+
 }
 
 export default new AuthController()

@@ -3,11 +3,12 @@ import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 import passportLocal from 'passport-local'
 import { User } from './entities/user.entity'
 import conn from './db'
+import { Request } from 'express'
 
 
 const LocalStrategy = passportLocal.Strategy
 
-const secret = 'secret'
+const secret = process.env.JWT_SECRET || 'secret'
 
 passport.serializeUser((user: any, done) => {
   done(null, user.id)
@@ -23,7 +24,7 @@ passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: secret
 }, async (JwtPayload, done) => {
-  const user = await conn().getRepository(User).findOne({ id: JwtPayload.sub })
+  const user = await conn().getRepository(User).findOne({ email: JwtPayload.sub })
 
   if (!user) {
     return done(undefined, null)
@@ -32,14 +33,15 @@ passport.use(new JwtStrategy({
   }
 }))
 
-passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, async (username: string, password: string, done) => {
-  const user = await conn().getRepository(User).findOne({ email: username })
+passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password' },
+  async (email: string, password: string, done) => {
+    const user = await conn().getRepository(User).findOne({ email: email })
 
-  if (!user) return done(undefined, false, { message: `email ${username} not found`})
+    if (!user) return done(undefined, false, { message: `email ${email} not found`})
 
-  if (user.password !== password) return done(undefined, false, { message: 'password does not match' })
+    if (user.password != password) return done(undefined, false, { message: 'password does not match' })
 
-  return done(null, user)
+    return done(null, user)
 }))
 
 export default passport

@@ -15,7 +15,7 @@ export default async function Application(): Promise<express.Application> {
 
   // middlewares
   app.use('/api', bodyParser({ extended: true }))
-  app.use('/api', express.urlencoded({ extended: true }))
+  app.use('/api', bodyParser.urlencoded({ extended: true }))
   app.use('/api', passport.initialize())
 
   // routers
