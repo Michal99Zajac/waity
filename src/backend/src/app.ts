@@ -1,32 +1,26 @@
 import express from 'express'
-import Router from './routers/router/router'
+import bodyParser from 'body-parser'
+import { connect } from './db'
+import passport from './passport'
+
+import userRouter from './routers/user.router'
+import authRouter from './routers/auth.router'
 
 
-export class App {
-  app: express.Application;
+export default async function Application(): Promise<express.Application> {
+  const app: express.Application = express()
 
-  constructor(routers: any[], middlewares?: any[]) {
-    this.app = express()
+  // connect to database
+  await connect()
 
-    this.initMiddlewares(middlewares)
-    this.initRouters(routers)
-  }
+  // middlewares
+  app.use('/api', bodyParser({ extended: true }))
+  app.use('/api', express.urlencoded({ extended: true }))
+  app.use('/api', passport.initialize())
 
-  initMiddlewares(middlewares?: any[]) {
-    middlewares?.forEach((middleware) => {
-      this.app.use('/api', middleware)
-    })
-  }
+  // routers
+  app.use('/api', userRouter)
+  app.use('/api', authRouter)
 
-  initRouters(routers: Router[]) {
-    routers.forEach((router) => {
-      this.app.use('/api', router.router)
-    })
-  }
-
-  listen(port: number, host: string, message: string) {
-    this.app.listen(port, host, () => {
-      console.log(message)
-    })
-  }
+  return app
 }
