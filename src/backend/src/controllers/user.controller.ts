@@ -1,6 +1,7 @@
-import express, { Request, Response} from 'express'
-import { User } from '../entities/user.entity'
+import { Request, Response} from 'express'
+import { classToPlain } from 'class-transformer'
 import conn from '../db'
+import { User } from '../entities/user.entity'
 
 
 class UserController {
@@ -13,7 +14,7 @@ class UserController {
   async getUsers(req: Request, res: Response) {
     const users = await conn().getRepository(User).find()
 
-    res.status(200).json(users)
+    res.status(200).send(classToPlain(users, { excludeExtraneousValues: true }))
   }
 }
 

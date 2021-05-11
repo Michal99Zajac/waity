@@ -3,6 +3,9 @@ import bodyParser from 'body-parser'
 import { connect } from './db'
 import passport from './passport'
 
+import { errorHandler } from './middlewares/error-handler.mid'
+import { notFound } from './middlewares/not-found.mid'
+
 import userRouter from './routers/user.router'
 import authRouter from './routers/auth.router'
 
@@ -21,6 +24,10 @@ export default async function Application(): Promise<express.Application> {
   // routers
   app.use('/api', userRouter)
   app.use('/api', authRouter)
+
+  // errors handler
+  app.use('/api', notFound)
+  app.use('/api', errorHandler)
 
   return app
 }

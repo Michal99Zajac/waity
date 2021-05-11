@@ -1,14 +1,21 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Expose } from 'class-transformer'
+import { MinLength, IsEmail } from 'class-validator'
 
 
 @Entity()
+@Unique(['email'])
 export class User {
+  @Expose()
   @PrimaryGeneratedColumn('uuid')
   id!: number
 
-  @Column()
+  @Expose()
+  @IsEmail()
+  @Column({ name: 'email'})
   email!: string
 
+  @MinLength(7, { message: 'to short password' })
   @Column()
   password!: string
 }
