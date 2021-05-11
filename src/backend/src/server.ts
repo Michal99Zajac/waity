@@ -1,10 +1,7 @@
 import application from './app'
-import dotenv from 'dotenv'
 
 
 (async () => {
-  dotenv.config({ path: '.env.development' })
-
   const app = await application()
 
   const PORT = Number(process.env.PORT) || 8080

@@ -1,7 +1,10 @@
-import express, { NextFunction, Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import { BadRequest } from 'http-errors'
 import { validate, ValidationError } from 'class-validator'
+import { classToPlain } from 'class-transformer'
+import bcrypt from 'bcrypt'
+import saltRounds from '../bcrypt.config'
 import passport from '../passport'
 import conn from '../db'
 import { User } from '../entities/user.entity'
@@ -57,9 +60,11 @@ class AuthController {
         }
       })
 
+      user.password = await bcrypt.hash(user.password, saltRounds)
+
       await repository.save(user)
 
-      res.status(201).json(user)
+      res.status(201).json(classToPlain(user, { excludeExtraneousValues: true }))
     } catch (err) {
       next(new BadRequest(err))
     }

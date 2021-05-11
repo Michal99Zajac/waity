@@ -1,9 +1,9 @@
 import passport from 'passport'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 import passportLocal from 'passport-local'
+import bcrypt from 'bcrypt'
 import { User } from './entities/user.entity'
 import conn from './db'
-import { Request } from 'express'
 
 
 const LocalStrategy = passportLocal.Strategy
@@ -39,7 +39,9 @@ passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'passwor
 
     if (!user) return done(undefined, false, { message: `email ${email} not found`})
 
-    if (user.password != password) return done(undefined, false, { message: 'password does not match' })
+    if ( ! await bcrypt.compare(password, user.password)) {
+      return done(undefined, false, { message: 'password does not match' })
+    }
 
     return done(null, user)
 }))
