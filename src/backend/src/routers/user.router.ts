@@ -1,20 +1,10 @@
-import Router from './router/router'
-import UserController from '../controllers/user.controller'
+import { Router } from 'express'
+import userController from '../controllers/user.controller'
+import passport from '../passport'
 
 
-export default class UserRouter extends Router {
-  controller: UserController
+const router = Router()
 
-  constructor() {
-    super()
-    this.controller = new UserController()
-  }
+router.get('/users', passport.authenticate('jwt'), userController.getUsers)
 
-  get router() {
-    this._router.get('/user', this.controller.getUser)
-
-    this._router.post('/user', this.controller.postUser)
-
-    return this._router
-  }
-}
+export default router
