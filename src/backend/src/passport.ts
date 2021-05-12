@@ -2,6 +2,7 @@ import passport from 'passport'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 import passportLocal from 'passport-local'
 import bcrypt from 'bcrypt'
+import { classToClass } from 'class-transformer'
 import { User } from './entities/user.entity'
 import conn from './db'
 
@@ -29,7 +30,7 @@ passport.use(new JwtStrategy({
   if (!user) {
     return done(undefined, null)
   } else {
-    return done(null, user)
+    return done(null, classToClass(user, { excludeExtraneousValues: true }))
   }
 }))
 

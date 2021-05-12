@@ -1,20 +1,18 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm'
 import { Expose } from 'class-transformer'
-import { MinLength, IsEmail, MaxLength, Matches } from 'class-validator'
+import { IsAlphanumeric, Matches, MaxLength, MinLength } from 'class-validator'
 
 
 @Entity()
-@Unique(['email'])
-export class User {
+@Unique(['TIN', 'passcode'])
+export class Restaurant {
   @Expose()
   @PrimaryGeneratedColumn('uuid')
-  id!: number
+  id!: string
 
   @Expose()
-  @IsEmail()
-  @MaxLength(255, { message: 'email is to long'})
-  @Column({ name: 'email'})
-  email!: string
+  @Column()
+  TIN!: string
 
   @MinLength(7, { message: 'to short password' })
   @MaxLength(100, { message: 'password is to long' })
@@ -22,4 +20,11 @@ export class User {
   @Matches(/.*[A-Z].*$/, { message: 'password must contain capital letter'})
   @Column()
   password!: string
+
+  @Expose()
+  @IsAlphanumeric()
+  @MinLength(7)
+  @MaxLength(7)
+  @Column()
+  passcode!: string
 }
