@@ -1,6 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm'
 import { Expose } from 'class-transformer'
 import { MinLength, IsEmail, MaxLength, Matches } from 'class-validator'
+import { UserDetail } from './user-detail.entity'
+import { Role } from './role.entity'
+import { Reservation } from './reservation.entity'
 
 
 @Entity()
@@ -22,4 +25,16 @@ export class User {
   @Matches(/.*[A-Z].*$/, { message: 'password must contain capital letter'})
   @Column()
   password!: string
+
+  @Expose()
+  @OneToOne(() => UserDetail, userDetail => userDetail.user)
+  userDetail: UserDetail
+
+  @ManyToMany(() => Role, role => role.users, { cascade: ['remove', 'update']})
+  @JoinTable()
+  roles!: Role[]
+
+  @Expose()
+  @OneToMany(() => Reservation, reservation => reservation.user)
+  reservations?: Reservation[]
 }
