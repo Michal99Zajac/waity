@@ -1,6 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm'
 import { Expose } from 'class-transformer'
 import { IsAlphanumeric, Matches, MaxLength, MinLength } from 'class-validator'
+import { Food } from './food.entity'
+import { Role } from './role.entity'
+import { RestaurantDetail } from './restaurant-detail.entity'
+import { OpenHour } from './open-hour.entity'
+import { Owner } from './owner.entity'
+import { Table } from './table.entity'
 
 
 @Entity()
@@ -27,4 +33,29 @@ export class Restaurant {
   @MaxLength(7)
   @Column()
   passcode!: string
+
+  @Expose()
+  @OneToMany(() => Food, food => food.restaurant)
+  foods: Food[]
+
+  @Expose()
+  @OneToOne(() => Role, role => role.restaurant)
+  @JoinColumn()
+  role!: Role
+
+  @Expose()
+  @OneToOne(() => RestaurantDetail, restaurantDetail => restaurantDetail.restaurant)
+  restaurantDetail: RestaurantDetail
+
+  @Expose()
+  @OneToMany(() => OpenHour, openHour => openHour.restaurant)
+  openHour: OpenHour
+
+  @Expose()
+  @OneToOne(() => Owner, owner => owner.restaurant)
+  owner: Owner
+
+  @Expose()
+  @OneToMany(() => Table, table => table.restaurant)
+  tables: Table[]
 }

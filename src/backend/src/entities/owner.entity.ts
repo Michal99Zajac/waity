@@ -1,6 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { Expose } from 'class-transformer'
 import { IsAlpha, IsEmail } from 'class-validator'
+import { Restaurant } from './restaurant.entity'
+import { Address } from './address.entity'
 
 
 @Entity()
@@ -23,4 +25,14 @@ export class Owner {
   @IsEmail()
   @Column()
   email!: string
+
+  @Expose()
+  @OneToOne(() => Restaurant, restaurant => restaurant.owner, { cascade: ['remove', 'update']})
+  @JoinColumn()
+  restaurant!: Restaurant
+
+  @Expose()
+  @OneToOne(() => Address, address => address.owner)
+  @JoinColumn()
+  address!: Address
 }

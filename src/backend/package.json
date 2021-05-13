@@ -8,6 +8,7 @@
     "migrations:gen": "yarn typeorm migration:generate",
     "migrations:run": "yarn typeorm migration:run",
     "migrations:create": "yarn typeorm migration:create",
+    "migrations:revert": "yarn typeorm migration:revert",
     "typeorm": "NODE_ENV=development node -r dotenv-flow/config --require ts-node/register ./node_modules/typeorm/cli.js"
   },
   "dependencies": {

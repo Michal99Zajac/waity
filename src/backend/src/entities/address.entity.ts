@@ -1,6 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { Expose } from 'class-transformer'
 import { IsPostalCode } from 'class-validator'
+import { RestaurantDetail } from './restaurant-detail.entity'
+import { Owner } from './owner.entity'
 
 
 @Entity()
@@ -24,5 +26,13 @@ export class Address {
 
   @Expose()
   @Column()
-  address!: string
+  addr!: string
+
+  @Expose()
+  @OneToOne(() => RestaurantDetail, restaurantDetail => restaurantDetail.address)
+  restaurantDetail: RestaurantDetail
+
+  @Expose()
+  @OneToOne(() => Owner, owner => owner.address)
+  owner: Owner
 }

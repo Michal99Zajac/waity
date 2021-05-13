@@ -1,6 +1,8 @@
 import { Expose } from 'class-transformer'
 import { IsDate, IsIn } from 'class-validator'
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { Table } from './table.entity'
+import { User } from './user.entity'
 
 
 @Entity()
@@ -23,4 +25,14 @@ export class Reservation {
   @IsDate()
   @Column()
   end!: Date
+
+  @Expose()
+  @ManyToOne(() => User, user => user.reservations, { cascade: ['remove', 'update']})
+  @JoinColumn()
+  user!: User
+
+  @Expose()
+  @ManyToOne(() => Table, table => table.reservations, { cascade: ['remove', 'update']})
+  @JoinColumn()
+  table: Table
 }

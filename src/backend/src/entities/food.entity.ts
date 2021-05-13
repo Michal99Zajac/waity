@@ -1,6 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { Expose } from 'class-transformer'
 import { IsNumberString, MaxLength } from 'class-validator'
+import { FoodCategory } from './food-category.entity'
+import { Restaurant } from './restaurant.entity'
 
 
 @Entity()
@@ -22,4 +24,14 @@ export class Food {
   @Expose()
   @Column()
   name!: string
+
+  @Expose()
+  @ManyToOne(() => FoodCategory, foodCategory => foodCategory.foods, { cascade: ['remove', 'update']})
+  @JoinColumn()
+  foodCategory!: FoodCategory
+
+  @Expose()
+  @ManyToOne(() => Restaurant, restaurant => restaurant.foods, { cascade: ['remove', 'update']})
+  @JoinColumn()
+  restaurant!: Restaurant
 }

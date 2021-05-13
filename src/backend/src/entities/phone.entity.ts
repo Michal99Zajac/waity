@@ -1,6 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm'
 import { Expose } from 'class-transformer'
 import { IsAlpha, IsMobilePhone } from 'class-validator'
+import { UserDetail } from './user-detail.entity'
+import { RestaurantDetail } from './restaurant-detail.entity'
 
 
 @Entity()
@@ -19,4 +21,12 @@ export class Phone {
   @IsMobilePhone()
   @Column()
   number!: string
+
+  @Expose()
+  @OneToOne(() => UserDetail, userDetail => userDetail.phone)
+  userDetail: UserDetail
+
+  @Expose()
+  @OneToOne(() => RestaurantDetail, restaurantDetail => restaurantDetail.phone)
+  restaurantDetail: RestaurantDetail
 }

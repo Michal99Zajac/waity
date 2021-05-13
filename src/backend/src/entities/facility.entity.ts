@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn, Unique } from 'typeorm'
 import { Expose } from 'class-transformer'
+import { Table } from './table.entity'
 
 
 @Entity()
@@ -12,4 +13,8 @@ export class Facility {
   @Expose()
   @Column()
   name!: string
+
+  @Expose()
+  @ManyToMany(() => Table, table => table.facilities)
+  tables: Table[]
 }

@@ -5,7 +5,8 @@ module.exports = {
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   port: process.env.POSTGRES_PORT,
-  entities: ['src/entities/**/*.ts'],
+  synchronize: false,
+  entities: ['src/entities/**/*.entity.ts'],
   migrations: ['db/migrations/**/*.ts'],
   cli: {
     migrationsDir: 'db/migrations'

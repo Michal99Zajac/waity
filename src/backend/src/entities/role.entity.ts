@@ -1,5 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Column, Entity, ManyToMany, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm'
 import { Expose } from 'class-transformer'
+import { User } from './user.entity'
+import { Restaurant } from './restaurant.entity'
 
 
 @Entity()
@@ -16,4 +18,12 @@ export class Role {
   @Expose()
   @Column()
   desc?: string
+
+  @Expose()
+  @ManyToMany(() => User, user => user.roles)
+  users!: User[]
+
+  @Expose()
+  @OneToOne(() => Restaurant, restaurant => restaurant.role)
+  restaurant: Restaurant
 }

@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from 'typeorm'
 import { Expose } from 'class-transformer'
+import { Food } from './food.entity'
 
 
 @Entity()
@@ -12,4 +13,8 @@ export class FoodCategory {
   @Expose()
   @Column()
   name!: string
+
+  @Expose()
+  @OneToMany(() => Food, food => food.foodCategory)
+  foods: Food[]
 }

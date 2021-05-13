@@ -2,12 +2,13 @@ import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import { BadRequest } from 'http-errors'
 import { validate, ValidationError } from 'class-validator'
-import { classToPlain } from 'class-transformer'
+import { classToClass, classToPlain } from 'class-transformer'
 import bcrypt from 'bcrypt'
 import saltRounds from '../bcrypt.config'
 import passport from '../passport'
 import conn from '../db'
 import { User } from '../entities/user.entity'
+import { Role } from '../entities/role.entity'
 
 
 /**
@@ -47,10 +48,21 @@ class AuthController {
    * @param next Express NextFunction
    */
   async postRegister(req: Request, res: Response, next: NextFunction) {
+    const role = await conn().getRepository(Role).findOne({ name: 'client' }) || await ( async () => { 
+      const role = new Role()
+      role.name = 'client'
+      role.desc = 'normal client with all basic permisions on app'
+  
+      await conn().getRepository(Role).save(role)
+
+      return role
+    })()
+
     const repository = await conn().getRepository(User)
     const user = repository.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      roles: [role]
     })
 
     try {
@@ -62,7 +74,7 @@ class AuthController {
 
       user.password = await bcrypt.hash(user.password, saltRounds)
 
-      await repository.save(user)
+      await conn().manager.save(user)
 
       res.status(201).json(classToPlain(user, { excludeExtraneousValues: true }))
     } catch (err) {

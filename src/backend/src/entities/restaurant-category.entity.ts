@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { Expose } from 'class-transformer'
+import { RestaurantDetail } from './restaurant-detail.entity'
 
 
 @Entity()
@@ -11,4 +12,8 @@ export class RestaurantCategory {
   @Expose()
   @Column()
   name!: string
+
+  @Expose()
+  @OneToOne(() => RestaurantDetail, restaurantDetail => restaurantDetail.restaurantCategory)
+  restauranDetail: RestaurantDetail
 }
