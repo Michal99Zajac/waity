@@ -13,7 +13,7 @@ export class Food {
 
   @Expose()
   @MaxLength(1024, { message: 'decription is to long'})
-  @Column()
+  @Column({ default: null })
   desc?: string
 
   @Expose()

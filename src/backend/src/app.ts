@@ -8,6 +8,7 @@ import { notFound } from './middlewares/not-found.mid'
 
 import userRouter from './routers/user.router'
 import authRouter from './routers/auth.router'
+import restaurantRouter from './routers/restaurant.router'
 
 
 export default async function Application(): Promise<express.Application> {
@@ -18,12 +19,13 @@ export default async function Application(): Promise<express.Application> {
 
   // middlewares
   app.use('/api', bodyParser({ extended: true }))
-  app.use('/api', bodyParser.urlencoded({ extended: true }))
+  app.use('/api', express.urlencoded({ extended: true }))
   app.use('/api', passport.initialize())
 
   // routers
   app.use('/api', userRouter)
   app.use('/api', authRouter)
+  app.use('/api', restaurantRouter)
 
   // errors handler
   app.use('/api', notFound)
