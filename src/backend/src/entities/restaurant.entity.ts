@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm'
 import { Expose } from 'class-transformer'
 import { IsAlphanumeric, Matches, MaxLength, MinLength } from 'class-validator'
 import { Food } from './food.entity'
@@ -17,29 +17,28 @@ export class Restaurant {
   id!: string
 
   @Expose()
-  @Column()
+  @Column({ name: 'TIN' })
   TIN!: string
 
   @MinLength(7, { message: 'to short password' })
   @MaxLength(100, { message: 'password is to long' })
   @Matches(/.*[1-9].*$/, {message: 'password must contain number'})
   @Matches(/.*[A-Z].*$/, { message: 'password must contain capital letter'})
-  @Column()
+  @Column({ select: false })
   password!: string
 
   @Expose()
   @IsAlphanumeric()
   @MinLength(7)
   @MaxLength(7)
-  @Column()
+  @Column({ name: 'passcode' })
   passcode!: string
 
   @Expose()
   @OneToMany(() => Food, food => food.restaurant)
   foods: Food[]
 
-  @Expose()
-  @OneToOne(() => Role, role => role.restaurant)
+  @ManyToOne(() => Role, role => role.restaurants)
   @JoinColumn()
   role!: Role
 

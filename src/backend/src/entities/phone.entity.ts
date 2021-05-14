@@ -19,7 +19,7 @@ export class Phone {
 
   @Expose()
   @IsMobilePhone()
-  @Column()
+  @Column({ name: 'number' })
   number!: string
 
   @Expose()

@@ -9,6 +9,7 @@ import passport from '../passport'
 import conn from '../db'
 import { User } from '../entities/user.entity'
 import { Role } from '../entities/role.entity'
+import { Restaurant } from '../entities/restaurant.entity'
 
 
 /**
@@ -16,14 +17,16 @@ import { Role } from '../entities/role.entity'
  */
 class AuthController {
   /**
-   * login to the app and get jwt
+   * login USER to the app and get jwt. Request body bust have:
+   * - email (string)
+   * - password (string)
    * 
    * @param req HTTP Request
    * @param res HTTP Response
    * @param next Express NextFunction
    */
-  async postLogin(req: Request, res: Response, next: NextFunction) {
-    passport.authenticate('local', (err, user, info) => {
+  async postLoginUser(req: Request, res: Response, next: NextFunction) {
+    passport.authenticate('user-local', (err, user, info) => {
       if (err) { return next(err) }
 
       if (!user) {
@@ -41,13 +44,15 @@ class AuthController {
   }
 
   /**
-   * register and create new user 
+   * register and create new USER. Request body must have:
+   * - email (string)
+   * - password (string)
    * 
    * @param req HTTP Request
    * @param res HTTP Response
    * @param next Express NextFunction
    */
-  async postRegister(req: Request, res: Response, next: NextFunction) {
+  async postRegisterUser(req: Request, res: Response, next: NextFunction) {
     const role = await conn().getRepository(Role).findOne({ name: 'client' }) || await ( async () => { 
       const role = new Role()
       role.name = 'client'
@@ -77,6 +82,91 @@ class AuthController {
       await conn().manager.save(user)
 
       res.status(201).json(classToPlain(user, { excludeExtraneousValues: true }))
+    } catch (err) {
+      next(new BadRequest(err))
+    }
+  }
+
+  /**
+   * login RESTAURANT to the app and get jwt. Request body must have:
+   * - passcode (string)
+   * - password (string)
+   * 
+   * @param req HTTP Request
+   * @param res HTTP Response
+   * @param next Express NextFunction
+   */
+   async postLoginRestaurant(req: Request, res: Response, next: NextFunction) {
+    passport.authenticate('restaurant-local', (err, restaurant, info) => {
+      if (err) { return next(err) }
+
+      if (!restaurant) {
+        return res.status(401).json({
+          message: info.message
+        })
+      }
+
+      if (restaurant.passcode) {
+        res.json({
+          accessToken: jwt.sign({ sub: restaurant.passcode }, process.env.JWT_SECRET || 'secret')
+        })
+      }
+    })(req, res, next)
+  }
+
+  /**
+   * register and create new RESTAURANT. Request body must have:
+   * - tin (string)
+   * - password (string)
+   * 
+   * @param req HTTP Request
+   * @param res HTTP Response
+   * @param next Express NextFunction
+   */
+   async postRegisterRestaurant(req: Request, res: Response, next: NextFunction) {
+    const role = await conn().getRepository(Role).findOne({ name: 'restaurant' }) || await ( async () => { 
+      const role = new Role()
+      role.name = 'restaurant'
+      role.desc = 'restaurant role with all permissions and abilities for restaurant'
+  
+      await conn().getRepository(Role).save(role)
+
+      return role
+    })()
+
+    // create repository for database operations
+    const repository = await conn().getRepository(Restaurant)
+
+    // generate passcode and check if passcode is available
+    let passcode = (Math.floor(1000000 + Math.random() * 9000000)).toString()
+    while (true) {
+      const available = await repository.findOne({ passcode: passcode })
+
+      if (!available) { break }
+
+      // if not available gen passcode once again
+      passcode = (Math.floor(1000000 + Math.random() * 9000000)).toString()
+    }
+
+    const restaurant = repository.create({
+      passcode: passcode,
+      TIN: req.body.tin,
+      password: req.body.password,
+      role: role
+    })
+
+    try {
+      await validate(restaurant).then((err: ValidationError[]) => {
+        if (err.length > 0) {
+          return Promise.reject(err)
+        }
+      })
+
+      restaurant.password = await bcrypt.hash(restaurant.password, saltRounds)
+
+      await repository.save(restaurant)
+
+      res.status(201).json(classToPlain(restaurant, { excludeExtraneousValues: true }))
     } catch (err) {
       next(new BadRequest(err))
     }
