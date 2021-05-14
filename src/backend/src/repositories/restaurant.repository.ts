@@ -19,7 +19,7 @@ export class RestaurantRepository extends Repository<Restaurant> {
     return restaurant
   }
 
-  async getManyBasicByCategory(category?: string) {
+  async getManyByCategory(category?: string) {
     const qb = this.createQueryBuilder('restaurant')
 
     const restaurants = await qb
@@ -28,10 +28,23 @@ export class RestaurantRepository extends Repository<Restaurant> {
       .leftJoin('restaurantDetail.restaurantCategory', 'restaurantCategory').addSelect('restaurantCategory.name')
       .leftJoin('restaurantDetail.address', 'address').addSelect('address.addr')
       .leftJoin('restaurant.foods', 'food').addSelect(['food.price', 'food.name'])
-      .leftJoin('food.foodCategory', 'category')
-      .where('category.name = :category', { category: category })
+      .where('LOWER(restaurantCategory.name) = LOWER(:category)', { category: category })
       .getMany()
 
       return restaurants
+  }
+
+  async getMany() {
+    const qb = this.createQueryBuilder('restaurant')
+
+    const restaurants = await qb
+      .select('restaurant.id')
+      .leftJoin('restaurant.restaurantDetail', 'restaurantDetail').addSelect('restaurantDetail.name')
+      .leftJoin('restaurantDetail.restaurantCategory', 'restaurantCategory').addSelect('restaurantCategory.name')
+      .leftJoin('restaurantDetail.address', 'address').addSelect('address.addr')
+      .leftJoin('restaurant.foods', 'food').addSelect(['food.price', 'food.name'])
+      .getMany()
+
+    return restaurants
   }
 }
