@@ -6,6 +6,6 @@ import { guard } from '../middlewares/guard.mid'
 
 const router = Router()
 
-router.get('/users', passport.authenticate('jwt'), userController.getUsers)
+router.get('/users', passport.authenticate(['user-jwt', 'restaurant-jwt']), guard(['test']), userController.getUsers)
 
 export default router

@@ -23,13 +23,14 @@ export class User {
   @MaxLength(100, { message: 'password is to long' })
   @Matches(/.*[1-9].*$/, {message: 'password must contain number'})
   @Matches(/.*[A-Z].*$/, { message: 'password must contain capital letter'})
-  @Column()
+  @Column({ select: false })
   password!: string
 
   @Expose()
   @OneToOne(() => UserDetail, userDetail => userDetail.user)
   userDetail: UserDetail
 
+  @Expose()
   @ManyToMany(() => Role, role => role.users, { cascade: ['remove', 'update']})
   @JoinTable()
   roles!: Role[]
