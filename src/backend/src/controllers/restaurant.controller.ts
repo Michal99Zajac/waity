@@ -3,6 +3,7 @@ import { BadRequest } from 'http-errors'
 import { validate, ValidationError } from 'class-validator'
 import conn from '../db'
 import { RestaurantRepository } from '../repositories/restaurant.repository'
+import { RestaurantDetailRepository } from '../repositories/restaurant-detail.repository'
 import { Owner } from '../entities/owner.entity'
 import { Address } from '../entities/address.entity'
 import { Restaurant } from '../entities/restaurant.entity'
@@ -55,6 +56,43 @@ class RestaurantController {
     } catch (err) {
       next(new BadRequest(err))
     }
+  }
+
+  /**
+   * update restaurant information ['TIN', 'NAME', 'CATEGORY']
+   */
+  async updateRestaurantInfo(req: Request, res: Response, next: NextFunction) {
+    const connection = conn()
+
+    await connection.transaction(async transactionManager => {
+      if (req.user instanceof Restaurant) {
+        // get restaurant category for update
+        const restaurantCategory = await connection.getRepository(RestaurantCategory).findOne({ name: req.body.category })
+
+        // get repositories for update
+        const restaurantDetail = await transactionManager.getCustomRepository(RestaurantDetailRepository).getOneByRestaurantId(req.user.id)
+        const restaurant = await transactionManager.getRepository(Restaurant).findOne({ id: req.user.id })
+
+        // update restaurant information
+        if (restaurantDetail) {
+          restaurantDetail.name = req.body.name
+          if (restaurantCategory) restaurantDetail.restaurantCategory = restaurantCategory
+        }
+
+        if (restaurant?.TIN) restaurant.TIN = req.body.tin
+
+        try {
+          await transactionManager.save(restaurant)
+          await transactionManager.save(restaurantDetail)
+        } catch (err) {
+          next(err)
+        }
+      }
+    })
+
+    res.status(200).json({
+      message: "restaurant information was updated"
+    })
   }
 
   /**

@@ -16,4 +16,6 @@ router.post('/restaurants', restaurantController.postAllRestaurant)
 
 router.delete('/restaurants', passport.authenticate('restaurant-jwt'), guard(['restaurant']), restaurantController.deleteRestaurant)
 
+router.put('/restaurants/information', passport.authenticate('restaurant-jwt'), guard(['restaurant']), restaurantController.updateRestaurantInfo)
+
 export default router
