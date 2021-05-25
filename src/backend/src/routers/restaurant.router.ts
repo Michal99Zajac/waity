@@ -18,4 +18,6 @@ router.delete('/restaurants', passport.authenticate('restaurant-jwt'), guard(['r
 
 router.put('/restaurants/information', passport.authenticate('restaurant-jwt'), guard(['restaurant']), restaurantController.updateRestaurantInfo)
 
+router.put('/restaurants/contact', passport.authenticate('restaurant-jwt'), guard(['restaurant']), restaurantController.updateRestaurantContact)
+
 export default router

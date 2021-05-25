@@ -4,6 +4,7 @@ import { validate, ValidationError } from 'class-validator'
 import conn from '../db'
 import { RestaurantRepository } from '../repositories/restaurant.repository'
 import { RestaurantDetailRepository } from '../repositories/restaurant-detail.repository'
+import { RestaurantPhoneRepository } from '../repositories/restaurant-phone.repository'
 import { Owner } from '../entities/owner.entity'
 import { Address } from '../entities/address.entity'
 import { Restaurant } from '../entities/restaurant.entity'
@@ -59,6 +60,43 @@ class RestaurantController {
   }
 
   /**
+   * update restaurant contact ['EMAIL', 'PHONE', 'WEBSITE']
+   */
+  async updateRestaurantContact(req: Request, res: Response, next: NextFunction) {
+    const connection = conn()
+
+    await connection.transaction(async transactionManager => {
+      if (req.user instanceof Restaurant) {
+        // get entities for update
+        const restaurantDetail = await transactionManager.getCustomRepository(RestaurantDetailRepository).getOneByRestaurantId(req.user.id)
+        const restaurantPhone = await transactionManager.getCustomRepository(RestaurantPhoneRepository).getOneByRestaurantId(req.user.id)
+
+        // update contact informations
+        if (restaurantDetail) {
+          restaurantDetail.email = req.body.email
+          restaurantDetail.website = req.body.website
+        }
+
+        if (restaurantPhone) {
+          restaurantPhone.number = req.body.phone.number
+          restaurantPhone.country = req.body.phone.country
+        }
+
+        try {
+          await transactionManager.save(restaurantDetail)
+          await transactionManager.save(restaurantPhone)
+        } catch (err) {
+          next(err)
+        }
+      }
+    })
+
+    res.status(200).json({
+      message: 'restaurant contact was updated'
+    })
+  }
+
+  /**
    * update restaurant information ['TIN', 'NAME', 'CATEGORY']
    */
   async updateRestaurantInfo(req: Request, res: Response, next: NextFunction) {
@@ -69,7 +107,7 @@ class RestaurantController {
         // get restaurant category for update
         const restaurantCategory = await connection.getRepository(RestaurantCategory).findOne({ name: req.body.category })
 
-        // get repositories for update
+        // get entities for update
         const restaurantDetail = await transactionManager.getCustomRepository(RestaurantDetailRepository).getOneByRestaurantId(req.user.id)
         const restaurant = await transactionManager.getRepository(Restaurant).findOne({ id: req.user.id })
 
