@@ -6,7 +6,7 @@ import restaurantController from '../controllers/restaurant.controller'
 
 const router = Router()
 
-router.get('/restaurants/:id/info', passport.authenticate('user-jwt'), guard(['client']), restaurantController.getRestaurantInfo)
+router.get('/restaurants/info/:id', passport.authenticate('user-jwt'), guard(['client']), restaurantController.getRestaurantInfo)
 
 router.get('/restaurants/:category', passport.authenticate('user-jwt'), guard(['client']), restaurantController.getRestaurantsByCategory)
 

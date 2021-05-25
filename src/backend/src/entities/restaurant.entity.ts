@@ -7,6 +7,7 @@ import { RestaurantDetail } from './restaurant-detail.entity'
 import { OpenHour } from './open-hour.entity'
 import { Owner } from './owner.entity'
 import { Table } from './table.entity'
+import { RestaurantPhone } from './restaurant-phone.entity'
 
 
 @Entity()
@@ -57,4 +58,8 @@ export class Restaurant {
   @Expose()
   @OneToMany(() => Table, table => table.restaurant)
   tables: Table[]
+
+  @Expose()
+  @OneToOne(() => RestaurantPhone, restaurantPhone => restaurantPhone.restaurant)
+  phone: RestaurantPhone
 }

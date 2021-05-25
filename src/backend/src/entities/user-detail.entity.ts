@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'ty
 import { Expose } from 'class-transformer'
 import { IsDate } from 'class-validator'
 import { User } from './user.entity'
-import { Phone } from './phone.entity'
+import { UserPhone } from './user-phone.entity'
 
 
 @Entity()
@@ -30,7 +30,6 @@ export class UserDetail {
   user!: User
 
   @Expose()
-  @OneToOne(() => Phone, phone => phone.userDetail)
-  @JoinColumn()
-  phone!: Phone
+  @OneToOne(() => UserPhone, userPhone => userPhone.userDetail)
+  phone: UserPhone
 }

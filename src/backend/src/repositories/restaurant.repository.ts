@@ -12,7 +12,7 @@ export class RestaurantRepository extends Repository<Restaurant> {
       .leftJoinAndSelect('restaurant.restaurantDetail', 'restaurantDetail')
       .leftJoinAndSelect('restaurantDetail.address', 'address')
       .leftJoinAndSelect('restaurantDetail.restaurantCategory', 'restaurantCategory')
-      .leftJoinAndSelect('restaurantDetail.phone', 'phone')
+      .leftJoinAndSelect('restaurant.phone', 'phone')
       .where('restaurant.id = :id', { id: id })
       .getOne()
 
