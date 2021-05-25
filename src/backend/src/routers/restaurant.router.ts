@@ -12,4 +12,6 @@ router.get('/restaurants/:category', passport.authenticate('user-jwt'), guard(['
 
 router.get('/restaurants', passport.authenticate('user-jwt'), guard(['client']), restaurantController.getRestaurants)
 
+router.post('/restaurants', restaurantController.postAllRestaurant)
+
 export default router

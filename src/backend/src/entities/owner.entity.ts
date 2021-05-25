@@ -3,6 +3,7 @@ import { Expose } from 'class-transformer'
 import { IsAlpha, IsEmail } from 'class-validator'
 import { Restaurant } from './restaurant.entity'
 import { Address } from './address.entity'
+import { Phone } from './phone.entity'
 
 
 @Entity()
@@ -35,4 +36,9 @@ export class Owner {
   @OneToOne(() => Address, address => address.owner)
   @JoinColumn()
   address!: Address
+
+  @Expose()
+  @OneToOne(() => Phone, phone => phone.owner)
+  @JoinColumn()
+  phone!: Phone
 }

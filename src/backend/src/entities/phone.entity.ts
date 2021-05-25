@@ -3,6 +3,7 @@ import { Expose } from 'class-transformer'
 import { IsAlpha, IsMobilePhone } from 'class-validator'
 import { UserDetail } from './user-detail.entity'
 import { RestaurantDetail } from './restaurant-detail.entity'
+import { Owner } from './owner.entity'
 
 
 @Entity()
@@ -29,4 +30,8 @@ export class Phone {
   @Expose()
   @OneToOne(() => RestaurantDetail, restaurantDetail => restaurantDetail.phone)
   restaurantDetail: RestaurantDetail
+
+  @Expose()
+  @OneToOne(() => Owner, owner => owner.phone)
+  owner: Owner
 }
