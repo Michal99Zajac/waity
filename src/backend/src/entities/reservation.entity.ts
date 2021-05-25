@@ -27,12 +27,12 @@ export class Reservation {
   end!: Date
 
   @Expose()
-  @ManyToOne(() => User, user => user.reservations, { cascade: ['remove', 'update']})
+  @ManyToOne(() => User, user => user.reservations, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
   user!: User
 
   @Expose()
-  @ManyToOne(() => Table, table => table.reservations, { cascade: ['remove', 'update']})
+  @ManyToOne(() => Table, table => table.reservations, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
   table: Table
 }

@@ -33,7 +33,7 @@ export class Table {
   seats!: number
 
   @Expose()
-  @ManyToOne(() => Restaurant, restaurant => restaurant.tables, { cascade: ['remove', 'update']})
+  @ManyToOne(() => Restaurant, restaurant => restaurant.tables, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
   restaurant!: Restaurant
 
@@ -42,7 +42,7 @@ export class Table {
   reservations: Reservation[]
 
   @Expose()
-  @ManyToMany(() => Facility, facility => facility.tables, { cascade: ['remove', 'update']})
+  @ManyToMany(() => Facility, facility => facility.tables, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinTable()
   facilities: Facility[]
 }

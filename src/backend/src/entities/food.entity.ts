@@ -26,12 +26,12 @@ export class Food {
   name!: string
 
   @Expose()
-  @ManyToOne(() => FoodCategory, foodCategory => foodCategory.foods, { cascade: ['remove', 'update']})
+  @ManyToOne(() => FoodCategory, foodCategory => foodCategory.foods, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
   foodCategory!: FoodCategory
 
   @Expose()
-  @ManyToOne(() => Restaurant, restaurant => restaurant.foods, { cascade: ['remove', 'update']})
+  @ManyToOne(() => Restaurant, restaurant => restaurant.foods, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
   restaurant!: Restaurant
 }

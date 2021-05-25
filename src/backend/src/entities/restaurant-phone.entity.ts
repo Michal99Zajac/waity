@@ -22,7 +22,7 @@ export class RestaurantPhone {
   number!: string
 
   @Expose()
-  @OneToOne(() => Restaurant, restaurant => restaurant.phone, { cascade: ['remove', 'update']})
+  @OneToOne(() => Restaurant, restaurant => restaurant.phone, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
   restaurant!: Restaurant
 }

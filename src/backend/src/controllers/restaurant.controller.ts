@@ -43,15 +43,19 @@ class RestaurantController {
   /**
    * delete restaurant with they phone number
    */
-  // async deleteRestaurant(req: Request, res: Response, next: NextFunction) {
-  //   const connection = conn()
+  async deleteRestaurant(req: Request, res: Response, next: NextFunction) {
+    const restaurantRepository = conn().getRepository(Restaurant)
 
-  //   // get repositories
-  //   // let phoneRepository = await connection.getRepository(Phone)
-  //   let restaurantRepository = await connection.getRepository(Restaurant)
+    try {
+      if (req.user instanceof Restaurant) {
+        await restaurantRepository.delete({ id: req.user.id })
 
-  //   phoneRepository.delete({ })
-  // }
+        res.status(200).json({ message: `delete restaurant ${req.user.id }` })
+      }
+    } catch (err) {
+      next(new BadRequest(err))
+    }
+  }
 
   /**
    * post restaurant with all information
@@ -114,6 +118,7 @@ class RestaurantController {
           name: req.body.name
         })
 
+        // validate response objects
         await validate(owner).then((err: ValidationError[]) => {
           if (err.length > 0) {
             return Promise.reject(err)

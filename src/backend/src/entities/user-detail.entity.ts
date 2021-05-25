@@ -25,7 +25,7 @@ export class UserDetail {
   birth!: Date
 
   @Expose()
-  @OneToOne(() => User, user => user.userDetail, { cascade: ['remove', 'update'] })
+  @OneToOne(() => User, user => user.userDetail, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
   user!: User
 

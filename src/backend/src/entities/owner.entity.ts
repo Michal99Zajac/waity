@@ -28,7 +28,7 @@ export class Owner {
   email!: string
 
   @Expose()
-  @OneToOne(() => Restaurant, restaurant => restaurant.owner, { cascade: ['remove', 'update']})
+  @OneToOne(() => Restaurant, restaurant => restaurant.owner, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
   restaurant!: Restaurant
 

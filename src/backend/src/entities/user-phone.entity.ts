@@ -22,7 +22,7 @@ export class UserPhone {
   number!: string
 
   @Expose()
-  @OneToOne(() => UserDetail, userDetail => userDetail.phone, { cascade: ['remove', 'update']})
+  @OneToOne(() => UserDetail, userDetail => userDetail.phone, { cascade: ['remove', 'update'], onDelete: 'CASCADE'})
   @JoinColumn()
   userDetail!: UserDetail
 }

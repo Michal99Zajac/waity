@@ -31,7 +31,7 @@ export class User {
   userDetail: UserDetail
 
   @Expose()
-  @ManyToMany(() => Role, role => role.users, { cascade: ['remove', 'update']})
+  @ManyToMany(() => Role, role => role.users, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinTable()
   roles!: Role[]
 
