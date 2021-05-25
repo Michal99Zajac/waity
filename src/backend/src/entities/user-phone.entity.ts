@@ -1,13 +1,12 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Unique } from 'typeorm'
 import { Expose } from 'class-transformer'
 import { IsAlpha, IsMobilePhone } from 'class-validator'
 import { UserDetail } from './user-detail.entity'
-import { RestaurantDetail } from './restaurant-detail.entity'
 
 
 @Entity()
 @Unique(['number'])
-export class Phone {
+export class UserPhone {
   @Expose()
   @PrimaryGeneratedColumn('uuid')
   id!: string
@@ -23,10 +22,7 @@ export class Phone {
   number!: string
 
   @Expose()
-  @OneToOne(() => UserDetail, userDetail => userDetail.phone)
-  userDetail: UserDetail
-
-  @Expose()
-  @OneToOne(() => RestaurantDetail, restaurantDetail => restaurantDetail.phone)
-  restaurantDetail: RestaurantDetail
+  @OneToOne(() => UserDetail, userDetail => userDetail.phone, { cascade: ['remove', 'update'], onDelete: 'CASCADE'})
+  @JoinColumn()
+  userDetail!: UserDetail
 }

@@ -3,6 +3,7 @@ import { Expose } from 'class-transformer'
 import { IsAlpha, IsEmail } from 'class-validator'
 import { Restaurant } from './restaurant.entity'
 import { Address } from './address.entity'
+import { OwnerPhone } from './owner-phone.entity'
 
 
 @Entity()
@@ -27,7 +28,7 @@ export class Owner {
   email!: string
 
   @Expose()
-  @OneToOne(() => Restaurant, restaurant => restaurant.owner, { cascade: ['remove', 'update']})
+  @OneToOne(() => Restaurant, restaurant => restaurant.owner, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
   restaurant!: Restaurant
 
@@ -35,4 +36,8 @@ export class Owner {
   @OneToOne(() => Address, address => address.owner)
   @JoinColumn()
   address!: Address
+
+  @Expose()
+  @OneToOne(() => OwnerPhone, ownerPhone => ownerPhone.owner)
+  phone: OwnerPhone 
 }

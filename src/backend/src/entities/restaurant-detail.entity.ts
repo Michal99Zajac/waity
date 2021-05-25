@@ -1,8 +1,7 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { Expose } from 'class-transformer'
-import { IsUrl } from 'class-validator'
+import { IsEmail, IsUrl } from 'class-validator'
 import { Restaurant } from './restaurant.entity'
-import { Phone } from './phone.entity'
 import { RestaurantCategory } from './restaurant-category.entity'
 import { Address } from './address.entity'
 
@@ -23,14 +22,14 @@ export class RestaurantDetail {
   website!: string
 
   @Expose()
-  @OneToOne(() => Restaurant, restaurant => restaurant.restaurantDetail, { cascade: ['remove', 'update']})
-  @JoinColumn()
-  restaurant!: Restaurant
+  @IsEmail()
+  @Column({ default: '' })
+  email!: string
 
   @Expose()
-  @OneToOne(() => Phone, phone => phone.restaurantDetail)
+  @OneToOne(() => Restaurant, restaurant => restaurant.restaurantDetail, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
-  phone!: Phone
+  restaurant!: Restaurant
 
   @Expose()
   @OneToOne(() => RestaurantCategory, restaurantCategory => restaurantCategory.restauranDetail)

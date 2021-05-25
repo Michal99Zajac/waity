@@ -26,7 +26,7 @@ export class OpenHour {
   end!: string
 
   @Expose()
-  @ManyToOne(() => Restaurant, restaurant => restaurant.openHour, { cascade: ['remove', 'update']})
+  @ManyToOne(() => Restaurant, restaurant => restaurant.openHour, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
   restaurant!: Restaurant
 }
