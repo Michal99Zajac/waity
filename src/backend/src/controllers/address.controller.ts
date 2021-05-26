@@ -24,11 +24,12 @@ class AddressController {
         address.city = req.body.city
         address.addr = req.body.address
 
-        connection.getRepository(Address).save(address)
+        address = await connection.getRepository(Address).save(address)
       }
 
       res.status(200).json({
-        message: 'restaurant address was updated'
+        message: 'restaurant address was updated',
+        ...address
       })
 
     } catch (err) {

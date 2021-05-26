@@ -10,6 +10,7 @@ import userRouter from './routers/user.router'
 import authRouter from './routers/auth.router'
 import restaurantRouter from './routers/restaurant.router'
 import addressRouter from './routers/address.router'
+import ownerRouter from './routers/owner.router'
 
 
 export default async function Application(): Promise<express.Application> {
@@ -28,6 +29,7 @@ export default async function Application(): Promise<express.Application> {
   app.use('/api', authRouter)
   app.use('/api', restaurantRouter)
   app.use('/api', addressRouter)
+  app.use('/api', ownerRouter)
 
   // errors handler
   app.use('/api', notFound)
