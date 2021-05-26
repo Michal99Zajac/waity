@@ -10,4 +10,6 @@ router.get('/owners', passport.authenticate('restaurant-jwt'), guard(['restauran
 
 router.get('/owners/address', passport.authenticate('restaurant-jwt'), guard(['restaurant']), ownerController.getOnwerAddress)
 
+router.get('/owners/phone', passport.authenticate('restaurant-jwt'), guard(['restaurant']), ownerController.getOnwerPhone)
+
 export default router

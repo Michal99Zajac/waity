@@ -44,6 +44,24 @@ class OwnerController {
 
     res.status(200).json(ownerWithAddress)
   }
+
+  /**
+   * get owner basic information with they phone number
+   */
+  async getOnwerPhone(req: Request, res: Response, next: NextFunction) {
+    // get owner with phone by logged restaurant id
+    const ownerWithPhone = req.user instanceof Restaurant ?
+      await conn().getRepository(Owner).findOne({
+        relations: ['phone'],
+        where: {
+          restaurant: {
+            id: req.user.id
+          }
+        }
+      }) : next(new BadRequest())
+
+    res.status(200).json(ownerWithPhone)
+  }
 }
 
 export default new OwnerController()
