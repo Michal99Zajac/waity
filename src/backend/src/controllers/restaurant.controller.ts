@@ -236,6 +236,46 @@ class RestaurantController {
       next(new BadRequest(err))
     }
   }
+
+  /**
+   * get restaurantion base information for update page
+   */
+  async getRestaurantBasicInformation(req: Request, res: Response, next: NextFunction) {
+    const connection = conn()
+
+    const restaurant = req.user instanceof Restaurant ?
+      await connection.getRepository(Restaurant).findOne({
+        relations: ['restaurantDetail', 'restaurantDetail.restaurantCategory'],
+        where: {
+          id: req.user.id
+        }
+      }) : next(new BadRequest())
+
+    restaurant && res.status(200).json({
+      category: restaurant.restaurantDetail.restaurantCategory.name,
+      tin: restaurant.TIN,
+      name: restaurant.restaurantDetail.name
+    }) 
+  }
+
+  /**
+   * get restaurant contact information for update page
+   */
+  async getRestaurantContact(req: Request, res: Response, next: NextFunction) {
+    const connection = conn()
+
+    const restaurant = req.user instanceof Restaurant ?
+      await connection.getRepository(Restaurant).findOne({
+        relations: ['phone', 'restaurantDetail'],
+        where: { id: req.user.id }
+      }) : next(new BadRequest())
+
+    restaurant && res.status(200).json({
+      email: restaurant.restaurantDetail.email,
+      website: restaurant.restaurantDetail.website,
+      phone: restaurant.phone
+    })
+  }
 }
 
 export default new RestaurantController()
