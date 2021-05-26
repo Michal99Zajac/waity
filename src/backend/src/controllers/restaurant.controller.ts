@@ -83,16 +83,22 @@ class RestaurantController {
         }
 
         try {
-          await transactionManager.save(restaurantDetail)
-          await transactionManager.save(restaurantPhone)
+          const updatedRestaurantDetail = await transactionManager.save(restaurantDetail)
+          const updatedRestaurantPhone = await transactionManager.save(restaurantPhone)
+
+          res.status(200).json({
+            message: 'restaurant contact was updated',
+            email: updatedRestaurantDetail?.email,
+            website: updatedRestaurantDetail?.website,
+            phone: {
+              number: updatedRestaurantPhone?.number,
+              country: updatedRestaurantPhone?.country
+            }
+          })
         } catch (err) {
           next(err)
         }
       }
-    })
-
-    res.status(200).json({
-      message: 'restaurant contact was updated'
     })
   }
 
@@ -120,16 +126,19 @@ class RestaurantController {
         if (restaurant?.TIN) restaurant.TIN = req.body.tin
 
         try {
-          await transactionManager.save(restaurant)
-          await transactionManager.save(restaurantDetail)
+          const updatedRestaurant = await transactionManager.save(restaurant)
+          const updatedRestaurantDetail = await transactionManager.save(restaurantDetail)
+
+          res.status(200).json({
+            message: 'restaurant information was updated',
+            category: updatedRestaurantDetail?.restaurantCategory.name,
+            tin: updatedRestaurant?.TIN,
+            name: updatedRestaurantDetail?.name
+          })
         } catch (err) {
           next(err)
         }
       }
-    })
-
-    res.status(200).json({
-      message: "restaurant information was updated"
     })
   }
 

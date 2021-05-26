@@ -86,15 +86,16 @@ class OwnerController {
       owner.lastname = req.body.lastname
 
       try {
-        connection.manager.save(owner)
+        const updatedOwner = await connection.manager.save(owner)
+
+        res.status(200).json({
+          message: 'owner basic information was updated',
+          ...updatedOwner
+        })
       } catch (err) {
         next(new BadRequest(err))
       }
     }
-
-    res.status(200).json({
-      message: 'owner basic information was updated'
-    })
   }
 
   /**
@@ -116,21 +117,61 @@ class OwnerController {
 
     // update owners phone and catch any errors
     if (ownerWithPhone) {
-      const phone = ownerWithPhone.phone
+      let phone = ownerWithPhone.phone
 
       phone.country = req.body.country
       phone.number = req.body.number
 
       try {
-        connection.manager.save(phone)
+        phone = await connection.manager.save(phone)
+
+        res.status(200).json({
+          message: 'owner phone was updated',
+          ...phone
+        })
       } catch (err) {
         next(new BadRequest(err))
       }
     }
+  }
 
-    res.status(200).json({
-      message: 'owner phone was updated'
-    })
+  /**
+   * update owner address
+   */
+  async updateOwnerAddress(req: Request, res: Response, next: NextFunction) {
+    const connection = conn()
+
+    // get owner to update
+    const ownerWithAddress = req.user instanceof Restaurant ?
+      await connection.getRepository(Owner).findOne({
+        relations: ['address'],
+        where: {
+          restaurant: {
+            id: req.user.id
+          }
+        }
+      }) : next(new BadRequest())
+
+    // update address and catch eny errors
+    if (ownerWithAddress) {
+      let address = ownerWithAddress.address
+
+      address.city = req.body.city
+      address.country = req.body.country
+      address.postalcode = req.body.postalcode
+      address.addr = req.body.address
+
+      try {
+        address = await connection.manager.save(address)
+
+        res.status(200).json({
+          message: 'owner address was updated',
+          ...address
+        })
+      } catch (err) {
+        next(new BadRequest(err))
+      }
+    }
   }
 }
 

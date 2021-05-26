@@ -16,4 +16,6 @@ router.put('/owners', passport.authenticate('restaurant-jwt'), guard(['restauran
 
 router.put('/owners/phone', passport.authenticate('restaurant-jwt'), guard(['restaurant']), ownerController.updateOwnerPhone)
 
+router.put('/owners/address', passport.authenticate('restaurant-jwt'), guard(['restaurant']), ownerController.updateOwnerAddress)
+
 export default router
