@@ -9,6 +9,7 @@ import { notFound } from './middlewares/not-found.mid'
 import userRouter from './routers/user.router'
 import authRouter from './routers/auth.router'
 import restaurantRouter from './routers/restaurant.router'
+import addressRouter from './routers/address.router'
 
 
 export default async function Application(): Promise<express.Application> {
@@ -26,6 +27,7 @@ export default async function Application(): Promise<express.Application> {
   app.use('/api', userRouter)
   app.use('/api', authRouter)
   app.use('/api', restaurantRouter)
+  app.use('/api', addressRouter)
 
   // errors handler
   app.use('/api', notFound)
