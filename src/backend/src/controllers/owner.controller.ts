@@ -69,6 +69,7 @@ class OwnerController {
   async updateOwnerBasic(req: Request, res: Response, next: NextFunction) {
     const connection = conn()
 
+    // get owner to update
     const owner = req.user instanceof Restaurant ?
       await connection.getRepository(Owner).findOne({
         where: {
@@ -78,6 +79,7 @@ class OwnerController {
         }
       }) : next(new BadRequest())
 
+    // update owner and catch any errors
     if (owner) {
       owner.email = req.body.email
       owner.name = req.body.name
@@ -92,6 +94,42 @@ class OwnerController {
 
     res.status(200).json({
       message: 'owner basic information was updated'
+    })
+  }
+
+  /**
+   * update owner phone
+   */
+  async updateOwnerPhone(req: Request, res: Response, next: NextFunction) {
+    const connection = conn()
+
+    // get owner to update
+    const ownerWithPhone = req.user instanceof Restaurant ?
+      await connection.getRepository(Owner).findOne({
+        relations: ['phone'],
+        where: {
+          restaurant: {
+            id: req.user.id
+          }
+        }
+      }) : next(new BadRequest())
+
+    // update owners phone and catch any errors
+    if (ownerWithPhone) {
+      const phone = ownerWithPhone.phone
+
+      phone.country = req.body.country
+      phone.number = req.body.number
+
+      try {
+        connection.manager.save(phone)
+      } catch (err) {
+        next(new BadRequest(err))
+      }
+    }
+
+    res.status(200).json({
+      message: 'owner phone was updated'
     })
   }
 }
