@@ -62,6 +62,38 @@ class OwnerController {
 
     res.status(200).json(ownerWithPhone)
   }
+
+  /**
+   * update owner basic information
+   */
+  async updateOwnerBasic(req: Request, res: Response, next: NextFunction) {
+    const connection = conn()
+
+    const owner = req.user instanceof Restaurant ?
+      await connection.getRepository(Owner).findOne({
+        where: {
+          restaurant: {
+            id: req.user.id
+          }
+        }
+      }) : next(new BadRequest())
+
+    if (owner) {
+      owner.email = req.body.email
+      owner.name = req.body.name
+      owner.lastname = req.body.lastname
+
+      try {
+        connection.manager.save(owner)
+      } catch (err) {
+        next(new BadRequest(err))
+      }
+    }
+
+    res.status(200).json({
+      message: 'owner basic information was updated'
+    })
+  }
 }
 
 export default new OwnerController()
