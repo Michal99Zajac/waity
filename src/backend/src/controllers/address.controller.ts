@@ -36,6 +36,19 @@ class AddressController {
       next(new BadRequest(err))
     }
   }
+
+  /**
+   * get restaurant address by id
+   */
+  async getRestaurantAddress(req: Request, res: Response, next: NextFunction) {
+    const connection = conn()
+
+    const address = req.user instanceof Restaurant ?
+      await connection.getCustomRepository(AddressRepository).getOneByRestaurantId(req.params.id) :
+      next(new BadRequest())
+
+    res.status(200).json(address)
+  }
 }
 
 export default new AddressController()
