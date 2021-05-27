@@ -112,6 +112,46 @@ class OpenHourController {
       return next(new BadRequest(err))
     }
   }
+
+  /**
+   * update single open hour
+   */
+  async updateOpenHour(req: Request, res: Response, next: NextFunction) {
+    const openHourRepository = conn().getRepository(OpenHour)
+
+    // get open hour from database
+    const openHour = req.user instanceof Restaurant && await openHourRepository.findOne({
+      where: {
+        day: req.body.day,
+        restaurant: {
+          id: req.user.id
+        }
+      }
+    })
+
+    // check if openHour exist
+    if (!openHour) return next(new BadRequest('open hour doesnt exist'))
+
+    openHour.start = req.body.start
+    openHour.end = req.body.end
+
+    // check and save changed open-hour
+    try {
+      await validate(openHour).then((err: ValidationError[]) => {
+        if (err.length > 0) return Promise.reject(err)
+      })
+
+      await openHourRepository.save(openHour)
+
+      res.status(200).json(openHour)
+    } catch (err) {
+      return next(new BadRequest(err))
+    }
+  }
+
+  /**
+   * get restaurant openhours sort by day
+   */
 }
 
 export default new OpenHourController()

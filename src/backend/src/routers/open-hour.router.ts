@@ -10,4 +10,6 @@ router.post('/open-hours', passport.authenticate('restaurant-jwt'), guard(['rest
 
 router.post('/open-hour', passport.authenticate('restaurant-jwt'), guard(['restaurant']), openHourController.postOpenHour)
 
+router.put('/open-hour', passport.authenticate('restaurant-jwt'), guard(['restaurant']), openHourController.updateOpenHour)
+
 export default router
