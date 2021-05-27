@@ -211,6 +211,46 @@ class AuthController {
       }
     }
   }
+
+  /**
+   * update user restaurant
+   */
+  async updateUserPassword(req: Request, res: Response, next: NextFunction) {
+    const connection = conn()
+
+    if (req.body.newpassword != req.body.repeatNewpassword) return next(new BadRequest('new passwords are not match'))
+
+    const user = req.user instanceof User ?
+      await connection.getRepository(User).findOne({ id: req.user.id }, { select: ['id', 'password', 'email']}) :
+      next(new BadRequest())
+
+    if (user) {
+      const same = await bcrypt.compare(req.body.password, user.password)
+
+      if (!same) return next(new BadRequest('passwords is not match'))
+
+      user.password = req.body.newpassword
+
+      try {
+        await validate(user).then((err: ValidationError[]) => {
+          if (err.length > 0) {
+            return Promise.reject(err)
+          }
+        })
+
+        user.password = await bcrypt.hash(req.body.newpassword, saltRounds)
+
+        await connection.manager.save(user)
+
+        res.status(200).json({
+          message: 'password was updated'
+        })
+
+      } catch (err) {
+        next(new BadRequest(err))
+      }
+    }
+  }
 }
 
 export default new AuthController()

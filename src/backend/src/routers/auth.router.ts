@@ -10,6 +10,8 @@ router.post('/auth/login', authController.postLoginUser)
 
 router.post('/auth/register', authController.postRegisterUser)
 
+router.put('/auth/password', passport.authenticate('user-jwt'), guard(['client']), authController.updateUserPassword)
+
 router.post('/auth/restaurant/login', authController.postLoginRestaurant)
 
 router.post('/auth/restaurant/register', authController.postRegisterRestaurant)
