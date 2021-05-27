@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp } from 'typeorm'
-import { Expose } from 'class-transformer'
+import { Exclude, Expose } from 'class-transformer'
 import { Contains, IsIn } from 'class-validator'
 import { Restaurant } from './restaurant.entity'
 
@@ -25,6 +25,7 @@ export class OpenHour {
   @Column()
   end!: string
 
+  @Exclude()
   @Expose()
   @ManyToOne(() => Restaurant, restaurant => restaurant.openHour, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
