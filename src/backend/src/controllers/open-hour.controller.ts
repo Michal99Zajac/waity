@@ -9,9 +9,9 @@ import { classToPlain } from 'class-transformer'
 
 class OpenHourController {
   /**
-   * add open hour to the database for concreate restaurant
+   * post array of open-hours if any open-hour exist
    */
-  async postOpenHour(req: Request, res: Response, next: NextFunction) {
+  async postOpenHours(req: Request, res: Response, next: NextFunction) {
     const connection = conn()
 
     const restaurant: any = req.user instanceof Restaurant ?
@@ -61,6 +61,53 @@ class OpenHourController {
       const newOpenHours = await openHourRepository.save(openHours)
 
       res.status(200).json(classToPlain(newOpenHours, { excludeExtraneousValues: true }))
+    } catch (err) {
+      return next(new BadRequest(err))
+    }
+  }
+
+  /**
+   * post single open-hour if doesnt exist
+   */
+  async postOpenHour(req: Request, res: Response, next: NextFunction) {
+    const connection = conn()
+
+    // get restaurant to set openHour
+    const restaurant: any = req.user instanceof Restaurant ?
+      await connection.getRepository(Restaurant).findOne({ id: req.user.id }) :
+      next(new BadRequest('restaurant not found'))
+
+    const openHourRepository = connection.getRepository(OpenHour)
+
+    // check if openhours exist for restaurant
+    try {
+      req.user instanceof Restaurant && await openHourRepository.findOne({
+        where: {
+          restaurant: {
+            id: req.user.id
+          },
+          day: req.body.day
+        }
+      }).then(restaurantOpenHour => { if (restaurantOpenHour) { return Promise.reject('restaurant on this day have open hour') }})
+    } catch (err) {
+      return next(new BadRequest(err))
+    }
+
+    // create new openHour and response
+    try {
+      const openHour = new OpenHour()
+      openHour.day = req.body.day
+      openHour.start = req.body.start
+      openHour.end = req.body.end
+      openHour.restaurant = restaurant
+
+      await validate(openHour).then((err: ValidationError[]) => {
+        if (err.length > 0) { return Promise.reject(err) }
+      })
+
+      await openHourRepository.save(openHour)
+
+      res.status(200).json(classToPlain(openHour, { excludeExtraneousValues: true }))
     } catch (err) {
       return next(new BadRequest(err))
     }
