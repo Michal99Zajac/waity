@@ -14,4 +14,6 @@ router.put('/open-hour', passport.authenticate('restaurant-jwt'), guard(['restau
 
 router.get('/open-hours/:restaurantId', passport.authenticate(['restaurant-jwt', 'user-jwt']), guard(['client', 'restaurant']), openHourController.getOpenHours)
 
+router.patch('/open-hours', passport.authenticate('restaurant-jwt'), guard(['restaurant']), openHourController.patchOpenHours)
+
 export default router

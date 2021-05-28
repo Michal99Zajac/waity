@@ -154,8 +154,6 @@ class OpenHourController {
    * get restaurant openhours sort by day
    */
   async getOpenHours(req: Request, res: Response, next: NextFunction) {
-    const connection = conn()
-
     // get open hours
     const openHours = await conn().getRepository(OpenHour).find({
       where: {
@@ -166,6 +164,47 @@ class OpenHourController {
     })
 
     res.status(200).json(openHours.sort(sortByDay))
+  }
+
+  /**
+   * patch all restaurant openHours
+   */
+  async patchOpenHours(req: Request, res: Response, next: NextFunction) {
+    const openHourRepository = conn().getRepository(OpenHour)
+
+    // check if restaurant is logged and can user req.user.id
+    if (!(req.user instanceof Restaurant)) return next(new BadRequest('restaurant must be logged'))
+    
+    // find restaurant open-hours
+    const openHours = await openHourRepository.find({
+      where: {
+        restaurant: {
+          id: req.user.id
+        }
+      }
+    })
+
+    // check if restaurant have open-hours to update
+    if (openHours.length <= 0) return next(new BadRequest('restaurant doesnt have any open hours'))
+
+    // update open-hours
+    for (let openHour of openHours) {
+      for (let newOpenHour of req.body) {
+        if (openHour.day === newOpenHour.day) {
+          openHour.start = newOpenHour.start
+          openHour.end = newOpenHour.end
+        }
+      }
+    }
+
+    // save changes
+    try {
+      await openHourRepository.save(openHours)
+
+      res.status(200).json(openHours.sort(sortByDay))
+    } catch (err) {
+      return next(new BadRequest(err))
+    }
   }
 }
 
