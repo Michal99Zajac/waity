@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Timestamp } from 'typeorm'
-import { Expose } from 'class-transformer'
-import { Contains, IsIn } from 'class-validator'
+import { Exclude, Expose } from 'class-transformer'
+import { IsIn, Matches } from 'class-validator'
 import { Restaurant } from './restaurant.entity'
 
 
@@ -16,15 +16,16 @@ export class OpenHour {
   day!: string
 
   @Expose()
-  @Contains(':')
+  @Matches(/.*(:|-).*/, { message: 'time must contain : or be -'})
   @Column()
   start!: string
 
   @Expose()
-  @Contains(':')
+  @Matches(/.*(:|-).*/, { message: 'time must contain : or be -'})
   @Column()
   end!: string
 
+  @Exclude()
   @Expose()
   @ManyToOne(() => Restaurant, restaurant => restaurant.openHour, { cascade: ['remove', 'update'], onDelete: 'CASCADE' })
   @JoinColumn()
