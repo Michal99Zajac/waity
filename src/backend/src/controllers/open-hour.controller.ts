@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { BadRequest } from 'http-errors'
 import { validate, ValidationError } from 'class-validator'
+import { sortByDay } from '../functions/sortByDay'
 import conn from '../db'
 import { OpenHour } from '../entities/open-hour.entity'
 import { Restaurant } from '../entities/restaurant.entity'
@@ -152,6 +153,20 @@ class OpenHourController {
   /**
    * get restaurant openhours sort by day
    */
+  async getOpenHours(req: Request, res: Response, next: NextFunction) {
+    const connection = conn()
+
+    // get open hours
+    const openHours = await conn().getRepository(OpenHour).find({
+      where: {
+        restaurant: {
+          id: req.params.restaurantId
+        }
+      }
+    })
+
+    res.status(200).json(openHours.sort(sortByDay))
+  }
 }
 
 export default new OpenHourController()
