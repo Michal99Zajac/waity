@@ -8,7 +8,7 @@ import { useAuth } from '../hooks/use-auth'
 export default function RestaurantRoute(props: any) {
   const [auth] = useAuth()
 
-  if (auth) return <Redirect to='/login' />
+  if (!auth) return <Redirect to='/login' />
 
   return (auth.roles.includes('restaurant')) ?
     <Route {...props} /> :
