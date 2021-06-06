@@ -251,6 +251,42 @@ class AuthController {
       }
     }
   }
+
+  /**
+   * get information about logged user, restaurant or client
+   */
+  async getSelfwithRole(req: Request, res: Response, next: NextFunction) {
+    if (req.user instanceof Restaurant) {
+      const self = await conn().getRepository(Restaurant).findOne({
+        where: {
+          id: req.user.id
+        },
+        relations: ['role']
+      })
+
+      return res.status(200).json({
+        tin: self?.TIN,
+        role: [self?.role.name]
+      })
+    } 
+
+    if (req.user instanceof User) {
+      const self = await conn().getRepository(User).findOne({
+        where: {
+          id: req.user.id
+        },
+        relations: ['roles']
+      })
+
+      return res.status(200).json({
+        email: self?.email,
+        id: self?.id,
+        roles: self?.roles.map(role => role.name)
+      })
+    }
+
+    return next(new BadRequest('user must be logged'))
+  }
 }
 
 export default new AuthController()
