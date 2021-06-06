@@ -10,7 +10,7 @@ export default function RestaurantRoute(props: any) {
 
   if (auth) return <Redirect to='/login' />
 
-  return (auth.role === 'restaurant') ?
+  return (auth.roles.includes('restaurant')) ?
     <Route {...props} /> :
     <Redirect to='/home' />
 }
