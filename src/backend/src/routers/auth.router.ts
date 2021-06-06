@@ -18,4 +18,6 @@ router.post('/auth/restaurant/register', authController.postRegisterRestaurant)
 
 router.put('/auth/restaurant/password', passport.authenticate('restaurant-jwt'), guard(['restaurant']), authController.updateRestaurantPassword)
 
+router.get('/auth/user', passport.authenticate(['user-jwt', 'restaurant-jwt']), authController.getSelfwithRole)
+
 export default router
