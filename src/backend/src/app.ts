@@ -1,5 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import cors from 'cors'
 import { connect } from './db'
 import passport from './passport'
 
@@ -24,6 +25,7 @@ export default async function Application(): Promise<express.Application> {
   app.use('/api', bodyParser({ extended: true }))
   app.use('/api', express.urlencoded({ extended: true }))
   app.use('/api', passport.initialize())
+  app.use(cors())
 
   // routers
   app.use('/api', userRouter)
