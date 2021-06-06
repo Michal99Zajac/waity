@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Route, Switch, useRouteMatch } from 'react-router-dom'
-import axios from './axios'
-import { AxiosResponse } from 'axios'
+import React, { useEffect, useReducer, useState } from 'react'
+import { initState, reducer } from './reducer'
+import AuthContext from './context/auth-context'
 import './App.sass'
 
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initState)
+
   return (
     <div className="App">
+      <AuthContext.Provider value={{
+        user: state.user,
+        login: (user) => dispatch({ action: 'login', user: user }),
+        logout: () => dispatch({ action: 'logout'})
+      }}>
+
+      </AuthContext.Provider>
       
     </div>
   )
