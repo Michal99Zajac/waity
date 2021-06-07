@@ -12,6 +12,9 @@ stories.add('small-button', () => {
   const colorOptions = {
     grey: 'grey',
     white: 'white',
+    yellow: 'yellow',
+    black: 'black',
+    blue: 'blue',
     none: undefined
   }
 

@@ -70,7 +70,7 @@ export default function LoginPage(): JSX.Element {
     <div className={styles.loginPage}>
       <div className={styles.top}>
         <span>
-          <SmallButton svg={<Cross />} color='grey' onClick={goHome} />
+          <SmallButton svg={<Cross />} color='blue' onClick={goHome} />
           <ButtonLink color='blue' content='sign up' to='/signup' />
         </span>
         <Logo className={styles.topLogo} />
