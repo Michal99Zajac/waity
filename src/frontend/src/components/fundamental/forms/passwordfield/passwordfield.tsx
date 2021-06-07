@@ -34,7 +34,9 @@ export function Passwordfield(props: PasswordfieldTypes): JSX.Element {
     <div className={`${styles.passwordinput} ${props.className ? props.className : ''}`}>
       <div>
         <input disabled={props.disabled} type='password' placeholder={props.placeholder} value={props.value} onChange={props.onChange} />
-        { props.valid && props.warning && <div><Warning msg={props.warning} /></div> }
+        { props.valid && props.warning && <div className={props.to ? '' : styles.smallRight}>
+            <Warning className={props.to ? '' : styles.smallRight} msg={props.warning} />
+          </div> }
         { props.to && <Link to={props.to}>forgot?</Link> }
       </div>
     </div>

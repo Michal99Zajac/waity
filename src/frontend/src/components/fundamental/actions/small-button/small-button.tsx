@@ -6,7 +6,7 @@ type SmallButtonTypes = {
   svg: JSX.Element,
   onClick: React.MouseEventHandler<HTMLButtonElement>,
   disabled?: boolean,
-  color?: 'white' | 'grey' | undefined,
+  color?: 'white' | 'grey' | 'blue' | 'yellow' | 'black' | undefined,
   className?: string
 }
 
