@@ -1,11 +1,12 @@
 import React, { useReducer } from 'react'
-import { BrowserRouter as Router, Redirect, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import { initState, reducer } from './reducer'
 import AuthContext from './context/auth-context'
 import LoggedRoute from './hoc/logged-route'
 
 import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
+import NotFound from './pages/404/not-found'
 
 import './App.sass'
 
@@ -24,6 +25,7 @@ function App() {
           <Switch>
             <LoggedRoute path='/login' component={Login} />
             <LoggedRoute path='/signup' component={Signup} />
+            <Route component={NotFound} />
           </Switch>
         </Router>
       </AuthContext.Provider>
