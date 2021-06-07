@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { initState, reducer } from './reducer'
 import AuthContext from './context/auth-context'
 import LoggedRoute from './hoc/logged-route'
+import RegisterRoute from './hoc/register-route'
 
 import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
 import NotFound from './pages/404/not-found'
+import UserRegister from './pages/UserRegister/user-register'
 
 import './App.sass'
 
@@ -25,6 +27,7 @@ function App() {
           <Switch>
             <LoggedRoute path='/login' component={Login} />
             <LoggedRoute path='/signup' component={Signup} />
+            <RegisterRoute path='/user-register' component={UserRegister} />
             <Route component={NotFound} />
           </Switch>
         </Router>
