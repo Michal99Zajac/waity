@@ -1,0 +1,69 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/shadow'
+
+
+.top
+  width: 100%
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: 0.4rem 0.6rem
+  box-sizing: border-box
+
+.feedbackBlock
+  width: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 1rem
+  border-radius: 1rem 1rem 0 0
+  background: $background-white
+  box-sizing: border-box
+
+.feedback
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 50%
+
+.desc
+  margin-top: 1rem
+  box-sizing: border-box
+  padding: 1rem
+  border-radius: 0.8rem
+  background: $primary-white
+  box-shadow: $standard-shadow
+
+.formBlock
+  width: 100%
+  background: $background-blue
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 1rem
+  box-sizing: border-box
+
+.form
+  width: 40%
+
+  & > *
+    margin-bottom: 1rem
+
+.footer
+  width: 100%
+  background: $background-yellow
+  padding: 0.5rem
+  box-sizing: border-box
+  display: flex
+  justify-content: center
+
+.footerText
+  width: 40%
+
+@media screen and ( max-width: 500px )
+  .svg, .form, .feedback, .footerText
+    width: 100%
+
+  .heading
+    text-align: center
+  
