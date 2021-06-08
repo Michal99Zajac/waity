@@ -58,10 +58,16 @@ export default function SignupPage(): JSX.Element {
         password: password
       })
 
+      const token = await axios.post('/auth/login', {
+        email: email,
+        password: password
+      })
+
       const registerUser = {
         id: res.data.id,
         email: res.data.email,
-        roles: res.data.roles.map((role: any) => role.name)
+        roles: res.data.roles.map((role: any) => role.name),
+        token: token.data.accessToken
       }
 
       /**

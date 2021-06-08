@@ -6,6 +6,9 @@ import NotFoundSvg from '../../assets/svg/not-found.svg'
 import styles from './not-found.module.sass'
 
 
+/**
+ * Page 404 
+ */
 export default function NotFound(): JSX.Element {
   return (
     <div className={styles.notFound}>
