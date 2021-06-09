@@ -10,6 +10,7 @@ import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
 import NotFound from './pages/404/not-found'
 import UserRegister from './pages/UserRegister/user-register'
+import Home from './pages/Home/Home'
 
 import './App.sass'
 
@@ -38,6 +39,7 @@ function App() {
             <LoggedRoute path='/login' component={Login} />
             <LoggedRoute path='/signup' component={Signup} />
             <RegisterRoute path='/user-register' component={UserRegister} />
+            <Route path='/home' component={Home} />
             <Route component={NotFound} />
           </Switch>
         </Router>
