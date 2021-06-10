@@ -20,6 +20,7 @@ import styles from './navbar.module.sass'
 
 
 type NavbarTypes = {
+  children: JSX.Element
   className?: string,
   firm?: boolean,
   client?: boolean
@@ -114,7 +115,7 @@ export function Navbar(props: NavbarTypes): JSX.Element {
     <>
       <nav className={`${styles.navbar} ${props.className ?? ''} ${props.firm ? styles.firm : ''}`}>
         <div className={styles.leftDiv}>
-          { location !== '/home' && <SmallButton svg={<Cross />} onClick={goHome} color='grey' /> }
+          { location !== '/home' && <SmallButton className={styles.crossButton} svg={<Cross />} onClick={goHome} color='grey' /> }
           { !auth && <>
               <Link to='/login' color='yellow' label='sign in' />
               <Link to='/signup' color='black' label='sign up' />
@@ -123,8 +124,8 @@ export function Navbar(props: NavbarTypes): JSX.Element {
             </>
           }
           { location === '/search' && <>
-              <Textfield value={city} onChange={e => setCity(e.target.value)} placeholder='city i.e. London' />
-              <Button desc='search' type='button' onClick={searchRestaurants} small color='black' />
+              <Textfield className={styles.searchfield} value={city} onChange={e => setCity(e.target.value)} placeholder='city i.e. London' />
+              <Button className={styles.searchbutton} desc='search' type='button' onClick={searchRestaurants} small color='black' />
               { (search.city && search.city !== '') && <InfoLabel label={search.city} /> }
             </>
           }
@@ -138,6 +139,7 @@ export function Navbar(props: NavbarTypes): JSX.Element {
           { categoryTabs }
         </CategoryContainer>
       }
+      { props.children }
     </>
   )
 }

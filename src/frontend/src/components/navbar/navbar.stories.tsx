@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { storiesOf } from '@storybook/react'
 import { boolean, text, withKnobs } from '@storybook/addon-knobs'
-import { useAuth } from '../../hooks/use-auth'
 import { Navbar } from './navbar'
 
 
@@ -12,10 +11,11 @@ stories.add('navbar', () => {
   const className = text('className', '')
   const firm = boolean('firm', false)
   const client = boolean('client', false)
+  const children = text('children', 'children')
 
   return (
     <Router>
-      <Navbar firm={firm} client={client} className={className} />
+      <Navbar firm={firm} client={client} className={className}><p>{children}</p></Navbar>
     </Router>
   )
 })

@@ -1,0 +1,149 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/shadow'
+
+
+.home
+  margin-top: 0.8rem
+  
+.top
+  width: 100%
+  padding: 0.5rem
+  display: flex
+  justify-content: space-between
+  align-items: center
+  box-sizing: border-box
+
+.links a
+  margin-right: 0.4rem
+
+.searchBlock, .helloBlock, .signupBlock, .restaurantBlock, .manualBlock
+  width: 100%
+  padding: 2rem 1rem
+  box-sizing: border-box
+  display: flex
+  align-content: center
+  justify-content: center
+
+.searchBlock
+  background: $background-yellow
+  padding: 4rem 1rem
+  border-radius: 1rem 1rem 0 0
+
+.helloBlock
+  background: $background-white
+
+.signupBlock
+  background: $background-white
+
+.restaurantBlock
+  background: $background-yellow
+
+.manualBlock
+  background: $background-blue
+
+  & > .block
+    flex-direction: column
+
+.block
+  width: 70%
+  display: flex
+  align-items: center
+  justify-content: space-evenly
+
+.manualRow
+  display: flex
+  align-items: center
+  justify-content: space-evenly
+  width: 60%
+  margin-top: 2rem
+
+.manual
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+
+  & > p
+    margin-top: 0.6rem
+
+.navSignup, .navRestaurant
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+
+  & > a
+    margin-top: 1rem
+    font-size: 2rem
+
+.search
+  width: 80%
+
+.searchButton
+  width: 15%
+
+@media screen and ( max-width: 450px )
+  .top
+    padding: 0
+    flex-direction: column
+
+  .links
+    display: flex
+    flex-wrap: wrap
+    padding: 0.5rem
+
+    & > a
+      margin-bottom: 0.6rem
+
+  .searchBlock
+    flex-direction: column
+
+  .block
+    flex-direction: column
+    width: 100%
+
+    & > img
+      width: 100%
+
+  .manualRow
+    flex-direction: column
+
+    & > svg
+      transform: rotate(90deg)
+      margin: 0.8rem 0
+
+  .logo
+    width: 100%
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem
+    display: flex
+    align-items: center
+    justify-content: center
+    background: $background-white
+    border-radius: 1rem 1rem 0 0
+    box-sizing: border-box
+
+  .searchBlock
+    padding: 2rem 1rem
+    border-radius: 0
+
+  .search
+    width: 100%
+    margin-bottom: 1rem
+
+  .searchButton
+    width: 100%
+
+  .manualBlock > .block > h1
+    text-align: center
+
+  .navSignup, .navRestaurant
+    & > h1
+      text-align: center
+
+    a
+      width: 100%
+      box-sizing: border-box
+      text-align: center
+
+  .navRestaurant > a
+    margin-bottom: 1rem
