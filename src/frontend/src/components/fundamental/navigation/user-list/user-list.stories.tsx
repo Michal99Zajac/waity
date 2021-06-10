@@ -9,8 +9,7 @@ import { UserList } from './user-list'
 const stories = storiesOf('navigation', module)
 stories.addDecorator(withKnobs)
 stories.add('user-list', () => {
-  const name = text('name', 'Jhon')
-  const surname = text('surname', 'Snow')
+  const username = text('username', 'email@email.com')
   const onLogout = action('logout action')
   const className = text('className', '')
 
@@ -23,7 +22,7 @@ stories.add('user-list', () => {
 
   return (
     <Router>
-      <UserList className={className} links={links} onLogout={onLogout} name={name} surname={surname} />
+      <UserList className={className} links={links} onLogout={onLogout} username={username} />
     </Router>
   )
 })

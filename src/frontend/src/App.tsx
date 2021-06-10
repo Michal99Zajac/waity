@@ -4,6 +4,7 @@ import { initState, reducer } from './reducer'
 import AuthContext from './context/auth-context'
 import LoggedRoute from './hoc/logged-route'
 import RegisterRoute from './hoc/register-route'
+import { Navbar } from './components/navbar/navbar'
 
 import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
@@ -31,6 +32,7 @@ function App() {
         logout: () => dispatch({ action: 'logout'})
       }}>
         <Router>
+          <Navbar client />
           <Switch>
             <Redirect exact from='/' to='/home' />
             <LoggedRoute path='/login' component={Login} />

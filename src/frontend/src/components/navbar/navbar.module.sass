@@ -1,0 +1,34 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/fonts'
+@import '../../assets/styles/shadow'
+
+  
+.navbar
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: 0.5rem
+  box-sizing: border-box
+  background-color: $primary-blue
+
+.active
+  color: $font-focus-std !important
+  border-left: 5px solid $primary-blue
+
+.leftDiv
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+
+  a
+    margin: 0 0.2rem
+
+  & > button
+    margin-right: 0.5rem
+
+  input[type="text"]
+    margin-right: 0.5rem
+
+.firm
+  background-color: $background-grey
+  
