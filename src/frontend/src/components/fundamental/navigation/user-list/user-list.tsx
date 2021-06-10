@@ -4,8 +4,7 @@ import { ReactComponent as Arrow} from '../../../../assets/svg/basic/arrow-up.sv
 
 
 type UserListTypes = {
-  name: string,
-  surname: string,
+  username: string,
   onLogout: React.MouseEventHandler<HTMLButtonElement>,
   links: JSX.Element[],
   className?: string
@@ -15,8 +14,7 @@ type UserListTypes = {
  * UserList Component - List in for navigation and with logout option
  * 
  * @param {object} props Object with props like
- * - name (string) - name of logged user
- * - surname (string) - surname of logged user
+ * - username (string) - email, name or any id of user
  * - onLogout (func) - function for log out a user
  * - links (NavLink[] | Link[]) - links for displaying
  * - className (string) - additional class for component
@@ -27,13 +25,13 @@ export function UserList(props: UserListTypes): JSX.Element {
   const listSize = props.links.length < 10 ? `${props.links.length * 2 + 2}rem` : '70vh'
 
   return (
-    <div className={`${styles.userList} ${props.className ? props.className : ''}`}>
+    <div className={`${styles.userList} ${props.className ?? ''}`}>
       <button
         className={styles.outerButton}
         onClick={() => setIsOpen(!isOpen)}
       >
         <Arrow className={ isOpen ? styles.arrowClose : styles.arrowOpen } />
-        <span>{props.name + ' ' + props.surname}</span>
+        <span>{props.username}</span>
       </button>
       <button onClick={props.onLogout} className={styles.innerButton}>logout</button>
       { props.links &&

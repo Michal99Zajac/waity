@@ -3,7 +3,7 @@ import styles from './info-label.module.sass'
 
 
 type InfoLabelTypes = {
-  label: string,
+  label: string | string[],
   status?: 'available' | 'booked' | 'partial' | 'inform' | 'none',
   size?: 's' | 'm' | 'l' | 'xl' | 'xll',
   className?: string
@@ -13,7 +13,7 @@ type InfoLabelTypes = {
  * InfoLabel Component - text with special background to client inform
  * 
  * @param {object} props Object with props like
- * - label (string) - text of info label
+ * - label (string | string[]) - text of info label
  * - status (string) - determines the color of the information
  * - size (string) - size of the infoLabel
  * - className (string) - additional class for component

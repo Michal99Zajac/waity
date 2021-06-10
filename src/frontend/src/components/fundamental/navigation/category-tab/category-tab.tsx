@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { NavLink, useHistory } from 'react-router-dom'
+import queryString from 'query-string'
 import styles from './category-tab.module.sass'
-import { NavLink } from 'react-router-dom'
 
 
 type CategoryTabTypes = {
@@ -23,9 +24,35 @@ type CategoryTabTypes = {
  * @returns JSX CategoryTab Component
  */
 export function CategoryTab(props: CategoryTabTypes): JSX.Element {
+  const history = useHistory()
+
+  const [query, setQuary] = useState(queryString.stringify(
+    (() => {
+      const s = queryString.parse(history.location.search)
+      s.category = props.category
+
+      return s
+    })()
+  ))
+  const [active, setActive] = useState(history.location.search.includes(`category=${props.category}`))
+
+  console.log(query)
+
+  useEffect(() => {
+    history.listen(() => {
+      // set variable to mark active tab
+      setActive(history.location.search.includes(`category=${props.category}`))
+
+      // change query if city is set
+      const s = queryString.parse(history.location.search)
+      s.category = props.category
+      setQuary(queryString.stringify(s))
+    })
+  }, [history])
+
   return (
     <div className={`${styles.CategoryTab} ${props.className ? props.className : ''}`}>
-      <NavLink activeClassName={styles.active} to={`${props.baseurl}/${props.category}`}>
+      <NavLink activeClassName={ active ? styles.active : '' } to={`${props.baseurl}?${query}`}>
         <img src={props.src} alt={props.alt} />
       </NavLink>
       <label>{props.category}</label>
