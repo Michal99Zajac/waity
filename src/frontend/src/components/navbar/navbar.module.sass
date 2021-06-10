@@ -31,4 +31,40 @@
 
 .firm
   background-color: $background-grey
+
+@media screen and ( max-width: 600px )
+  .navbar
+    flex-wrap: wrap
+    position: relative
+
+  .rightDiv, .leftDiv, .logo
+    width: 100%
+
+  .leftDiv
+    justify-content: center
+
+    & > *
+      margin-bottom: 0.4rem
+
+    & > a
+      margin-bottom: 0.4rem
+
+  .searchfield
+    width: 100%
+    
+    input[type="text"]
+      margin-right: 0
+  
+  .logo
+    text-align: center
+    order: -1
+    margin-bottom: 0.4rem
+
+  .crossButton
+    position: absolute
+    top: 1rem
+    left: 0.5rem
+
+  .searchbutton
+    width: 100%
   
