@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Logo } from '../../components/fundamental/images-n-icons/logo/logo'
+import { useHistory } from 'react-router'
 import { Link } from '../../components/fundamental/navigation/link/link'
 import { Textfield } from '../../components/fundamental/forms/textfield/textfield'
 import { Button } from '../../components/fundamental/actions/button/button'
@@ -21,22 +21,14 @@ import styles from './Home.module.sass'
 
 export default function Home() {
   const [search, setSearch] = useState('')
+  const history = useHistory()
 
   function searchRestaurants() {
-    console.log('search')
+    history.push(`/search?city=${search}&category=All`)
   }
 
   return (
     <div className={styles.home}>
-      <div className={styles.top}>
-        <div className={styles.links}>
-          <Link to='/restaurant/login' label='login as restaurant' color='black' />
-          <Link to='/restaurant/signup' label='create restaurant account' color='yellow' />
-          <Link to='/login' label='sign in' color='blue' />
-          <Link to='/signup' label='sign up' color='grey' />
-        </div>
-        <Logo className={styles.logo} />
-      </div>
       <div className={styles.searchBlock}>
         <div className={styles.block}>
           <Textfield className={styles.search} placeholder='city, i.e. Warsaw' value={search} onChange={e => setSearch(e.target.value)} />

@@ -36,8 +36,6 @@ export function CategoryTab(props: CategoryTabTypes): JSX.Element {
   ))
   const [active, setActive] = useState(history.location.search.includes(`category=${props.category}`))
 
-  console.log(query)
-
   useEffect(() => {
     history.listen(() => {
       // set variable to mark active tab

@@ -56,14 +56,14 @@ export default function LoginPage(): JSX.Element {
         ...res.data
       })
 
+      window.location.reload()
       history.push('/home')
 
     } catch (err) {
       setError('email or password is not correct')
       console.log(err)
+      setPassword('')
     }
-
-    setPassword('')
   }
 
   return (

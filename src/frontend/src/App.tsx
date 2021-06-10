@@ -33,14 +33,13 @@ function App() {
         logout: () => dispatch({ action: 'logout'})
       }}>
         <Router>
-          <Navbar client />
           <Switch>
             <Redirect exact from='/' to='/home' />
             <LoggedRoute path='/login' component={Login} />
             <LoggedRoute path='/signup' component={Signup} />
             <RegisterRoute path='/user-register' component={UserRegister} />
-            <Route path='/home' component={Home} />
-            <Route component={NotFound} />
+            <Route path='/home' component={() => <Navbar client><Home /></Navbar>} />
+            <Route component={() => <Navbar client><NotFound/></Navbar>} />
           </Switch>
         </Router>
       </AuthContext.Provider>

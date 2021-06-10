@@ -20,6 +20,7 @@ import styles from './navbar.module.sass'
 
 
 type NavbarTypes = {
+  children: JSX.Element
   className?: string,
   firm?: boolean,
   client?: boolean
@@ -138,6 +139,7 @@ export function Navbar(props: NavbarTypes): JSX.Element {
           { categoryTabs }
         </CategoryContainer>
       }
+      { props.children }
     </>
   )
 }
