@@ -17,7 +17,7 @@ type OfferCardTypes = {
   caption: string,
   location: string,
   price: string,
-  rating: number,
+  rating?: number,
   className?: string
 }
 
@@ -40,7 +40,7 @@ export function OfferCard(props: OfferCardTypes): JSX.Element {
   return (
     <Link className={`${styles.offerCard} ${props.className ? props.className : ''}`} to={props.to}>
       <div className={styles.offerContainer}>
-        <StarRating scale={5} rating={props.rating} label='reviews' />
+        { /* <StarRating scale={5} rating={props.rating} label='reviews' /> */ }
         <img src={props.src} alt={props.alt}></img>
         <div className={styles.offerInfo}>
           <SectionLabel offer label={props.label} />

@@ -37,7 +37,7 @@ export default function SignupPage(): JSX.Element {
   /**
    * function to go last page
    */
-  function goHome() { history.goBack() }
+  function goHome() { history.push('/home') }
 
   /**
    * function to handle submit button click and send data to server

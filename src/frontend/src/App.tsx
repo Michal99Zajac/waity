@@ -2,15 +2,23 @@ import React, { useReducer, useEffect } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import { initState, reducer } from './reducer'
 import AuthContext from './context/auth-context'
-import LoggedRoute from './hoc/logged-route'
-import RegisterRoute from './hoc/register-route'
+
+// components
 import { Navbar } from './components/navbar/navbar'
 
+// hoc
+import LoggedRoute from './hoc/logged-route'
+import RegisterRoute from './hoc/register-route'
+import ClientRoute from './hoc/client-route'
+import RestaurantRoute from './hoc/restaurant-route'
+
+// pages
 import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
 import NotFound from './pages/404/not-found'
 import UserRegister from './pages/UserRegister/user-register'
 import Home from './pages/Home/Home'
+import Search from './pages/Search/Search'
 
 import './App.sass'
 
@@ -39,6 +47,7 @@ function App() {
             <LoggedRoute path='/signup' component={Signup} />
             <RegisterRoute path='/user-register' component={UserRegister} />
             <Route path='/home' component={() => <Navbar client><Home /></Navbar>} />
+            <ClientRoute path='/search' component={() => <Navbar client><Search /></Navbar>} />
             <Route component={() => <Navbar client><NotFound/></Navbar>} />
           </Switch>
         </Router>

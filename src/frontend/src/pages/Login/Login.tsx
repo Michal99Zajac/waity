@@ -28,7 +28,7 @@ export default function LoginPage(): JSX.Element {
   /**
    * function to exec after cross button click
    */
-  function goHome() { history.goBack() }
+  function goHome() { history.push('/home') }
 
   /**
    * Function to handle action after submit button click

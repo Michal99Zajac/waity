@@ -1,0 +1,35 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/shadow'
+
+
+.search
+  width: 100%
+  min-height: calc( 100% - 8.375rem )
+  height: fit-content
+  background: white
+  display: flex
+  margin-top: 4rem
+  border-radius: 1rem 1rem 0 0
+  box-shadow: $standard-shadow
+  padding: 2rem 1rem 1rem 1rem
+  box-sizing: border-box
+  flex-wrap: wrap
+  justify-content: center
+
+.offerCard
+  width: 24rem
+  padding: 1rem 2rem
+  box-sizing: border-box
+
+.heading
+  width: 100%
+  margin-left: 4rem
+
+@media screen and ( max-width: 600px )
+  .heading
+    margin-left: 0
+    font-size: 4rem
+    text-align: center
+
+  .search
+    margin-top: 6rem
