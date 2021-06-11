@@ -26,6 +26,16 @@ type NavbarTypes = {
   client?: boolean
 }
 
+/**
+ * Navbar Component - navigation bar for application
+ * 
+ * @param {object} props Object with props like
+ * - children (JSX.Element) - page which want to have navbar
+ * - className? (string) - additional clas to the component
+ * - firm? (bool) - indicates if navbar is for firm side application
+ * - client? (bool) - indicates if navbar is for client side application
+ * @returns JSX Navbar Component
+ */
 export function Navbar(props: NavbarTypes): JSX.Element {
   const [auth, setAuth] = useAuth()
   const history = useHistory()
