@@ -20,6 +20,7 @@ import UserRegister from './pages/UserRegister/user-register'
 import Home from './pages/Home/Home'
 import Search from './pages/Search/Search'
 import RestaurantLogin from './pages/RestaurantLogin/RestaurantLogin'
+import RestaurantSignup from './pages/RestaurantSignup/RestaurantSignup'
 
 import './App.sass'
 
@@ -32,6 +33,7 @@ function App() {
    */
   useEffect(() => {
     window.localStorage.removeItem('registerUser')
+    window.localStorage.removeItem('registerRestaurant')
   }, [])
 
   return (
@@ -47,6 +49,7 @@ function App() {
             <LoggedRoute path='/login' component={Login} />
             <LoggedRoute path='/signup' component={Signup} />
             <LoggedRoute exact path='/co/login' component={RestaurantLogin} />
+            <LoggedRoute exact path='/co/signup' component={RestaurantSignup} />
             <RegisterRoute path='/user-register' component={UserRegister} />
             <Route path='/home' component={() => <Navbar client><Home /></Navbar>} />
             <ClientRoute path='/search' component={() => <Navbar client><Search /></Navbar>} />

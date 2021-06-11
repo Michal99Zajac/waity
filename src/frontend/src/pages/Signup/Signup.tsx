@@ -86,10 +86,10 @@ export default function SignupPage(): JSX.Element {
       } else {
         setError({...error, ...collectErrors(err.response.data.error)})
       }
-    }
 
-    setPassword('')
-    setConfirmPassword('')
+      setPassword('')
+      setConfirmPassword('')
+    }
   }
 
   return (
