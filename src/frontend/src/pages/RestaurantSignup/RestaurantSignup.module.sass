@@ -2,7 +2,7 @@
 @import '../../assets/styles/shadow'
 
 
-.restaurantLogin
+.restaurantSignup
   width: 100%
   height: 100%
   display: flex
@@ -14,11 +14,12 @@
   height: 70%
   min-width: min-content
 
-.loginContainer
+.signupContainer
   width: 100%
   height: -webkit-fill-available
   background-color: $background-white
   display: flex
+  flex-direction: row-reverse
   align-items: center
   justify-content: center
   border-radius: 1rem 1rem 0 0
@@ -40,7 +41,7 @@
       min-width: 10rem
       margin-left: 10px
 
-.leftLogin
+.leftSignup
   position: relative
   height: 100%
   width: 60%
@@ -49,9 +50,11 @@
 
   h1
     position: absolute
-    bottom: 1rem
+    top: 1rem
+    right: 1rem
+    text-align: right
 
-.rightLogin
+.rightSignup
   width: 40%
   height: 100%
   padding: 1rem 2rem
@@ -73,9 +76,9 @@
   top: 0
   left: 0
   filter: brightness(50%)
-  border-radius: 1rem 0 0 0
+  border-radius: 0 1rem 0 0
 
-.loginContainer
+.signupContainer
   display: flex
 
 .blockLogo
@@ -86,7 +89,7 @@
     width: 100%
     height: 100%
 
-  .topLogo, .leftLogin
+  .topLogo, .leftSignup
     display: none
 
   .blockLogo
@@ -108,11 +111,11 @@
       a
         width: 10rem
 
-  .loginContainer
+  .signupContainer
     flex-direction: column
     min-width: min-content
 
-  .rightLogin
+  .rightSignup
     width: 100%
     padding: 1rem
     box-sizing: border-box

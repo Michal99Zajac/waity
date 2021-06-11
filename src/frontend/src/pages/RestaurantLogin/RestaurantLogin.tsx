@@ -14,7 +14,9 @@ import { ReactComponent as Cross } from '../../assets/svg/basic/cross.svg'
 import RestaurantLoginImg from '../../assets/img/restaurant-img/restaurant-login.jpg'
 import styles from './RestaurantLogin.module.sass'
 
-
+/**
+ * RestaurantLogin page for sign in restaurant account
+ */
 export default function RestaurantLogin() {
   const [passcode, setPasscode] = useState('')
   const [password, setPassword] = useState('')
@@ -22,10 +24,14 @@ export default function RestaurantLogin() {
   const history = useHistory()
   const [auth, setAuth] = useAuth()
 
-  function goHome() {
-    history.push('/home')
-  }
+  /**
+   * change location to /home
+   */
+  function goHome() { history.push('/home') }
 
+  /**
+   * handle submit and post data to the server
+   */
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     setError('')
     event.preventDefault()
@@ -69,12 +75,12 @@ export default function RestaurantLogin() {
           <Logo className={styles.topLogo} />
         </div>
         <div className={styles.loginContainer}>
-          <Logo className={styles.blockLogo} />
           <div className={styles.leftLogin}>
             <img className={styles.image} src={RestaurantLoginImg} alt='restaurant image login'/>
             <Heading label='Welcome, again!' size='xl' color='white' />
           </div>
           <form onSubmit={onSubmit} className={styles.rightLogin}>
+            <Logo className={styles.blockLogo} />
             <Textfield
               placeholder='passcode'
               value={passcode}
