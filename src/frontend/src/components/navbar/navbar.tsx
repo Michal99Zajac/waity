@@ -102,10 +102,10 @@ export function Navbar(props: NavbarTypes): JSX.Element {
 
     if (auth.roles.includes('restaurant')) {
       const links = [
-        <NavLink activeClassName={styles.active} to='/restaurant/profile'>Restaurant Profile</NavLink>,
-        <NavLink activeClassName={styles.active} to='/restaurant/menu'>Restaurant Menu</NavLink>,
-        <NavLink activeClassName={styles.active} to='/restaurant/table'>Restaurant Tables</NavLink>,
-        <NavLink activeClassName={styles.active} to='/restaurant/reservation'>Restaurant Reservations</NavLink>
+        <NavLink activeClassName={styles.active} to='/co/profile'>Restaurant Profile</NavLink>,
+        <NavLink activeClassName={styles.active} to='/co/menu'>Restaurant Menu</NavLink>,
+        <NavLink activeClassName={styles.active} to='/co/table'>Restaurant Tables</NavLink>,
+        <NavLink activeClassName={styles.active} to='/co/reservation'>Restaurant Reservations</NavLink>
       ]
 
       return <UserList username={auth.tin} onLogout={() => setAuth(false)} links={links} />
@@ -129,8 +129,8 @@ export function Navbar(props: NavbarTypes): JSX.Element {
           { !auth && <>
               <Link to='/login' color='yellow' label='sign in' />
               <Link to='/signup' color='black' label='sign up' />
-              <Link to='/restaurant/login' color='grey' label='sign in as firm' />
-              <Link to='/restaurant/signup' color='yellow' label='create firm account' />
+              <Link to='/co/login' color='grey' label='sign in as firm' />
+              <Link to='/co/signup' color='yellow' label='create firm account' />
             </>
           }
           { location === '/search' && <>

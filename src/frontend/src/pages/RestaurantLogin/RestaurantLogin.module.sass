@@ -1,0 +1,117 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/shadow'
+
+
+.restaurantLogin
+  width: 100%
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+
+.mainContainer
+  width: 60%
+  height: 70%
+  min-width: min-content
+
+.loginContainer
+  width: 100%
+  height: -webkit-fill-available
+  background-color: $background-white
+  display: flex
+  align-items: center
+  justify-content: center
+  border-radius: 1rem 1rem 0 0
+  min-width: 45rem
+
+.top
+  width: 100%
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin-bottom: 10px
+
+  & > span
+    display: flex
+    align-items: center
+
+    a
+      min-width: 10rem
+      margin-left: 10px
+
+.leftLogin
+  position: relative
+  height: 100%
+  width: 60%
+  padding: 1rem
+  box-sizing: border-box
+
+  h1
+    position: absolute
+    bottom: 1rem
+
+.rightLogin
+  width: 40%
+  height: 100%
+  padding: 1rem 2rem
+  box-sizing: border-box
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+
+  & > *
+    width: 100%
+    margin-bottom: 1rem
+
+.image
+  width: 100%
+  height: 100%
+  object-fit: cover
+  position: absolute
+  top: 0
+  left: 0
+  filter: brightness(50%)
+  border-radius: 1rem 0 0 0
+
+.loginContainer
+  display: flex
+
+.blockLogo
+  display: none
+
+@media screen and ( max-width: 600px )
+  .mainContainer
+    width: 100%
+    height: 100%
+
+  .topLogo, .leftLogin
+    display: none
+
+  .blockLogo
+    display: block
+    width: 100%
+    margin-top: 1rem
+    margin-bottom: 1rem
+    text-align: center
+
+  .top
+    margin-bottom: 0
+  
+    & > span
+      width: 100%
+      justify-content: space-between
+      padding: 0.6rem
+      box-sizing: border-box
+
+      a
+        width: 10rem
+
+  .loginContainer
+    flex-direction: column
+    min-width: min-content
+
+  .rightLogin
+    width: 100%
+    padding: 1rem
+    box-sizing: border-box

@@ -76,7 +76,7 @@ export default function Home() {
           <div className={styles.navRestaurant}>
             <Heading label='do you have restaurants?' color='white' size='s' />
             <Heading label='Start cooperation!' color='blue' size='l' />
-            <Link to='/restaurant/signup' label='create firm account' color='black' />
+            <Link to='/co/signup' label='create firm account' color='black' />
           </div>
           <StaticSvg src={CreateRestaurantSvg} alt='create restaurant account image' />
         </div>
