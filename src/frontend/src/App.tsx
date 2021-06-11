@@ -19,6 +19,7 @@ import NotFound from './pages/404/not-found'
 import UserRegister from './pages/UserRegister/user-register'
 import Home from './pages/Home/Home'
 import Search from './pages/Search/Search'
+import RestaurantLogin from './pages/RestaurantLogin/RestaurantLogin'
 
 import './App.sass'
 
@@ -45,6 +46,7 @@ function App() {
             <Redirect exact from='/' to='/home' />
             <LoggedRoute path='/login' component={Login} />
             <LoggedRoute path='/signup' component={Signup} />
+            <LoggedRoute path='/co/login' component={RestaurantLogin} />
             <RegisterRoute path='/user-register' component={UserRegister} />
             <Route path='/home' component={() => <Navbar client><Home /></Navbar>} />
             <ClientRoute path='/search' component={() => <Navbar client><Search /></Navbar>} />
