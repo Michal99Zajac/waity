@@ -36,7 +36,7 @@ export default function RestaurantLogin() {
         password: password
       })
 
-      const res = await axios.get('/auth/restaurant', {
+      const res = await axios.get('/auth/user', {
         headers: {
           Authorization: `Bearer ${token.data.accessToken}`
         }
@@ -44,11 +44,12 @@ export default function RestaurantLogin() {
 
       setAuth({
         token: token.data.accessToken,
-        ...res.data
+        ...res.data,
+        roles: [...res.data.role]
       })
 
       window.location.reload()
-      history.push('/home')
+      history.push('/co')
 
     } catch (err) {
       console.log(err)
@@ -65,17 +66,28 @@ export default function RestaurantLogin() {
             <SmallButton svg={<Cross />} color='white' onClick={goHome} />
             <ButtonLink to='/co/signup' color='white' content='sign up' />
           </span>
-          <Logo />
+          <Logo className={styles.topLogo} />
         </div>
         <div className={styles.loginContainer}>
+          <Logo className={styles.blockLogo} />
           <div className={styles.leftLogin}>
-            <img src={RestaurantLoginImg} alt='restaurant image login'/>
+            <img className={styles.image} src={RestaurantLoginImg} alt='restaurant image login'/>
             <Heading label='Welcome, again!' size='xl' color='white' />
           </div>
           <form onSubmit={onSubmit} className={styles.rightLogin}>
-            <Textfield placeholder='passcode' value={passcode} onChange={e => setPasscode(e.target.value)} valid={error !== ''} warning={error} />
-            <Passwordfield placeholder='password' value={password} onChange={e => setPassword(e.target.value)} />
-            <Button desc='sign in' type='submit' color='white' />
+            <Textfield
+              placeholder='passcode'
+              value={passcode}
+              onChange={e => setPasscode(e.target.value)}
+              valid={error !== ''}
+              warning={error}
+            />
+            <Passwordfield
+              placeholder='password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            <Button desc='sign in' type='submit' color='blue' />
           </form>
         </div>
       </div>

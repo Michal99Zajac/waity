@@ -46,7 +46,7 @@ function App() {
             <Redirect exact from='/' to='/home' />
             <LoggedRoute path='/login' component={Login} />
             <LoggedRoute path='/signup' component={Signup} />
-            <LoggedRoute path='/co/login' component={RestaurantLogin} />
+            <LoggedRoute exact path='/co/login' component={RestaurantLogin} />
             <RegisterRoute path='/user-register' component={UserRegister} />
             <Route path='/home' component={() => <Navbar client><Home /></Navbar>} />
             <ClientRoute path='/search' component={() => <Navbar client><Search /></Navbar>} />
