@@ -35,7 +35,7 @@ type SelectTypes = {
  */
 export function Select(props: SelectTypes): JSX.Element {
   const [isOpen, setIsOpen] = useState(false)
-  const listHeight = props.options.length < 10 ? `${2.4 * props.options.length + 2}rem` : '70vh' // calculate size of select window
+  const listHeight = props.options.length < 10 ? `${2.4 * props.options.length + 2}rem` : '40vh' // calculate size of select window
 
   // function close select window after the state change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
