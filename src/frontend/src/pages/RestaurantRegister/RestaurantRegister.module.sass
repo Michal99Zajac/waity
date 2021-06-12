@@ -1,0 +1,64 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/shadow'
+
+
+.restaurantRegister
+  width: 100%
+  height: 100%
+
+.feedbackDiv, .formDiv, .footerDiv
+  width: 100%
+  padding: 1rem
+  display: flex
+  align-items: center
+  justify-content: center
+  box-shadow: $standard-shadow
+  box-sizing: border-box
+
+.feedbackDiv
+  margin-top: 1rem
+  border-radius: 1rem 1rem 0 0
+  background-color: $background-white
+
+.formDiv
+  background-color: $background-grey
+
+.footerDiv
+  background-color: $background-blue
+
+.feedback
+  width: 60%
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  & > img
+    width: 600px
+
+.form
+  width: 40%
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  & > *
+    margin-bottom: 1rem
+
+  & > p
+    margin-top: 2rem
+
+  & > button
+    margin-top: 2rem
+
+.caption
+  width: 40%
+
+@media screen and ( max-width: 600px )
+  .feedback
+    width: 100%
+
+    & > img
+      width: 100%
+
+  .form, .caption
+    width: 100%
