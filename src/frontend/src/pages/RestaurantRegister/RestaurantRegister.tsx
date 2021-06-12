@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import { StaticSvg } from '../../components/fundamental/images-n-icons/static-svg/static-svg'
 import { Heading } from '../../components/fundamental/titles-n-text/heading/heading'
 import { Button } from '../../components/fundamental/actions/button/button'
 import { SectionLabel } from '../../components/fundamental/titles-n-text/section-label/section-label'
 import RestaurantRegisterSvg from '../../assets/svg/restaurant-register.svg'
+import restaurantReducer, { initState } from './reducer'
 import styles from './RestaurantRegister.module.sass'
+
 
 /**
  * restaurant register page to complete registration of restaurant
  */
 export default function RestaurantRegister(): JSX.Element {
+  const [state, dispatch] = useReducer(restaurantReducer, initState)
 
   async function onSubmit() {
     console.log('submit')

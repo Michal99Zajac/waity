@@ -52,7 +52,7 @@ function App() {
             <LoggedRoute path='/signup' component={Signup} />
             <LoggedRoute exact path='/co/login' component={RestaurantLogin} />
             <LoggedRoute exact path='/co/signup' component={RestaurantSignup} />
-            <RegisterRoute exact path='/co/register-restaurant' component={() => <Navbar firm><RestaurantRegister /></Navbar>} />
+            <Route exact path='/co/register-restaurant' component={() => <Navbar firm><RestaurantRegister /></Navbar>} />
             <RegisterRoute path='/user-register' component={() => <Navbar client><UserRegister /></Navbar>} />
             <ClientRoute path='/search' component={() => <Navbar client><Search /></Navbar>} />
             <Route component={() => <Navbar client><NotFound/></Navbar>} />

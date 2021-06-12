@@ -1,4 +1,4 @@
-interface StateTypes {
+export interface StateTypes {
   ownerName: string,
   ownerLastname: string,
   ownerEmail: string,
@@ -19,14 +19,18 @@ interface StateTypes {
   restaurantAddress: string
 }
 
-interface ActionTypes extends StateTypes {
-  type: string,
+export interface ActionTypes extends StateTypes {
+  type: 'setOwnerName' | 'setOwnerLastname' | 'setOwnerEmail' | 'setOwnerPhone' | 'setOwnerAddressCountry' |
+        'setOwnerAddressCity' | 'setOwnerAddressPostalcode' | 'setOwnerAddress' | 'setRestaurantName' |
+        'setRestaurantTIN' | 'setRestaurantType' | 'setRestaurantEmail' | 'setRestaurantPhone' |
+        'setRestaurantWebsite' | 'setRestaurantAddressCountry' | 'setRestaurantAddressCity' |
+        'setRestaurantAddressPostalcode' | 'setRestaurantAddress'
 }
 
 /**
  * reducer for register restaurant operation
  */
- export const reducer = (state: StateTypes, action: ActionTypes) => {
+ export default (state: StateTypes, action: ActionTypes): StateTypes => {
   switch (action.type) {
     case 'setOwnerName':
       return {...state, ownerName: action.ownerName}
@@ -65,16 +69,16 @@ interface ActionTypes extends StateTypes {
     case 'setRestaurantAddress':
       return {...state, restaurantAddress: action.restaurantAddress}
     default:
-      return Error(`Action ${action.type} Not Found`)
+      return {...state}
   }
 }
 
-const restaurant = JSON.parse(window.localStorage.getItem('restaurantRegister') ?? '{}')
+const restaurant = JSON.parse(window.localStorage.getItem('registerRestaurant') ?? '{}')
 
 /**
  * init state of user
  */
-export const initState = {
+export const initState: StateTypes = {
   ownerName: '',
   ownerLastname: '',
   ownerEmail: '',
