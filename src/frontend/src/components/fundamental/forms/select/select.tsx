@@ -14,7 +14,7 @@ type SelectTypes = {
   placeholder: string,
   category: string,
   state: string,
-  setState: React.Dispatch<React.SetStateAction<any>>,
+  setState: React.Dispatch<React.SetStateAction<any>> | Function,
   options: OptionsTypes[],
   className?: string
 }
