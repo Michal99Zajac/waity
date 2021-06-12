@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useAuth } from '../../hooks/use-auth'
 import axios from '../../axios'
 import { Logo } from '../../components/fundamental/images-n-icons/logo/logo'
 import { ButtonLink } from '../../components/fundamental/navigation/button-link/button-link'
@@ -20,6 +19,9 @@ type Error = {
   password: any[]
 }
 
+/**
+ * restaurant sign up page for registration
+ */
 export default function RestaurantSignup() {
   const [tin, setTin] = useState('')
   const [password, setPassword] = useState('')
@@ -73,7 +75,7 @@ export default function RestaurantSignup() {
       /**
        * save data to spec register form
        */
-       window.localStorage.setItem('registerUser', JSON.stringify(registerRestaurant))
+       window.localStorage.setItem('registerRestaurant', JSON.stringify(registerRestaurant))
 
       history.push('/co/register-restaurant')
 

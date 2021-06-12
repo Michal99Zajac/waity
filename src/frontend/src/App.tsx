@@ -21,6 +21,7 @@ import Home from './pages/Home/Home'
 import Search from './pages/Search/Search'
 import RestaurantLogin from './pages/RestaurantLogin/RestaurantLogin'
 import RestaurantSignup from './pages/RestaurantSignup/RestaurantSignup'
+import RestaurantRegister from './pages/RestaurantRegister/RestaurantRegister'
 
 import './App.sass'
 
@@ -46,12 +47,13 @@ function App() {
         <Router>
           <Switch>
             <Redirect exact from='/' to='/home' />
+            <Route path='/home' component={() => <Navbar client><Home /></Navbar>} />
             <LoggedRoute path='/login' component={Login} />
             <LoggedRoute path='/signup' component={Signup} />
             <LoggedRoute exact path='/co/login' component={RestaurantLogin} />
             <LoggedRoute exact path='/co/signup' component={RestaurantSignup} />
-            <RegisterRoute path='/user-register' component={UserRegister} />
-            <Route path='/home' component={() => <Navbar client><Home /></Navbar>} />
+            <RegisterRoute exact path='/co/register-restaurant' component={() => <Navbar firm><RestaurantRegister /></Navbar>} />
+            <RegisterRoute path='/user-register' component={() => <Navbar client><UserRegister /></Navbar>} />
             <ClientRoute path='/search' component={() => <Navbar client><Search /></Navbar>} />
             <Route component={() => <Navbar client><NotFound/></Navbar>} />
           </Switch>
