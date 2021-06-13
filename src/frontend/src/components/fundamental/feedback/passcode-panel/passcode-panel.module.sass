@@ -3,18 +3,29 @@
 @import '../../../../assets/styles/shadow'
 
 
+.blur
+  position: fixed
+  width: 100%
+  height: 100%
+  filter: blur(10px)
+  left: 0
+  top: 0
+  background: $primary-white
+  opacity: 0.8
+
 .passcodePanel
   width: 100%
   height: 100%
-  position: absolute
+  position: fixed
   top: 0
   left: 0
   display: flex
   align-items: center
   justify-content: center
+  z-index: 1
 
 .panel
-  width: 35%
+  width: 45%
   min-width: min-content
   height: 40rem
   padding: 2rem
@@ -47,7 +58,7 @@
   align-items: center
   font-family: $standard-font
   font-size: 5rem
-  color: $primary-black
+  color: $primary-white
 
 .info
   padding: 1rem
@@ -56,6 +67,10 @@
   box-shadow: $standard-shadow
   border-radius: 1rem
 
+.flip
+  color: $font-black
+  animation: flip 0.6s ease-in-out
+
 @media screen and ( max-width: 600px )
   .panel
     width: 100%
@@ -63,11 +78,28 @@
     padding: 1rem
     border-radius: 0
 
+  .passcode
+    background-color: $primary-white
+    border-radius: 1rem
+    box-shadow: $standard-shadow
+
   .number
     min-width: 3rem
     height: 5rem
     font-size: 4rem
-    background-color: $background-blue
-    color: $font-white
+    background-color: transparent
+    // color: $font-white
     box-shadow: none
     margin: 0
+    border-radius: 0
+
+@keyframes flip
+  0%
+    color: $primary-white
+    transform: rotateX(0deg)
+  50%
+    transform: rotateX(90deg)
+    color: $primary-white
+  100%
+    color: $primary-black
+    transform: rotateX(0deg)
