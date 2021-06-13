@@ -20,26 +20,21 @@ type PasscodePanelTypes = {
 export function PasscodePanel(props: PasscodePanelTypes): JSX.Element {
   const ref = useRef<HTMLDivElement>(null)
   const blur = useRef<HTMLDivElement>(null)
-  const regex: RegExp = /^[1-9]{7}$/
 
   function closePanel() {
-    ref.current?.remove()
-    blur.current?.remove()
+    ref.current?.setAttribute('style', 'display: none')
+    blur.current?.setAttribute('style', 'display: none')
   }
 
   useEffect(() => {
     const numbers = document.querySelectorAll(`.${styles.number}`)
-
-    console.log(numbers)
 
     for (const idx in props.passcode.split('')) {
       setTimeout(() => {
         numbers[idx].setAttribute('class', `${styles.number} ${styles.flip}`)
       }, (+idx + 1) * 600)
     }
-  }, [])
-
-  if (!regex.test(props.passcode)) { return <div>Error: passcode is incorrect</div> }
+  }, [props.passcode])
 
   return (
     <>

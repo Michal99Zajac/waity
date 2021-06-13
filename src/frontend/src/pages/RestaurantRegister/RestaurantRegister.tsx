@@ -1,5 +1,5 @@
-import React, { useReducer } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useReducer, useState } from 'react'
+import { useHistory, Redirect } from 'react-router-dom'
 import { StaticSvg } from '../../components/fundamental/images-n-icons/static-svg/static-svg'
 import { Heading } from '../../components/fundamental/titles-n-text/heading/heading'
 import { Button } from '../../components/fundamental/actions/button/button'
@@ -11,6 +11,7 @@ import { PasscodePanel } from '../../components/fundamental/feedback/passcode-pa
 import RestaurantRegisterSvg from '../../assets/svg/restaurant-register.svg'
 import restaurantReducer, { initState } from './reducer'
 import styles from './RestaurantRegister.module.sass'
+import { useEffect } from 'react'
 
 
 const countryOptions = [
@@ -47,6 +48,8 @@ const typeOptions = [
 export default function RestaurantRegister(): JSX.Element {
   const [state, dispatch] = useReducer(restaurantReducer, initState)
   const history = useHistory()
+  const [passcode, setPasscode] = useState(JSON.parse(window.localStorage.getItem('registerRestaurant') ?? '{ "passcode" : "0000000" }'))
+  
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -56,13 +59,19 @@ export default function RestaurantRegister(): JSX.Element {
 
       history.push('/co/home')
     } catch (err) {
-      console.log('submit')
+      console.log(err)
+      
+      if (window.localStorage.getItem('registerRestaurant')) { history.push('/home') }
     }
   }
 
+  useEffect(() => {
+    setPasscode(JSON.parse(window.localStorage.getItem('registerRestaurant') ?? '{ "passcode" : "0000000" }'))
+  }, [])
+
   return (
     <>
-      <PasscodePanel passcode='1234567' />
+      <PasscodePanel passcode={passcode.passcode} />
       <div className={styles.restaurantRegister}>
         <div className={styles.feedbackDiv}>
           <div className={styles.feedback}>
